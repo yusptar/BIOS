@@ -85,72 +85,72 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('dktr-spesialis') }}" class="nav-link">
                                 <p>Jumlah Dokter Spesialis</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('dktr-gigi') }}" class="nav-link">
                                 <p>Jumlah Dokter Gigi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('dktr-umum') }}" class="nav-link">
                                 <p>Jumlah Dokter Umum</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tng-perawat') }}" class="nav-link">
                                 <p>Jumlah Tenaga Perawat</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tng-bidan') }}" class="nav-link">
                                 <p>Jumlah Tenaga Bidan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('pran-lab') }}" class="nav-link">
                                 <p>Jumlah Pranata Laboratorium</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('radiographer') }}" class="nav-link">
                                 <p>Jumlah Radiographer</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('nutrisionist') }}" class="nav-link">
                                 <p>Jumlah Nutrisionist</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('fisioterapis') }}" class="nav-link">
                                 <p>Jumlah Fisioterapis</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('pharmacist') }}" class="nav-link">
                                 <p>Jumlah Pharmacist</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tng-professional') }}" class="nav-link">
                                 <p>Jumlah Tenaga Professional Lainnya</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tng-non-medis') }}" class="nav-link">
                                 <p>Jumlah Tenaga Non-Medis</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tng-non-medis-adm') }}" class="nav-link">
                                 <p>Jumlah Tenaga Non-Medis Administrasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('sanitarian') }}" class="nav-link">
                                 <p>Jumlah Sanitarian</p>
                             </a>
                         </li>
@@ -263,3 +263,21 @@
     </div>
     <!-- /.sidebar -->
 </aside>
+
+<script>
+// Mendapatkan semua elemen nav-link
+var navLinks = document.querySelectorAll('.nav-link');
+
+// Menambahkan event listener untuk setiap nav-link
+navLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+        // Menghapus kelas "active" dari semua nav-link
+        navLinks.forEach(function(navLink) {
+            navLink.classList.remove('active');
+        });
+
+        // Menandai nav-link yang sedang diklik sebagai "active"
+        link.classList.add('active');
+    });
+});
+</script>

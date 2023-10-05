@@ -25,18 +25,25 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 
 // add login middleware
 Route::group(['middleware' => ['auth']], function () {
-    // Route::resource('berita', App\Http\Controllers\BeritaController::class);
-    // Route::resource('artikel', App\Http\Controllers\ArtikelController::class);
-    Route::resource('parkir', App\Http\Controllers\ParkirController::class);
-    Route::get('cetak', [App\Http\Controllers\ParkirController::class, 'cetakPDF'])->name('cetakPDF');
-    // Route::resource('minat-klinis', App\Http\Controllers\MinatKlinisController::class);
-    // Route::resource('prestasi-dokter', App\Http\Controllers\PrestasiDokterController::class);
-    // Route::resource('pendidikan-dokter', App\Http\Controllers\PendidikanDokterController::class);
-    // Route::resource('pengaduan', App\Http\Controllers\PengaduanController::class);
-    // Route::resource('respon-pengaduan', App\Http\Controllers\ResponPengaduanController::class);
-    // Route::resource('review', App\Http\Controllers\ReviewController::class);
-    // Route::resource('laporan-spi', App\Http\Controllers\LaporanSPIController::class);
-    // Route::get('images/berita/{path}',[App\Http\Controllers\ImagesController::class, 'show'])->where('path', '.*');
+    // Route Data SDM
+    Route::get('/dokter_spesialis', [App\Http\Controllers\DataSDMController::class, 'dokter_spesialis'])->name('dktr-spesialis');
+    Route::get('/dokter_gigi', [App\Http\Controllers\DataSDMController::class, 'dokter_gigi'])->name('dktr-gigi');
+    Route::get('/dokter_umum', [App\Http\Controllers\DataSDMController::class, 'dokter_umum'])->name('dktr-umum');
+    Route::get('/tenaga_perawat', [App\Http\Controllers\DataSDMController::class, 'tenaga_perawat'])->name('tng-perawat');
+    Route::get('/tenaga_bidan', [App\Http\Controllers\DataSDMController::class, 'tenaga_bidan'])->name('tng-bidan');
+    Route::get('/pranata_lab', [App\Http\Controllers\DataSDMController::class, 'pranata_laboratorium'])->name('pran-lab');
+    Route::get('/radiographer', [App\Http\Controllers\DataSDMController::class, 'radiographer'])->name('radiographer');
+    Route::get('/nutrisionist', [App\Http\Controllers\DataSDMController::class, 'nutrisionist'])->name('nutrisionist');
+    Route::get('/fisioterapis', [App\Http\Controllers\DataSDMController::class, 'fisioterapis'])->name('fisioterapis');
+    Route::get('/pharmacist', [App\Http\Controllers\DataSDMController::class, 'pharmacist'])->name('pharmacist');
+    Route::get('/tenaga_professional', [App\Http\Controllers\DataSDMController::class, 'tenaga_professional'])->name('tng-professional');
+    Route::get('/tenaga_non-medis', [App\Http\Controllers\DataSDMController::class, 'tenaga_non_medis'])->name('tng-non-medis');
+    Route::get('/tenaga_non-medis_adm', [App\Http\Controllers\DataSDMController::class, 'tenaga_non_medis_adm'])->name('tng-non-medis-adm');
+    Route::get('/sanitarian', [App\Http\Controllers\DataSDMController::class, 'sanitarian'])->name('sanitarian');
+
+    // Rote Data Layanan
+    
+
+    // Route Data IKT 
+
 });
-// Route::resource('berita', App\Http\Controllers\BeritaController::class);
-// Route::resource('artikel', App\Http\Controllers\ArtikelController::class);
