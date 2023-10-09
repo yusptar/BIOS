@@ -18,40 +18,6 @@ class DataSDMController extends Controller
         return view('data_sdm.dokter_spesialis');
     }
 
-    public function dktr_spesialis_store(Request $request)
-    {    
-        $validator = $this->validator($request->all());
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
-        }
-        
-        try{
-            // $tarif = 0;
-
-            // if($request->jns_kendaraan === 'Sepeda Motor') {
-            //     $tarif = 3000; 
-            // } else {
-            //     $tarif = 5000; 
-            // }
-            
-            // $parkir = Parkir::create([
-            //     'no_plat' => $request->no_plat,
-            //     'jns_kendaraan' => $request->jns_kendaraan,
-            //     'tarif' => $tarif,    
-            //     'jam_masuk' => Carbon::now()->format('Y/m/d H:i:s'),
-            //     'jam_keluar' => $request->jam_keluar,
-            // ]);
-        }catch(Exception $e){
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-        return response()->json(['success' => 'Berhasil menambahkan data', 'data' => $parkir], 200);
-    }
-
-
-
-
-
-
     // View Dokter Gigi
     public function dokter_gigi()
     {

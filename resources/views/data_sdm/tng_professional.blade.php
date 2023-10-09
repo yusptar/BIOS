@@ -23,30 +23,28 @@
                 <form id="form-dokter-spesialis">
                     @csrf
                     <div class="card-body">
-                        <input type="hidden" name="tgl_transaksi">
-                        <div class="form-group">
+                        <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
+                        <div class=" form-group">
                             <label>PNS</label>
-                            <input type="number" class="form-control" id="pns" name="pns"
-                                placeholder="Masukkan jumlah PNS">
+                            <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS">
                         </div>
                         <div class="form-group">
                             <label>PPPK</label>
-                            <input type="number" class="form-control" id="pppk" name="pppk"
-                                placeholder="Masukkan jumlah PPPK">
+                            <input type="number" class="form-control" name="pppk" placeholder="Masukkan jumlah PPPK">
                         </div>
                         <div class="form-group">
                             <label>Anggota</label>
-                            <input type="number" class="form-control" id="anggota" name="anggota"
+                            <input type="number" class="form-control" name="anggota"
                                 placeholder="Masukkan jumlah Anggota">
                         </div>
                         <div class="form-group">
                             <label>Non PNS Tetap (Khusus Anggota TNI/Polri)</label>
-                            <input type="number" class="form-control" id="non_pns_tetap" name="non_pns_tetap"
+                            <input type="number" class="form-control" name="non_pns_tetap"
                                 placeholder="Masukkan jumlah Non PNS Tetap">
                         </div>
                         <div class="form-group">
                             <label>Kontrak</label>
-                            <input type="number" class="form-control" id="kontrak" name="kontrak"
+                            <input type="number" class="form-control" name="kontrak"
                                 placeholder="Masukkan Jumlah Kontrak">
                         </div>
                     </div>
@@ -63,9 +61,28 @@
 
 @section('script')
 <script>
+// Get the current date in the format YYYY-MM-DD
+const today = new Date();
+const year = today.getFullYear();
+let month = today.getMonth() + 1;
+let day = today.getDate();
+
+// Add leading zero for single-digit months and days
+if (month < 10) {
+    month = '0' + month;
+}
+
+if (day < 10) {
+    day = '0' + day;
+}
+// Format the date as YYYY-MM-DD
+const formattedDate = `${year}-${month}-${day}`;
+document.getElementById('tgl_transaksi').value = formattedDate;
+
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('pns', $('input[name=pns]').val());
         formData.append('pppk', $('input[name=pppk]').val());
         formData.append('anggota', $('input[name=anggota]').val());
@@ -80,21 +97,21 @@ $('#btn-submit').click(function() {
             processData: false,
             success: function(data) {
                 console.log(data.data);
-                Swal({
+                Swal.fire({
                     title: "Berhasil!",
-                    text: "Data parkir berhasil ditambahkan",
+                    text: "Data Berhasil ditambahkan",
                     icon: "success",
                     buttons: false,
                     timer: 2000,
                 }).then(function() {
-                    window.location.href = "{{ route('dktr-spesialis') }}"
+                    window.location.href = "{{ route('tng-professional') }}"
                 });
             },
             error: function(data) {
                 console.log(data);
-                swal({
+                Swal.fire({
                     title: "Gagal!",
-                    text: "Data parkir gagal ditambahkan",
+                    text: "Data gagal ditambahkan",
                     icon: "error",
                     buttons: false,
                     timer: 2000,

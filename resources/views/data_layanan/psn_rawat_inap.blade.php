@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Dokter Gigi</h1>
+                    <h1 class="m-0" style="font-weight:bold">Jumlah Pasien Rawat Inap</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -25,32 +25,17 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class=" form-group">
-                            <label>PNS</label>
-                            <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS">
+                            <label>Kode Kelas</label>
+                            <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
                         </div>
                         <div class="form-group">
-                            <label>PPPK</label>
-                            <input type="number" class="form-control" name="pppk" placeholder="Masukkan jumlah PPPK">
-                        </div>
-                        <div class="form-group">
-                            <label>Anggota</label>
-                            <input type="number" class="form-control" name="anggota"
-                                placeholder="Masukkan jumlah Anggota">
-                        </div>
-                        <div class="form-group">
-                            <label>Non PNS Tetap (Khusus Anggota TNI/Polri)</label>
-                            <input type="number" class="form-control" name="non_pns_tetap"
-                                placeholder="Masukkan jumlah Non PNS Tetap">
-                        </div>
-                        <div class="form-group">
-                            <label>Kontrak</label>
-                            <input type="number" class="form-control" name="kontrak"
-                                placeholder="Masukkan Jumlah Kontrak">
+                            <label>Jumlah Pasien</label>
+                            <input type="number" class="form-control" name="jumlah" placeholder="Masukkan jumlah pasien>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
-                    </div>
+                    <div class=" card-footer">
+                            <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
+                        </div>
                 </form>
             </div>
         </div>
@@ -83,33 +68,29 @@ $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
-        formData.append('pns', $('input[name=pns]').val());
-        formData.append('pppk', $('input[name=pppk]').val());
-        formData.append('anggota', $('input[name=anggota]').val());
-        formData.append('non_pns_tetap', $('input[non_pns_tetap]').val());
-        formData.append('kontrak', $('input[name=kontrak]').val());
-        formData.append('_token', $('input[name=_token]').val());
+        formData.append('kode_kelas', $('input[name=kode_kelas]').val());
+        formData.append('jumlah', $('input[name=jumlah]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_gigi",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",
             type: "POST",
             data: formData,
             contentType: false,
             processData: false,
             success: function(data) {
                 console.log(data.data);
-                Swal({
+                Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",
                     icon: "success",
                     buttons: false,
                     timer: 2000,
                 }).then(function() {
-                    window.location.href = "{{ route('dktr-gigi') }}"
+                    window.location.href = "{{ route('dktr-spesialis') }}"
                 });
             },
             error: function(data) {
                 console.log(data);
-                swal({
+                Swal.fire({
                     title: "Gagal!",
                     text: "Data gagal ditambahkan",
                     icon: "error",

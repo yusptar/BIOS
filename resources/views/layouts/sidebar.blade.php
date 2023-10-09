@@ -1,22 +1,15 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-        <span class="brand-text font-weight-light">BIOS Webservice</span>
+    <a href="{{ route('dashboard') }}" class="brand-link">
+        <div class="text-center">
+            <img src="{{ asset('auth/images/logo-nagara.png') }}" alt="" width="60%" height="60%">
+        </div>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                    alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Admin BIOS</a>
-            </div>
-        </div>
 
         <!-- SidebarSearch Form -->
         <!-- <div class="form-inline">
@@ -166,23 +159,103 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <p>Jumlah Pasien Rawat Inap</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <p>Jumlah Pasien Rawat Darurat</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <p>Jumlah Layanan Laboratorium (sampel)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
-                                <p>Jumlah Layanan Laboratirum (parameter)</p>
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Layanan Laboratorium (parameter)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Tindakan Operasi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Layanan Radiologi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Layanan Forensik</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Kunjungan Rawat Jalan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Akreditasi Institusi / Prodi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Pasien Rawat Jalan/Poli</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Pasien BPJS / Non-BPJS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>BOR (Bed Occupancy Ratio)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>TOI (Turn Over Interval)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>ALOS (Average Length of Stay)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>BTO (Bed Turn Over)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Prosentase Kejadian Pasien Jatuh (Khusus Balai Besar Kesehatan Paru)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Pelayanan Dokpol (Khusus RS Bhayangkara)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Sertifikat (Khusus Balai Kesehatan Perhubungan)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Barang yang dikalibrasi (Khusus Balai Kesehatan Perhubungan)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Indeks Kepuasan Masyarakat (IKM)</p>
                             </a>
                         </li>
                     </ul>
@@ -197,53 +270,71 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/UI/general.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>General</p>
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Visite Pasien <= Jam 10.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/UI/icons.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Icons</p>
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Visite Pasien > 10.00 s.d. 12.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/UI/buttons.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Buttons</p>
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Visite Pasien > 12.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/UI/sliders.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Sliders</p>
+                            <a href="#" class="nav-link">
+                                <p>Jumlah DPJP tidak visite</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/UI/modals.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Modals & Alerts</p>
+                            <a href="#" class="nav-link">
+                                <p>Jumlah Kegiatan Visite Pasien Pertama</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/UI/navbar.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Navbar & Tabs</p>
+                            <a href="#" class="nav-link">
+                                <p>Rasio POBO</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/UI/timeline.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Timeline</p>
+                            <a href="#" class="nav-link">
+                                <p>Pertumbuhan Realisasi Pendapatan dari Pengelolaan Aset BLU</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/UI/ribbons.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ribbons</p>
+                            <a href="#" class="nav-link">
+                                <p>Penyelenggaran Rekam Medis Elektronik</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Pelaksanaan Protokol Kesehatan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Persentase Pembelian Alat Kesehatan Produksi Dalam Negeri</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepuasan Pasien</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Waktu Visite Dokter Penanggung Jawab Pelayanan/DPJP</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kemampuan Menangani BBLSR < 1500g (Khusus RS Anak dan Ibu)</p>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-header">LOG OUT</li>
