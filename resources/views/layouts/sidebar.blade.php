@@ -159,102 +159,102 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('psn-rawat-inap') }}" class="nav-link">
                                 <p>Jumlah Pasien Rawat Inap</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('psn-rawat-darurat') }}" class="nav-link">
                                 <p>Jumlah Pasien Rawat Darurat</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('lab-sampel') }}" class="nav-link">
                                 <p>Jumlah Layanan Laboratorium (sampel)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('lab-parameter') }}" class="nav-link">
                                 <p>Jumlah Layanan Laboratorium (parameter)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tndkn-operasi') }}" class="nav-link">
                                 <p>Jumlah Tindakan Operasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('lyn-radiologi') }}" class="nav-link">
                                 <p>Jumlah Layanan Radiologi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('lyn-forensik') }}" class="nav-link">
                                 <p>Jumlah Layanan Forensik</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kunj-rawat-jalan') }}" class="nav-link">
                                 <p>Jumlah Kunjungan Rawat Jalan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <p>Akreditasi Institusi / Prodi</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('psn-rawat-jalan') }}" class="nav-link">
                                 <p>Jumlah Pasien Rawat Jalan/Poli</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('psn-bpjs-nonbpjs') }}" class="nav-link">
                                 <p>Jumlah Pasien BPJS / Non-BPJS</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('lyn-farmasi') }}" class="nav-link">
+                                <p>Jumlah Layanan Farmasi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('bor') }}" class="nav-link">
                                 <p>BOR (Bed Occupancy Ratio)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('toi') }}" class="nav-link">
                                 <p>TOI (Turn Over Interval)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('alos') }}" class="nav-link">
                                 <p>ALOS (Average Length of Stay)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('bto') }}" class="nav-link">
                                 <p>BTO (Bed Turn Over)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kjd-pasien-jatuh') }}" class="nav-link">
                                 <p>Prosentase Kejadian Pasien Jatuh (Khusus Balai Besar Kesehatan Paru)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('dokpol') }}" class="nav-link">
                                 <p>Jumlah Pelayanan Dokpol (Khusus RS Bhayangkara)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('lyn-sertifikat') }}" class="nav-link">
                                 <p>Jumlah Sertifikat (Khusus Balai Kesehatan Perhubungan)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kalibrasi') }}" class="nav-link">
                                 <p>Jumlah Barang yang dikalibrasi (Khusus Balai Kesehatan Perhubungan)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('ikm') }}" class="nav-link">
                                 <p>Indeks Kepuasan Masyarakat (IKM)</p>
                             </a>
                         </li>

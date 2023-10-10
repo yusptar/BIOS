@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Pasien Rawat Inap</h1>
+                    <h1 class="m-0" style="font-weight:bold">Jumlah Layanan Radiologi</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -24,12 +24,8 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <div class=" form-group">
-                            <label>Kode Kelas</label>
-                            <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
-                        </div>
                         <div class="form-group">
-                            <label>Jumlah Pasien</label>
+                            <label>Jumlah Pemeriksaan Radiologi</label>
                             <input type="number" class="form-control" name="jumlah"
                                 placeholder="Masukkan jumlah pasien">
                         </div>

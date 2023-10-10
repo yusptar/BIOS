@@ -21,7 +21,7 @@ class DataLayananController extends Controller
         return view('data_layanan.psn_rawat_darurat');
     }
 
-    public function layanana_lab_sampel()
+    public function layanan_lab_sampel()
     {
         return view('data_layanan.layanan_lab_sampel');
     }
@@ -103,7 +103,7 @@ class DataLayananController extends Controller
     
     public function brg_kalibrasi()
     {
-        return view('data_layanan.bto');
+        return view('data_layanan.kalibrasi');
     }
     
     public function indeks_kepuasan_masyarakat()
