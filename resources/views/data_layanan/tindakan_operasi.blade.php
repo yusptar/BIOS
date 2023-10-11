@@ -25,9 +25,13 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class=" form-group">
-                            <label>Klasifikasi Operasi</label>
-                            <input type="text" class="form-control" name="klasifikasi_operasi"
-                                placeholder="Masukkan klasifikasi operasi">
+                            <label>Kelas</label>
+                            <select class="form-control col-sm-5" name="kelas" id="kelas">
+                                <option value="ringan">Ringan</option>
+                                <option value="berat">Berat</option>
+                                <option value="sedang">Sedang</option>
+                                <option value="canggih">Canggih</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Jumlah Pasien</label>

@@ -25,13 +25,17 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class=" form-group">
-                            <label>Kode Kelas</label>
-                            <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
+                            <label>Kelas</label>
+                            <select class="form-control col-sm-5" name="kelas" id="kelas">
+                                <option value="kelas1">Kelas 1</option>
+                                <option value="kelas2">Kelas 2</option>
+                                <option value="kelas3">Kelas 3</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Jumlah Pasien</label>
+                            <label>Jumlah sertifikat yang diterbitkan</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien">
+                                placeholder="Masukkan jumlah sertifikat">
                         </div>
                     </div>
                     <div class=" card-footer">

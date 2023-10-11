@@ -334,7 +334,193 @@
                                 <p>Kemampuan Menangani BBLSR < 1500g (Khusus RS Anak dan Ibu)</p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Keberhasilan Tindakan Bedah Jantung Coronary Arterial Bypass (CABG) dan Tetralogy of
+                                    Fallot Repair (ToF Repair) (Khusus RS Jantung)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Penyelenggaraan Layanan Kesehatan Jiwa berbasis Safewards dan WHO - Quality Right
+                                    (WHO - QR) (Khusus RS Jiwa)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Penyelenggaraan Layanan Napza berbasis Safewards dan WHO-Quality Right (Khusus RS
+                                    Ketergantungan Obat)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Progresivitas Retinopati Diabetika Pasca Terapi Laser 3 Bulan (Khusus RS Mata
+                                    Cicendo)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Presentase Pengulangan Pemeriksaan Biometri Pada Pasien Katarak (Khusus RS Mata
+                                    Makassar)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Persentase Kasus Infeksi Luka Operasi (ILO) Bedah Ortho (Khusus RS Orthopedi)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Door To Needle (Khusus RS Otak)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Masa Tunggu Operasi Ca Mammae (Kanker Payudara) (Khusus RS Kanker)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Pelayanan Rehab Medik Respiratori Pasca Infeksi Berat (Khusus RS Penyakit Infeksi)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Terlaksananya Program Kesehatan Paru Terintegrasi (Prioritas TBC) Lintas Sektor dan
+                                    Program Wilayah Binaan (Khusus BBKPM)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Prosentase Tersusun dan Terimplementasinya Program Pembinaan Kesehatan Paru
+                                    Terintegrasi (Prioritas TBC) di wilayah kerja BBKPM (Khusus BBKPM)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Proporsi Pasien TB MDR diobati diantara pasien TB MDR ditemukan (Enrollment Rate)
+                                    (Khusus BBKPM)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Waktu Pelayanan Pemeriksaan Laboratorium Covid-19 (Khusus BBLK)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Tingkat Kepesertaan Penyelenggaraan PME (TKPP) (Khusus BBLK)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Waktu Pelayanan Pemeriksaan Laboratorium Covid-19 (Khusus BBLK)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Penyelenggaraan Sistem Informasi Balai Kesehatan (Khusus BBLK)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Kebersihan Tangan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Penggunaan Alat Pelindung Diri (APD)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Identifikasi Pasien
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Waktu Tanggap Operasi Seksio Sesarea Emergensi
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Waktu Tunggu Rawat Jalan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Penundaan Operasi Elektif
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Waktu Visite Dokter
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Pelaporan Hasil Kritis Laboratorium
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Penggunaan Formularium Nasional
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Terhadap Alur Klinis (Clinical Pathway)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kepatuhan Upaya Pencegahan Resiko Pasien Jatuh
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Kecepatan Waktu Tanggap Komplain
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Indikator Pelayanan Medical Check Up Pelaut (Khusus Balai Kesehatan Perhubungan)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Indikator Pelayanan Penilikan Kesehatan Lingkungan Kerja Pelayaran (Khusus Balai
+                                    Kesehatan Perhubungan)
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <p>Indikator Penyediaan Dokumen Kesehatan Pelaut (Khusus Balai Kesehatan Perhubungan)
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-header">LOG OUT</li>

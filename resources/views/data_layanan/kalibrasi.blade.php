@@ -5,7 +5,7 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <h1 class="m-0" style="font-weight:bold">Jumlah Barang yang dikalibrasi (Khusus Balai Kesehatan
                         Perhubungan)</h1>
                 </div><!-- /.col -->
@@ -25,14 +25,10 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <div class=" form-group">
-                            <label>Kode Kelas</label>
-                            <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
-                        </div>
                         <div class="form-group">
-                            <label>Jumlah Pasien</label>
+                            <label>Jumlah Layanan Kalibrasi</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien">
+                                placeholder="Masukkan jumlah layanan kalibrasi">
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -70,7 +66,6 @@ $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
-        formData.append('kode_kelas', $('input[name=kode_kelas]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({

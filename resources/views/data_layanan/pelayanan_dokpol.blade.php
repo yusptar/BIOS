@@ -24,14 +24,61 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <div class=" form-group">
-                            <label>Kode Kelas</label>
-                            <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
+                        <div class="form-group">
+                            <label>Jumlah Kedokteran Forensik</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
                         </div>
                         <div class="form-group">
-                            <label>Jumlah Pasien</label>
-                            <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien">
+                            <label>Jumlah Psikiatri Forensik</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Sentra Visum dan Medikolegal</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah PPAT</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Odontologi Forensik</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Psikologi Forensik</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Antropologi Forensik</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Olah TKP Medis</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Kesehatan Tahanan</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Narkoba</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Toksiologi Medik</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Pelayanan DNA</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah PAM keslap food security</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah DVI</label>
+                            <input type="number" class="form-control" name="" placeholder="Masukkan jumlah pasien">
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -69,8 +116,6 @@ $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
-        formData.append('kode_kelas', $('input[name=kode_kelas]').val());
-        formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
             url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",

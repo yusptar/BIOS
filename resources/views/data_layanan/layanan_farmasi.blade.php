@@ -24,14 +24,9 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <div class=" form-group">
-                            <label>Kode Kelas</label>
-                            <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
-                        </div>
                         <div class="form-group">
-                            <label>Jumlah Pasien</label>
-                            <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien">
+                            <label>Jumlah Resep</label>
+                            <input type="number" class="form-control" name="jumlah" placeholder="Masukkan jumlah resep">
                         </div>
                     </div>
                     <div class=" card-footer">

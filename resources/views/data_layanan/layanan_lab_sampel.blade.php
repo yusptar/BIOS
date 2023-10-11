@@ -25,9 +25,9 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class="form-group">
-                            <label>Jumlah Pasien</label>
+                            <label>Jumlah Layanan Lab Sampel</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien">
+                                placeholder="Masukkan jumlah layanan lab sampel">
                         </div>
                     </div>
                     <div class=" card-footer">
