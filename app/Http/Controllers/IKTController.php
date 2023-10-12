@@ -132,7 +132,7 @@ class IKTController extends Controller
         return view('ikt.trlksn_program_kesehatan_paru');
     }
 
-    public function prosentase_terusun_dan_terimplementasi()
+    public function prosentase_tersusun_dan_terimplementasi()
     {
         return view('ikt.prsnts_implement_program');
     }

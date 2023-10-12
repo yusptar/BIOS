@@ -63,6 +63,49 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/barang-kalibrasi', [App\Http\Controllers\DataLayananController::class, 'brg_kalibrasi'])->name('kalibrasi');
     Route::get('/indeks-kepuasan-masyarakat', [App\Http\Controllers\DataLayananController::class, 'indeks_kepuasan_masyarakat'])->name('ikm');
     
-    // Route Data IKT 
-
+    // Route Data IKT
+    Route::get('/vst-psn-kurang-dari-atau-sama-dengan-jam-10', [App\Http\Controllers\IKTController::class, 'visite_psn_10'])->name('vst-psn-10');
+    Route::get('/vst-psn-jam-10-hingga-jam-12', [App\Http\Controllers\IKTController::class, 'visite_psn_10_12'])->name('vst-psn-10=12');
+    Route::get('/vst-psn-lebih-dari-jam-12', [App\Http\Controllers\IKTController::class, 'visite_psn_12'])->name('vst-psn-12');
+    Route::get('/dpjp-tidak-visite', [App\Http\Controllers\IKTController::class, 'dpjp_tidak_visite'])->name('dpjp-non-visite');
+    Route::get('/kegiatan-visite-pertama', [App\Http\Controllers\IKTController::class, 'kegiatan_visite_pasien_pertama'])->name('kgtn-visite-psn');
+    Route::get('/raiso-pobo', [App\Http\Controllers\IKTController::class, 'rasio_pobo'])->name('pobo');
+    Route::get('/aset-blu', [App\Http\Controllers\IKTController::class, 'pertumbuhan_realisasi_pendapatan_dari_pengelolaan_asetBLU'])->name('aset-blu');
+    Route::get('/rekam-medis-elektronik', [App\Http\Controllers\IKTController::class, 'penyelenggara_rekam_medis_elektronik'])->name('rkm-medis-elektronik');
+    Route::get('/protokol-kesehatan', [App\Http\Controllers\IKTController::class, 'kepatuhan_pelaksanaan_protokol_kesehatan'])->name('protokol-kesehatan');
+    Route::get('/alat-kesehatan-produksi', [App\Http\Controllers\IKTController::class, 'presentase_pembelian_alat_kesehatan_produksi_dalam_negeri'])->name('alat-kesehatan');
+    Route::get('/kepuasan-pasien', [App\Http\Controllers\IKTController::class, 'kepuasan_pasien'])->name('kpuasan-psn');
+    Route::get('/waktu-visite-dpjp', [App\Http\Controllers\IKTController::class, 'kepatuhan_waktu_visite_dpjp'])->name('wkt-visite-dpjp');
+    Route::get('/kemampuan-menangani-bblsr-1500g', [App\Http\Controllers\IKTController::class, 'kemampuan_menangani_bblsr_1500g'])->name('bblsr-1500');
+    Route::get('/keberhasilan-tindakan-bedah-jantung-cabg-tof', [App\Http\Controllers\IKTController::class, 'keberhasilan_tindakan_bedah_jantung_cabg_dan_tof'])->name('cabg-tof');
+    Route::get('/kesehatan-jiwa-who', [App\Http\Controllers\IKTController::class, 'penyelenggaraan_layanan_kesehatan_jiwa_safewards_who'])->name('kes-jiw-who');
+    Route::get('/napza-who', [App\Http\Controllers\IKTController::class, 'penyelenggaraan_layanan_napza__safewards_who'])->name('napza-who');
+    Route::get('/proporsi-pasien-tb-mdr-rs', [App\Http\Controllers\IKTController::class, 'proporsi_pasien_tb_mdr_khusus_rs'])->name('tb-mdr-rs');
+    Route::get('/retinopati-diabetika', [App\Http\Controllers\IKTController::class, 'progresivitas_retinopati_diabetika'])->name('retinopati-diabetika');
+    Route::get('/biometri-katarak', [App\Http\Controllers\IKTController::class, 'persentase_pengulangan_pemeriksaan_biometri_katarak'])->name('biometri-katarak');
+    Route::get('/bedah-ortho', [App\Http\Controllers\IKTController::class, 'persentase_kasus_ilo_bedah_ortho'])->name('bedah-ortho'); 
+    Route::get('/door-to-needle', [App\Http\Controllers\IKTController::class, 'door_to_needle'])->name('door-to-needle');
+    Route::get('/operasi-ca-mammae', [App\Http\Controllers\IKTController::class, 'masa_tunggu_operasi_ca_mamae'])->name('ops-ca-mammae');
+    Route::get('/rehab-medik', [App\Http\Controllers\IKTController::class, 'pelayanan_rehab_medik_respiratori'])->name('rehab-medik');
+    Route::get('/program-kesehatan-paru', [App\Http\Controllers\IKTController::class, 'terlaksananya_program_kesehatan_paru'])->name('program-kesehatan-paru');
+    Route::get('/prosentase-tersusun', [App\Http\Controllers\IKTController::class, 'prosentase_tersusun_dan_terimplementasi'])->name('prosentase-tersusun');
+    Route::get('/proporsi-tb-mdr-bbkpm', [App\Http\Controllers\IKTController::class, 'proporsi_pasien_tb_mdr_khusus_bbkpm'])->name('tb-mdr-bbkpm');
+    Route::get('/waktu-pelayanan-lab-covid19', [App\Http\Controllers\IKTController::class, 'waktu_pelayanan_pemeriksaan_lab_covid19'])->name('plyn-lab-covid19');
+    Route::get('/tingkat-pme', [App\Http\Controllers\IKTController::class, 'tingkat_kepesertaan_penyelenggaraan_pme'])->name('penyelengaraan-pme');
+    Route::get('/sisfo-balkes', [App\Http\Controllers\IKTController::class, 'penyelenggaraan_sistem_informasi_balkes'])->name('sisfo-balkes');
+    Route::get('/kebersihan-tangan', [App\Http\Controllers\IKTController::class, 'kepatuhan_kebersihan_tangan'])->name('kebersihan-tangan');
+    Route::get('/penggunaan-apd', [App\Http\Controllers\IKTController::class, 'kepatuhan_penggunaan_apd'])->name('apd');
+    Route::get('/identifikasi-pasien', [App\Http\Controllers\IKTController::class, 'kepatuhan_identifikasi_pasien'])->name('identifikasi-pasien');
+    Route::get('/waktu-tanggap-operasi-seksio-sesarea-emergensi', [App\Http\Controllers\IKTController::class, 'waktu_tanggap_operasi_seksio_sesarea_emergensi'])->name('seksio-emergensi');
+    Route::get('/waktu-tunggu-rawat-jalan', [App\Http\Controllers\IKTController::class, 'waktu_tunggu_rawat_jalan'])->name('wkt-tunggu-rawat-jalan');
+    Route::get('/operasi-elektif', [App\Http\Controllers\IKTController::class, 'penundaan_operasi_elektif'])->name('ops-elektif');
+    Route::get('/kepatuhan-waktu-visite-dokter', [App\Http\Controllers\IKTController::class, 'kepatuhan_waktu_visite_dokter'])->name('kepatuhan-wkt-visite-dokter');
+    Route::get('/pelaporan-hasil-kritis-lab', [App\Http\Controllers\IKTController::class, 'pelaporan_hasil_kritis_lab'])->name('kritis-lab');
+    Route::get('/kepatuhan-penggunaan-formularium-nasional', [App\Http\Controllers\IKTController::class, 'kepatuhan_penggunaan_formularium_nasional'])->name('form-nasional');
+    Route::get('/alur-klinis', [App\Http\Controllers\IKTController::class, 'kepatuhan_terhadap_alur_klinis'])->name('alur-klinis');
+    Route::get('/resiko-pasien-jatuh', [App\Http\Controllers\IKTController::class, 'kepatuhan_upaya_pencegahan_resiko_pasien_jatuh'])->name('resiko-psn-jatuh');
+    Route::get('/tanggap-komplain', [App\Http\Controllers\IKTController::class, 'kecepatan_waktu_tanggap_komplain'])->name('tanggap-komplain');
+    Route::get('/indikator-pelayanan-mcu-pelaut', [App\Http\Controllers\IKTController::class, 'indikator_pelayanan_mcu_pelaut'])->name('mcu-pelaut');
+    Route::get('/indikator-pelayanan-penilikan-kesehatan-lingkungan-kerja-pelayaran', [App\Http\Controllers\IKTController::class, 'indikator_pelayanan_penilikan_kesling_kerja_pelayaran'])->name('kesling-pelayaran');
+    Route::get('/indikator-penyediaan-dokumen-kesehatan-pelaut', [App\Http\Controllers\IKTController::class, 'indikator_penyediaan_dokumen_kesehatan_pelaut'])->name('kesehatan-pelaut');
 });

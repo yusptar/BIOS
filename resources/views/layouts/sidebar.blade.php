@@ -270,253 +270,241 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('vst-psn-10') }}" class="nav-link">
                                 <p>Jumlah Visite Pasien <= Jam 10.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('vst-psn-10=12') }}" class="nav-link">
                                 <p>Jumlah Visite Pasien > 10.00 s.d. 12.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('vst-psn-12') }}" class="nav-link">
                                 <p>Jumlah Visite Pasien > 12.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('dpjp-non-visite') }}" class="nav-link">
                                 <p>Jumlah DPJP tidak visite</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kgtn-visite-psn') }}" class="nav-link">
                                 <p>Jumlah Kegiatan Visite Pasien Pertama</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('pobo') }}" class="nav-link">
                                 <p>Rasio POBO</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('aset-blu') }}" class="nav-link">
                                 <p>Pertumbuhan Realisasi Pendapatan dari Pengelolaan Aset BLU</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('rkm-medis-elektronik') }}" class="nav-link">
                                 <p>Penyelenggaran Rekam Medis Elektronik</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('protokol-kesehatan') }}" class="nav-link">
                                 <p>Kepatuhan Pelaksanaan Protokol Kesehatan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('alat-kesehatan') }}" class="nav-link">
                                 <p>Persentase Pembelian Alat Kesehatan Produksi Dalam Negeri</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kpuasan-psn') }}" class="nav-link">
                                 <p>Kepuasan Pasien</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('wkt-visite-dpjp') }}" class="nav-link">
                                 <p>Kepatuhan Waktu Visite Dokter Penanggung Jawab Pelayanan/DPJP</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('cabg-tof') }}" class="nav-link">
                                 <p>Kemampuan Menangani BBLSR < 1500g (Khusus RS Anak dan Ibu)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kes-jiw-who') }}" class="nav-link">
                                 <p>Keberhasilan Tindakan Bedah Jantung Coronary Arterial Bypass (CABG) dan Tetralogy of
                                     Fallot Repair (ToF Repair) (Khusus RS Jantung)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('napza-who') }}" class="nav-link">
                                 <p>Penyelenggaraan Layanan Kesehatan Jiwa berbasis Safewards dan WHO - Quality Right
                                     (WHO - QR) (Khusus RS Jiwa)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tb-mdr-rs') }}" class="nav-link">
                                 <p>Penyelenggaraan Layanan Napza berbasis Safewards dan WHO-Quality Right (Khusus RS
                                     Ketergantungan Obat)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('retinopati-diabetika') }}" class="nav-link">
                                 <p>Progresivitas Retinopati Diabetika Pasca Terapi Laser 3 Bulan (Khusus RS Mata
                                     Cicendo)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('biometri-katarak') }}" class="nav-link">
                                 <p>Presentase Pengulangan Pemeriksaan Biometri Pada Pasien Katarak (Khusus RS Mata
                                     Makassar)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('bedah-ortho') }}" class="nav-link">
                                 <p>Persentase Kasus Infeksi Luka Operasi (ILO) Bedah Ortho (Khusus RS Orthopedi)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('door-to-needle') }}" class="nav-link">
                                 <p>Door To Needle (Khusus RS Otak)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('ops-ca-mammae') }}" class="nav-link">
                                 <p>Masa Tunggu Operasi Ca Mammae (Kanker Payudara) (Khusus RS Kanker)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('rehab-medik') }}" class="nav-link">
                                 <p>Pelayanan Rehab Medik Respiratori Pasca Infeksi Berat (Khusus RS Penyakit Infeksi)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('program-kesehatan-paru') }}" class="nav-link">
                                 <p>Terlaksananya Program Kesehatan Paru Terintegrasi (Prioritas TBC) Lintas Sektor dan
                                     Program Wilayah Binaan (Khusus BBKPM)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('prosentase-tersusun') }}" class="nav-link">
                                 <p>Prosentase Tersusun dan Terimplementasinya Program Pembinaan Kesehatan Paru
                                     Terintegrasi (Prioritas TBC) di wilayah kerja BBKPM (Khusus BBKPM)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tb-mdr-bbkpm') }}" class="nav-link">
                                 <p>Proporsi Pasien TB MDR diobati diantara pasien TB MDR ditemukan (Enrollment Rate)
                                     (Khusus BBKPM)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('plyn-lab-covid19') }}" class="nav-link">
                                 <p>Waktu Pelayanan Pemeriksaan Laboratorium Covid-19 (Khusus BBLK)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('penyelengaraan-pme') }}" class="nav-link">
                                 <p>Tingkat Kepesertaan Penyelenggaraan PME (TKPP) (Khusus BBLK)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <p>Waktu Pelayanan Pemeriksaan Laboratorium Covid-19 (Khusus BBLK)
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <p>Penyelenggaraan Sistem Informasi Balai Kesehatan (Khusus BBLK)
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kebersihan-tangan') }}" class="nav-link">
                                 <p>Kepatuhan Kebersihan Tangan
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('apd') }}" class="nav-link">
                                 <p>Kepatuhan Penggunaan Alat Pelindung Diri (APD)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('identifikasi-pasien') }}" class="nav-link">
                                 <p>Kepatuhan Identifikasi Pasien
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('seksio-emergensi') }}" class="nav-link">
                                 <p>Waktu Tanggap Operasi Seksio Sesarea Emergensi
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('wkt-tunggu-rawat-jalan') }}" class="nav-link">
                                 <p>Waktu Tunggu Rawat Jalan
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('ops-elektif') }}" class="nav-link">
                                 <p>Penundaan Operasi Elektif
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kepatuhan-wkt-visite-dokter') }}" class="nav-link">
                                 <p>Kepatuhan Waktu Visite Dokter
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kritis-lab') }}" class="nav-link">
                                 <p>Pelaporan Hasil Kritis Laboratorium
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('form-nasional') }}" class="nav-link">
                                 <p>Kepatuhan Penggunaan Formularium Nasional
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('alur-klinis') }}" class="nav-link">
                                 <p>Kepatuhan Terhadap Alur Klinis (Clinical Pathway)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('resiko-psn-jatuh') }}" class="nav-link">
                                 <p>Kepatuhan Upaya Pencegahan Resiko Pasien Jatuh
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tanggap-komplain') }}" class="nav-link">
                                 <p>Kecepatan Waktu Tanggap Komplain
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('mcu-pelaut') }}" class="nav-link">
                                 <p>Indikator Pelayanan Medical Check Up Pelaut (Khusus Balai Kesehatan Perhubungan)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kesling-pelayaran') }}" class="nav-link">
                                 <p>Indikator Pelayanan Penilikan Kesehatan Lingkungan Kerja Pelayaran (Khusus Balai
                                     Kesehatan Perhubungan)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kesehatan-pelaut') }}" class="nav-link">
                                 <p>Indikator Penyediaan Dokumen Kesehatan Pelaut (Khusus Balai Kesehatan Perhubungan)
                                 </p>
                             </a>
