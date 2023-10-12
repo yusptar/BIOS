@@ -65,11 +65,10 @@ $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
-        formData.append('kode_kelas', $('input[name=kode_kelas]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/pasien_igd",
             type: "POST",
             data: formData,
             contentType: false,

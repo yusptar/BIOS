@@ -73,7 +73,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/pasien_ranap",
             type: "POST",
             data: formData,
             contentType: false,

@@ -330,32 +330,38 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('cabg-tof') }}" class="nav-link">
+                            <a href="{{ route('bblsr-1500') }}" class="nav-link">
                                 <p>Kemampuan Menangani BBLSR < 1500g (Khusus RS Anak dan Ibu)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kes-jiw-who') }}" class="nav-link">
+                            <a href="{{ route('cabg-tof') }}" class="nav-link">
                                 <p>Keberhasilan Tindakan Bedah Jantung Coronary Arterial Bypass (CABG) dan Tetralogy of
                                     Fallot Repair (ToF Repair) (Khusus RS Jantung)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('napza-who') }}" class="nav-link">
+                            <a href="{{ route('kes-jiw-who') }}" class="nav-link">
                                 <p>Penyelenggaraan Layanan Kesehatan Jiwa berbasis Safewards dan WHO - Quality Right
                                     (WHO - QR) (Khusus RS Jiwa)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tb-mdr-rs') }}" class="nav-link">
+                            <a href="{{ route('napza-who') }}" class="nav-link">
                                 <p>Penyelenggaraan Layanan Napza berbasis Safewards dan WHO-Quality Right (Khusus RS
                                     Ketergantungan Obat)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('retinopati-diabetika') }}" class="nav-link">
-                                <p>Progresivitas Retinopati Diabetika Pasca Terapi Laser 3 Bulan (Khusus RS Mata
-                                    Cicendo)</p>
+                            <a href="{{ route('napza-who') }}" class="nav-link">
+                                <p>Penyelenggaraan Layanan Napza berbasis Safewards dan WHO-Quality Right (Khusus RS
+                                    Ketergantungan Obat)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('tb-mdr-rs') }}" class="nav-link">
+                                <p>Proporsi Pasien TB MDR diobati diantara Pasien TB MDR ditemukan (Enrollment Rate)
+                                    (Khusus RS Paru)</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -97,7 +97,7 @@ $('#btn-submit').click(function() {
             processData: false,
             success: function(data) {
                 console.log(data.data);
-                Swal({
+                Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",
                     icon: "success",
@@ -109,7 +109,7 @@ $('#btn-submit').click(function() {
             },
             error: function(data) {
                 console.log(data);
-                swal({
+                Swal.fire({
                     title: "Gagal!",
                     text: "Data gagal ditambahkan",
                     icon: "error",

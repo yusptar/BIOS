@@ -6,8 +6,8 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Barang yang dikalibrasi (Khusus Balai Kesehatan
-                        Perhubungan)</h1>
+                    <h1 class="m-0" style="font-weight:bold">Kemampuan Menangani BBSLR < 1500g (Khusus RS Anak dan
+                            Ibu)</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -26,9 +26,9 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class="form-group">
-                            <label>Jumlah Layanan Kalibrasi</label>
-                            <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah layanan kalibrasi">
+                            <label>Kemampuan Menangani BBSLR < 1500g (Khusus RS Anak dan Ibu)</label>
+                                    <input type="number" class="form-control" name="jumlah"
+                                        placeholder="Masukkan presentase capaian">
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -69,7 +69,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",
+            url: "",
             type: "POST",
             data: formData,
             contentType: false,

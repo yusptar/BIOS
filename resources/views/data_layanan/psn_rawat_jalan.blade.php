@@ -25,8 +25,8 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class=" form-group">
-                            <label>Kode Kelas</label>
-                            <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
+                            <label>Nama Poli</label>
+                            <input type="text" class="form-control" name="nama_poli" placeholder="Masukkan nama poli">
                         </div>
                         <div class="form-group">
                             <label>Jumlah Pasien</label>
@@ -69,11 +69,11 @@ $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
-        formData.append('kode_kelas', $('input[name=kode_kelas]').val());
+        formData.append('nama_poli', $('input[name=nama_poli]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/pasien_ralan_poli",
             type: "POST",
             data: formData,
             contentType: false,
