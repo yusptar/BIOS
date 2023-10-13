@@ -84,7 +84,7 @@ $('#btn-submit').click(function() {
                     buttons: false,
                     timer: 2000,
                 }).then(function() {
-                    window.location.href = "{{ route('dktr-spesialis') }}"
+                    window.location.href = "{{ route('kalibrasi') }}"
                 });
             },
             error: function(data) {

@@ -31,7 +31,7 @@
                                 <option value="ringan">Ringan</option>
                                 <option value="berat">Berat</option>
                                 <option value="sedang">Sedang</option>
-                                <option value="canggih">Canggih</option>
+                                <option value="canggih">Khusus</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -93,7 +93,7 @@ $('#btn-submit').click(function() {
                     buttons: false,
                     timer: 2000,
                 }).then(function() {
-                    window.location.href = "{{ route('dktr-spesialis') }}"
+                    window.location.href = "{{ route('tndkn-operasi') }}"
                 });
             },
             error: function(data) {
