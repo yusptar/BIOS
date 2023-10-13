@@ -24,6 +24,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
+                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class=" form-group">
                             <label>PNS</label>
                             <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS">
@@ -82,13 +83,13 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        formData.append('_token', $('input[name=_token]').val());
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('pns', $('input[name=pns]').val());
         formData.append('pppk', $('input[name=pppk]').val());
         formData.append('anggota', $('input[name=anggota]').val());
         formData.append('non_pns_tetap', $('input[non_pns_tetap]').val());
         formData.append('kontrak', $('input[name=kontrak]').val());
-        formData.append('_token', $('input[name=_token]').val());
         $.ajax({
             url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_umum",
             type: "POST",

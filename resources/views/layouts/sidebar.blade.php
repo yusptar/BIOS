@@ -233,7 +233,7 @@
                                 <p>BTO (Bed Turn Over)</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('kjd-pasien-jatuh') }}" class="nav-link">
                                 <p>Prosentase Kejadian Pasien Jatuh (Khusus Balai Besar Kesehatan Paru)</p>
                             </a>
@@ -252,7 +252,7 @@
                             <a href="{{ route('kalibrasi') }}" class="nav-link">
                                 <p>Jumlah Barang yang dikalibrasi (Khusus Balai Kesehatan Perhubungan)</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="{{ route('ikm') }}" class="nav-link">
                                 <p>Indeks Kepuasan Masyarakat (IKM)</p>
@@ -329,7 +329,7 @@
                                 <p>Kepatuhan Waktu Visite Dokter Penanggung Jawab Pelayanan/DPJP</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('bblsr-1500') }}" class="nav-link">
                                 <p>Kemampuan Menangani BBLSR < 1500g (Khusus RS Anak dan Ibu)</p>
                             </a>
@@ -423,7 +423,7 @@
                                 <p>Tingkat Kepesertaan Penyelenggaraan PME (TKPP) (Khusus BBLK)
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="{{ route('kebersihan-tangan') }}" class="nav-link">
                                 <p>Kepatuhan Kebersihan Tangan
@@ -496,7 +496,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('mcu-pelaut') }}" class="nav-link">
                                 <p>Indikator Pelayanan Medical Check Up Pelaut (Khusus Balai Kesehatan Perhubungan)
                                 </p>
@@ -514,7 +514,7 @@
                                 <p>Indikator Penyediaan Dokumen Kesehatan Pelaut (Khusus Balai Kesehatan Perhubungan)
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <li class="nav-header">LOG OUT</li>

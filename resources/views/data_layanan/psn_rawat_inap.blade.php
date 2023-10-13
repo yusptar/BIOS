@@ -24,6 +24,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
+                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class=" form-group">
                             <label>Kode Kelas</label>
                             <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
