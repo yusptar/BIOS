@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     // Route Data IKT
     Route::get('/vst-psn-kurang-dari-atau-sama-dengan-jam-10', [App\Http\Controllers\IKTController::class, 'visite_psn_10'])->name('vst-psn-10');
-    Route::get('/vst-psn-jam-10-hingga-jam-12', [App\Http\Controllers\IKTController::class, 'visite_psn_10_12'])->name('vst-psn-10=12');
+    Route::get('/vst-psn-jam-10-hingga-jam-12', [App\Http\Controllers\IKTController::class, 'visite_psn_10_12'])->name('vst-psn-10-12');
     Route::get('/vst-psn-lebih-dari-jam-12', [App\Http\Controllers\IKTController::class, 'visite_psn_12'])->name('vst-psn-12');
     Route::get('/dpjp-tidak-visite', [App\Http\Controllers\IKTController::class, 'dpjp_tidak_visite'])->name('dpjp-non-visite');
     Route::get('/kegiatan-visite-pertama', [App\Http\Controllers\IKTController::class, 'kegiatan_visite_pasien_pertama'])->name('kgtn-visite-psn');

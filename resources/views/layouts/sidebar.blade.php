@@ -38,19 +38,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link active">
+                            <a href="{{ route('dktr-spesialis') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard v1</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
+                            <a href="{{ route('dktr-umum') }} " class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard v2</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('dktr-gigi') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard v3</p>
                             </a>
@@ -66,9 +66,12 @@
                         </p>
                     </a>
                 </li> -->
+
                 <li class="nav-header">RUMPUN KESEHATAN</li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li
+                    class="nav-item {{ (request()->routeIs('dktr-spesialis', 'dktr-gigi', 'dktr-umum', 'tng-perawat', 'tng-bidan', 'pran-lab', 'radiographer', 'nutrisionist', 'fisioterapis', 'pharmacist', 'tng-professional', 'tng-non-medis', 'tng-non-medis-adm', 'sanitarian')) ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ (request()->routeIs('dktr-spesialis', 'dktr-gigi', 'dktr-umum', 'tng-perawat', 'tng-bidan', 'pran-lab', 'radiographer', 'nutrisionist', 'fisioterapis', 'pharmacist', 'tng-professional', 'tng-non-medis', 'tng-non-medis-adm', 'sanitarian')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
                             Data SDM
@@ -78,79 +81,95 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('dktr-spesialis') }}" class="nav-link">
+                            <a href="{{ route('dktr-spesialis') }}"
+                                class="nav-link {{ (request()->routeIs('dktr-spesialis')) ? 'active' : '' }}">
                                 <p>Jumlah Dokter Spesialis</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dktr-gigi') }}" class="nav-link">
+                            <a href="{{ route('dktr-gigi') }}"
+                                class="nav-link {{ (request()->routeIs('dktr-gigi')) ? 'active' : '' }}">
                                 <p>Jumlah Dokter Gigi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dktr-umum') }}" class="nav-link">
+                            <a href="{{ route('dktr-umum') }}"
+                                class="nav-link {{ (request()->routeIs('dktr-umum')) ? 'active' : '' }}">
                                 <p>Jumlah Dokter Umum</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tng-perawat') }}" class="nav-link">
+                            <a href="{{ route('tng-perawat') }}"
+                                class="nav-link {{ (request()->routeIs('tng-perawat')) ? 'active' : '' }}">
                                 <p>Jumlah Tenaga Perawat</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tng-bidan') }}" class="nav-link">
+                            <a href="{{ route('tng-bidan') }}"
+                                class="nav-link {{ (request()->routeIs('tng-bidan')) ? 'active' : '' }}">
                                 <p>Jumlah Tenaga Bidan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('pran-lab') }}" class="nav-link">
+                            <a href="{{ route('pran-lab') }}"
+                                class="nav-link {{ (request()->routeIs('pran-lab')) ? 'active' : '' }}">
                                 <p>Jumlah Pranata Laboratorium</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('radiographer') }}" class="nav-link">
+                            <a href="{{ route('radiographer') }}"
+                                class="nav-link {{ (request()->routeIs('radiographer')) ? 'active' : '' }}">
                                 <p>Jumlah Radiographer</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('nutrisionist') }}" class="nav-link">
+                            <a href="{{ route('nutrisionist') }}"
+                                class="nav-link {{ (request()->routeIs('nutrisionist')) ? 'active' : '' }}">
                                 <p>Jumlah Nutrisionist</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('fisioterapis') }}" class="nav-link">
+                            <a href="{{ route('fisioterapis') }}"
+                                class="nav-link {{ (request()->routeIs('fisioterapis')) ? 'active' : '' }}">
                                 <p>Jumlah Fisioterapis</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('pharmacist') }}" class="nav-link">
+                            <a href="{{ route('pharmacist') }}"
+                                class="nav-link {{ (request()->routeIs('pharmacist')) ? 'active' : '' }}">
                                 <p>Jumlah Pharmacist</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tng-professional') }}" class="nav-link">
+                            <a href="{{ route('tng-professional') }}"
+                                class="nav-link {{ (request()->routeIs('tng-professional')) ? 'active' : '' }}">
                                 <p>Jumlah Tenaga Professional Lainnya</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tng-non-medis') }}" class="nav-link">
+                            <a href="{{ route('tng-non-medis') }}"
+                                class="nav-link {{ (request()->routeIs('tng-non-medis')) ? 'active' : '' }}">
                                 <p>Jumlah Tenaga Non-Medis</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tng-non-medis-adm') }}" class="nav-link">
+                            <a href="{{ route('tng-non-medis-adm') }}"
+                                class="nav-link {{ (request()->routeIs('tng-non-medis-adm')) ? 'active' : '' }}">
                                 <p>Jumlah Tenaga Non-Medis Administrasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('sanitarian') }}" class="nav-link">
+                            <a href="{{ route('sanitarian') }}"
+                                class="nav-link {{ (request()->routeIs('sanitarian')) ? 'active' : '' }}">
                                 <p>Jumlah Sanitarian</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li
+                    class="nav-item {{ (request()->routeIs('psn-rawat-inap', 'psn-rawat-darurat', 'lab-sampel', 'lab-parameter', 'tndkn-operasi', 'lyn-radiologi', 'lyn-forensik', 'kunj-rawat-jalan', 'psn-rawat-jalan', 'psn-bpjs-nonbpjs', 'lyn-farmasi', 'bor', 'toi', 'alos', 'bto', 'ikm')) ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ (request()->routeIs('psn-rawat-inap', 'psn-rawat-darurat', 'lab-sampel', 'lab-parameter', 'tndkn-operasi', 'lyn-radiologi', 'lyn-forensik', 'kunj-rawat-jalan', 'psn-rawat-jalan', 'psn-bpjs-nonbpjs', 'lyn-farmasi', 'bor', 'toi', 'alos', 'bto', 'ikm')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Data Layanan
@@ -159,109 +178,127 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('psn-rawat-inap') }}" class="nav-link">
+                            <a href="{{ route('psn-rawat-inap') }}"
+                                class="nav-link {{ (request()->routeIs('psn-rawat-inap')) ? 'active' : '' }}">
                                 <p>Jumlah Pasien Rawat Inap</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('psn-rawat-darurat') }}" class="nav-link">
+                            <a href="{{ route('psn-rawat-darurat') }}"
+                                class="nav-link {{ (request()->routeIs('psn-rawat-darurat')) ? 'active' : '' }}">
                                 <p>Jumlah Pasien Rawat Darurat</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('lab-sampel') }}" class="nav-link">
+                            <a href="{{ route('lab-sampel') }}"
+                                class="nav-link {{ (request()->routeIs('lab-sampel')) ? 'active' : '' }}">
                                 <p>Jumlah Layanan Laboratorium (sampel)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('lab-parameter') }}" class="nav-link">
+                            <a href="{{ route('lab-parameter') }}"
+                                class="nav-link {{ (request()->routeIs('lab-parameter')) ? 'active' : '' }}">
                                 <p>Jumlah Layanan Laboratorium (parameter)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tndkn-operasi') }}" class="nav-link">
+                            <a href="{{ route('tndkn-operasi') }}"
+                                class="nav-link {{ (request()->routeIs('tndkn-operasi')) ? 'active' : '' }}">
                                 <p>Jumlah Tindakan Operasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('lyn-radiologi') }}" class="nav-link">
+                            <a href="{{ route('lyn-radiologi') }}"
+                                class="nav-link {{ (request()->routeIs('lyn-radiologi')) ? 'active' : '' }}">
                                 <p>Jumlah Layanan Radiologi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('lyn-forensik') }}" class="nav-link">
+                            <a href="{{ route('lyn-forensik') }}"
+                                class="nav-link {{ (request()->routeIs('lyn-forensik')) ? 'active' : '' }}">
                                 <p>Jumlah Layanan Forensik</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kunj-rawat-jalan') }}" class="nav-link">
+                            <a href="{{ route('kunj-rawat-jalan') }}"
+                                class="nav-link {{ (request()->routeIs('kunj-rawat-jalan')) ? 'active' : '' }}">
                                 <p>Jumlah Kunjungan Rawat Jalan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('psn-rawat-jalan') }}" class="nav-link">
+                            <a href="{{ route('psn-rawat-jalan') }}"
+                                class="nav-link {{ (request()->routeIs('psn-rawat-jalan')) ? 'active' : '' }}">
                                 <p>Jumlah Pasien Rawat Jalan/Poli</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('psn-bpjs-nonbpjs') }}" class="nav-link">
+                            <a href="{{ route('psn-bpjs-nonbpjs') }}"
+                                class="nav-link {{ (request()->routeIs('psn-bpjs-nonbpjs')) ? 'active' : '' }}">
                                 <p>Jumlah Pasien BPJS / Non-BPJS</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('lyn-farmasi') }}" class="nav-link">
+                            <a href="{{ route('lyn-farmasi') }}"
+                                class="nav-link {{ (request()->routeIs('lyn-farmasi')) ? 'active' : '' }}">
                                 <p>Jumlah Layanan Farmasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('bor') }}" class="nav-link">
+                            <a href="{{ route('bor') }}"
+                                class="nav-link {{ (request()->routeIs('bor')) ? 'active' : '' }}">
                                 <p>BOR (Bed Occupancy Ratio)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('toi') }}" class="nav-link">
+                            <a href="{{ route('toi') }}"
+                                class="nav-link {{ (request()->routeIs('toi')) ? 'active' : '' }}">
                                 <p>TOI (Turn Over Interval)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('alos') }}" class="nav-link">
+                            <a href="{{ route('alos') }}"
+                                class="nav-link {{ (request()->routeIs('alos')) ? 'active' : '' }}">
                                 <p>ALOS (Average Length of Stay)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('bto') }}" class="nav-link">
+                            <a href="{{ route('bto') }}"
+                                class="nav-link {{ (request()->routeIs('bto')) ? 'active' : '' }}">
                                 <p>BTO (Bed Turn Over)</p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
-                            <a href="{{ route('kjd-pasien-jatuh') }}" class="nav-link">
+                            <a href="{{ route('kjd-pasien-jatuh') }}" class="nav-link {{ (request()->routeIs('kjd-pasien-jatuh')) ? 'active' : '' }}">
                                 <p>Prosentase Kejadian Pasien Jatuh (Khusus Balai Besar Kesehatan Paru)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dokpol') }}" class="nav-link">
+                            <a href="{{ route('dokpol') }}" class="nav-link {{ (request()->routeIs('dokpol')) ? 'active' : '' }}">
                                 <p>Jumlah Pelayanan Dokpol (Khusus RS Bhayangkara)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('lyn-sertifikat') }}" class="nav-link">
+                            <a href="{{ route('lyn-sertifikat') }}" class="nav-link {{ (request()->routeIs('lyn-sertifikat')) ? 'active' : '' }}">
                                 <p>Jumlah Sertifikat (Khusus Balai Kesehatan Perhubungan)</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kalibrasi') }}" class="nav-link">
+                            <a href="{{ route('kalibrasi') }}" class="nav-link {{ (request()->routeIs('kalibrasi')) ? 'active' : '' }}">
                                 <p>Jumlah Barang yang dikalibrasi (Khusus Balai Kesehatan Perhubungan)</p>
                             </a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="{{ route('ikm') }}" class="nav-link">
+                            <a href="{{ route('ikm') }}"
+                                class="nav-link {{ (request()->routeIs('ikm')) ? 'active' : '' }}">
                                 <p>Indeks Kepuasan Masyarakat (IKM)</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
+                <li
+                    class="nav-item {{ (request()->routeIs('vst-psn-10', 'vst-psn-10-12', 'vst-psn-12', 'dpjp-non-visite', 'kgtn-visite-psn', 'pobo', 'aset-blu', 'rkm-medis-elektronik', 'protokol-kesehatan', 'alat-kesehatan', 'kpuasan-psn', 'wkt-visite-dpjp', 'kebersihan-tangan', 'apd', 'identifikasi-pasien', 'seksio-emergensi', 'wkt-tunggu-rawat-jalan', 'ops-elektif', 'kepatuhan-wkt-visite-dokter', 'kritis-lab', 'form-nasional', 'alur-klinis', 'resiko-psn-jatuh', 'tanggap-komplain')) ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ (request()->routeIs('vst-psn-10', 'vst-psn-10-12', 'vst-psn-12', 'dpjp-non-visite', 'kgtn-visite-psn', 'pobo', 'aset-blu', 'rkm-medis-elektronik', 'protokol-kesehatan', 'alat-kesehatan', 'kpuasan-psn', 'wkt-visite-dpjp', 'kebersihan-tangan', 'apd', 'identifikasi-pasien', 'seksio-emergensi', 'wkt-tunggu-rawat-jalan', 'ops-elektif', 'kepatuhan-wkt-visite-dokter', 'kritis-lab', 'form-nasional', 'alur-klinis', 'resiko-psn-jatuh', 'tanggap-komplain')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tree"></i>
                         <p>
                             (IKT) Indikator Kinerja Terpilih
@@ -270,62 +307,74 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('vst-psn-10') }}" class="nav-link">
+                            <a href="{{ route('vst-psn-10') }}"
+                                class="nav-link {{ (request()->routeIs('vst-psn-10')) ? 'active' : '' }}">
                                 <p>Jumlah Visite Pasien <= Jam 10.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('vst-psn-10=12') }}" class="nav-link">
+                            <a href="{{ route('vst-psn-10-12') }}"
+                                class="nav-link {{ (request()->routeIs('vst-psn-10-12')) ? 'active' : '' }}">
                                 <p>Jumlah Visite Pasien > 10.00 s.d. 12.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('vst-psn-12') }}" class="nav-link">
+                            <a href="{{ route('vst-psn-12') }}"
+                                class="nav-link {{ (request()->routeIs('vst-psn-12')) ? 'active' : '' }}">
                                 <p>Jumlah Visite Pasien > 12.00</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dpjp-non-visite') }}" class="nav-link">
+                            <a href="{{ route('dpjp-non-visite') }}"
+                                class="nav-link {{ (request()->routeIs('dpjp-non-visite')) ? 'active' : '' }}">
                                 <p>Jumlah DPJP tidak visite</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kgtn-visite-psn') }}" class="nav-link">
+                            <a href="{{ route('kgtn-visite-psn') }}"
+                                class="nav-link {{ (request()->routeIs('kgtn-visite-psn')) ? 'active' : '' }}">
                                 <p>Jumlah Kegiatan Visite Pasien Pertama</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('pobo') }}" class="nav-link">
+                            <a href="{{ route('pobo') }}"
+                                class="nav-link {{ (request()->routeIs('pobo')) ? 'active' : '' }}">
                                 <p>Rasio POBO</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('aset-blu') }}" class="nav-link">
+                            <a href="{{ route('aset-blu') }}"
+                                class="nav-link {{ (request()->routeIs('aset-blu')) ? 'active' : '' }}">
                                 <p>Pertumbuhan Realisasi Pendapatan dari Pengelolaan Aset BLU</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('rkm-medis-elektronik') }}" class="nav-link">
+                            <a href="{{ route('rkm-medis-elektronik') }}"
+                                class="nav-link {{ (request()->routeIs('rkm-medis-elektronik')) ? 'active' : '' }}">
                                 <p>Penyelenggaran Rekam Medis Elektronik</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('protokol-kesehatan') }}" class="nav-link">
+                            <a href="{{ route('protokol-kesehatan') }}"
+                                class="nav-link {{ (request()->routeIs('protokol-kesehatan')) ? 'active' : '' }}">
                                 <p>Kepatuhan Pelaksanaan Protokol Kesehatan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('alat-kesehatan') }}" class="nav-link">
+                            <a href="{{ route('alat-kesehatan') }}"
+                                class="nav-link {{ (request()->routeIs('alat-kesehatan')) ? 'active' : '' }}">
                                 <p>Persentase Pembelian Alat Kesehatan Produksi Dalam Negeri</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kpuasan-psn') }}" class="nav-link">
+                            <a href="{{ route('kpuasan-psn') }}"
+                                class="nav-link {{ (request()->routeIs('kpuasan-psn')) ? 'active' : '' }}">
                                 <p>Kepuasan Pasien</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('wkt-visite-dpjp') }}" class="nav-link">
+                            <a href="{{ route('wkt-visite-dpjp') }}"
+                                class="nav-link {{ (request()->routeIs('wkt-visite-dpjp')) ? 'active' : '' }}">
                                 <p>Kepatuhan Waktu Visite Dokter Penanggung Jawab Pelayanan/DPJP</p>
                             </a>
                         </li>
@@ -425,73 +474,85 @@
                             </a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="{{ route('kebersihan-tangan') }}" class="nav-link">
+                            <a href="{{ route('kebersihan-tangan') }}"
+                                class="nav-link {{ (request()->routeIs('kebersihan-tangan')) ? 'active' : '' }}">
                                 <p>Kepatuhan Kebersihan Tangan
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('apd') }}" class="nav-link">
+                            <a href="{{ route('apd') }}"
+                                class="nav-link {{ (request()->routeIs('apd')) ? 'active' : '' }}">
                                 <p>Kepatuhan Penggunaan Alat Pelindung Diri (APD)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('identifikasi-pasien') }}" class="nav-link">
+                            <a href="{{ route('identifikasi-pasien') }}"
+                                class="nav-link {{ (request()->routeIs('identifikasi-pasien')) ? 'active' : '' }}">
                                 <p>Kepatuhan Identifikasi Pasien
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('seksio-emergensi') }}" class="nav-link">
+                            <a href="{{ route('seksio-emergensi') }}"
+                                class="nav-link {{ (request()->routeIs('seksio-emergensi')) ? 'active' : '' }}">
                                 <p>Waktu Tanggap Operasi Seksio Sesarea Emergensi
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('wkt-tunggu-rawat-jalan') }}" class="nav-link">
+                            <a href="{{ route('wkt-tunggu-rawat-jalan') }}"
+                                class="nav-link {{ (request()->routeIs('wkt-tunggu-rawat-jalan')) ? 'active' : '' }}">
                                 <p>Waktu Tunggu Rawat Jalan
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('ops-elektif') }}" class="nav-link">
+                            <a href="{{ route('ops-elektif') }}"
+                                class="nav-link {{ (request()->routeIs('ops-elektif')) ? 'active' : '' }}">
                                 <p>Penundaan Operasi Elektif
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kepatuhan-wkt-visite-dokter') }}" class="nav-link">
+                            <a href="{{ route('kepatuhan-wkt-visite-dokter') }}"
+                                class="nav-link {{ (request()->routeIs('kepatuhan-wkt-visite-dokter')) ? 'active' : '' }}">
                                 <p>Kepatuhan Waktu Visite Dokter
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kritis-lab') }}" class="nav-link">
+                            <a href="{{ route('kritis-lab') }}"
+                                class="nav-link {{ (request()->routeIs('kritis-lab')) ? 'active' : '' }}">
                                 <p>Pelaporan Hasil Kritis Laboratorium
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('form-nasional') }}" class="nav-link">
+                            <a href="{{ route('form-nasional') }}"
+                                class="nav-link {{ (request()->routeIs('form-nasional')) ? 'active' : '' }}">
                                 <p>Kepatuhan Penggunaan Formularium Nasional
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('alur-klinis') }}" class="nav-link">
+                            <a href="{{ route('alur-klinis') }}"
+                                class="nav-link {{ (request()->routeIs('alur-klinis')) ? 'active' : '' }}">
                                 <p>Kepatuhan Terhadap Alur Klinis (Clinical Pathway)
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('resiko-psn-jatuh') }}" class="nav-link">
+                            <a href="{{ route('resiko-psn-jatuh') }}"
+                                class="nav-link {{ (request()->routeIs('resiko-psn-jatuh')) ? 'active' : '' }}">
                                 <p>Kepatuhan Upaya Pencegahan Resiko Pasien Jatuh
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('tanggap-komplain') }}" class="nav-link">
+                            <a href="{{ route('tanggap-komplain') }}"
+                                class="nav-link {{ (request()->routeIs('tanggap-komplain')) ? 'active' : '' }}">
                                 <p>Kecepatan Waktu Tanggap Komplain
                                 </p>
                             </a>
