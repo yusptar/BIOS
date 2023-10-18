@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Visite Pasien Jam 10 - 12</h1>
+                    <h1 class="m-0" style="font-weight:bold">Jumlah Visite Pasien > 10.00 s.d. 12.00</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -25,9 +25,9 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class="form-group">
-                            <label>Jumlah Layanan Kalibrasi</label>
+                            <label>Jumlah Visite Pasien</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah layanan kalibrasi">
+                                placeholder="Masukkan jumlah visite pasien">
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -68,7 +68,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/ikt/visite_2",
             type: "POST",
             data: formData,
             contentType: false,
@@ -82,7 +82,7 @@ $('#btn-submit').click(function() {
                     buttons: false,
                     timer: 2000,
                 }).then(function() {
-                    window.location.href = "{{ route('dktr-spesialis') }}"
+                    window.location.href = "{{ route('vst-psn-10-12') }}"
                 });
             },
             error: function(data) {

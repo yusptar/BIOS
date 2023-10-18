@@ -6,8 +6,8 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Barang yang dikalibrasi (Khusus Balai Kesehatan
-                        Perhubungan)</h1>
+                    <h1 class="m-0" style="font-weight:bold">Kepatuhan Waktu Visite Dokter Penanggung Jawab
+                        Pelayanan/DPJP</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -26,9 +26,9 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class="form-group">
-                            <label>Jumlah Layanan Kalibrasi</label>
+                            <label>Presentase Waktu Kepatuhan</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah layanan kalibrasi">
+                                placeholder="Masukkan presentase waktu kepatuhan">
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -69,7 +69,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/ikt/kepatuhan_waktu_visite_dpjp",
             type: "POST",
             data: formData,
             contentType: false,
@@ -83,7 +83,7 @@ $('#btn-submit').click(function() {
                     buttons: false,
                     timer: 2000,
                 }).then(function() {
-                    window.location.href = "{{ route('dktr-spesialis') }}"
+                    window.location.href = "{{ route('wkt-visite-dpjp') }}"
                 });
             },
             error: function(data) {

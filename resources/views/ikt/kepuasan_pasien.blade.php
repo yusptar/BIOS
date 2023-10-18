@@ -6,8 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Barang yang dikalibrasi (Khusus Balai Kesehatan
-                        Perhubungan)</h1>
+                    <h1 class="m-0" style="font-weight:bold">Kepuasan Pasien</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -26,9 +25,8 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <div class="form-group">
-                            <label>Jumlah Layanan Kalibrasi</label>
-                            <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah layanan kalibrasi">
+                            <label>Hasil Survei Kepuasan Pasien</label>
+                            <input type="number" class="form-control" name="nilai" placeholder="Masukkan hasil survei">
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -66,10 +64,10 @@ $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
-        formData.append('jumlah', $('input[name=jumlah]').val());
+        formData.append('nilai', $('input[name=nilai]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/ikt/kepuasan_pasien",
             type: "POST",
             data: formData,
             contentType: false,
@@ -83,7 +81,7 @@ $('#btn-submit').click(function() {
                     buttons: false,
                     timer: 2000,
                 }).then(function() {
-                    window.location.href = "{{ route('dktr-spesialis') }}"
+                    window.location.href = "{{ route('kpuasan-psn') }}"
                 });
             },
             error: function(data) {
