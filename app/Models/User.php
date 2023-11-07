@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -17,9 +19,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'users_tte';
+    protected $primaryKey = 'id';
+    public $timestamps = false;
+    
+
     protected $fillable = [
-        'name',
-        'email',
+        'username',
         'password',
     ];
 
@@ -41,4 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'username', 'nik');
+    }
 }

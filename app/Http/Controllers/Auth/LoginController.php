@@ -5,34 +5,50 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\User;
+use App\Models\Pegawai; 
+// use Alert;
+use Illuminate\Http\Request;
+use Session;
+
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    // public function login(Request $request){
+    //     $credentials = $request->only('username', 'password');
+
+    //     if(auth()->attempt($credentials)){
+    //         Alert::success('Login Berhasil!', 'Selamat Datang');
+    //         return redirect()->route('dashboard');
+    //     }else{
+    //         Alert::error('Oops! Login Gagal.', 'Terdapat Kesalahan!');
+    //         return redirect()->back();
+    //     }
+    // }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        // Authenticate the user
+        if (auth()->attempt($credentials)) {
+            $user_data = Pegawai::where('nik', $credentials['username'])->first(); // Assuming 'username' is the NIK
+            $ses_data = [
+                'id' => $user_data->nik, // Assuming 'nik' is the user ID
+                'username' => $user_data->nama, // Assuming 'nama' is the username
+            ];
+            Session::put($ses_data);
+            Alert::success('Login Berhasil!', 'Selamat Datang! ' .$user_data->nama);
+            // session()->flash('user_name', $user_data->nama);
+            return redirect()->route('dashboard')->with(['user_data' => $user_data]);
+        } else {
+            Alert::error('Oops! Login Gagal.', 'Terdapat Kesalahan!');
+            return redirect()->back();
+        }             
+    }
+    
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
