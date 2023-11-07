@@ -25,6 +25,13 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 
 // add login middleware
 Route::group(['middleware' => ['auth']], function () {
+    // Route Data Keuangan
+    Route::get('/penerimaan', [App\Http\Controllers\DataKeuanganController::class, 'penerimaan'])->name('penerimaan');
+    Route::get('/pengeluaran', [App\Http\Controllers\DataKeuanganController::class, 'pengeluaran'])->name('pengeluaran');
+    Route::get('/saldo-rekening-operasional', [App\Http\Controllers\DataKeuanganController::class, 'saldo_rekening_ops'])->name('sldo-rkn-ops');
+    Route::get('/saldo-rekening-pengelolaan-kas', [App\Http\Controllers\DataKeuanganController::class, 'saldo_rekening_pengelolaan_kas'])->name('sldo-rkn-kas');
+    Route::get('/saldo-rekening-dana-kelolaan', [App\Http\Controllers\DataKeuanganController::class, 'saldo_rekening_dana_kelolaan'])->name('sldo-rkn-dana-kl');
+
     // Route Data SDM
     Route::get('/dokter_spesialis', [App\Http\Controllers\DataSDMController::class, 'dokter_spesialis'])->name('dktr-spesialis');
     Route::get('/dokter_gigi', [App\Http\Controllers\DataSDMController::class, 'dokter_gigi'])->name('dktr-gigi');

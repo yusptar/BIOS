@@ -69,6 +69,50 @@
 
                 <li class="nav-header">RUMPUN KESEHATAN</li>
                 <li
+                    class="nav-item {{ (request()->routeIs('penerimaan', 'pengeluaran', 'sldo-rkn-ops', 'sldo-rkn-kas', 'sldo-rkn-dana-kl')) ? 'menu-open' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ (request()->routeIs('penerimaan', 'pengeluaran', 'sldo-rkn-ops', 'sldo-rkn-kas', 'sldo-rkn-dana-kl')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>
+                            Data Keuangan
+                            <i class="fas fa-angle-left right"></i>
+                            <!-- <span class="badge badge-info right">6</span> -->
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('penerimaan') }}"
+                                class="nav-link {{ (request()->routeIs('penerimaan')) ? 'active' : '' }}">
+                                <p>Penerimaan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pengeluaran') }}"
+                                class="nav-link {{ (request()->routeIs('pengeluaran')) ? 'active' : '' }}">
+                                <p>Pengeluaran</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('sldo-rkn-ops') }}"
+                                class="nav-link {{ (request()->routeIs('sldo-rkn-ops')) ? 'active' : '' }}">
+                                <p>Saldo Rekening - Operasional</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('sldo-rkn-kas') }}"
+                                class="nav-link {{ (request()->routeIs('sldo-rkn-kas')) ? 'active' : '' }}">
+                                <p>Saldo Rekening - Pengelolaan Kas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('sldo-rkn-dana-kl') }}"
+                                class="nav-link {{ (request()->routeIs('sldo-rkn-dana-kl')) ? 'active' : '' }}">
+                                <p>Saldo Rekening - Dana Kelolaan</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li
                     class="nav-item {{ (request()->routeIs('dktr-spesialis', 'dktr-gigi', 'dktr-umum', 'tng-perawat', 'tng-bidan', 'pran-lab', 'radiographer', 'nutrisionist', 'fisioterapis', 'pharmacist', 'tng-professional', 'tng-non-medis', 'tng-non-medis-adm', 'sanitarian')) ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ (request()->routeIs('dktr-spesialis', 'dktr-gigi', 'dktr-umum', 'tng-perawat', 'tng-bidan', 'pran-lab', 'radiographer', 'nutrisionist', 'fisioterapis', 'pharmacist', 'tng-professional', 'tng-non-medis', 'tng-non-medis-adm', 'sanitarian')) ? 'active' : '' }}">
