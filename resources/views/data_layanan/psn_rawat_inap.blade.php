@@ -25,9 +25,14 @@
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
-                        <div class=" form-group">
+                        <div class="form-group">
                             <label>Kode Kelas</label>
-                            <input type="text" class="form-control" name="kode_kelas" placeholder="Masukkan Kode Kelas">
+                            <select class="form-control" name="kode_kelas">
+                                <option disabled selected>-- Pilih Kode Kelas --</option>
+                                <option value="Kelas 1">Kelas 1</option>
+                                <option value="Kelas 2">Kelas 2</option>
+                                <option value="Kelas 3">Kelas 3</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Jumlah Pasien</label>
