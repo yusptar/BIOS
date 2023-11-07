@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User;
 use App\Models\Pegawai; 
-// use Alert;
+
 use Illuminate\Http\Request;
 use Session;
 
@@ -40,11 +40,11 @@ class LoginController extends Controller
                 'username' => $user_data->nama, // Assuming 'nama' is the username
             ];
             Session::put($ses_data);
-            Alert::success('Login Berhasil!', 'Selamat Datang! ' .$user_data->nama);
+           
             // session()->flash('user_name', $user_data->nama);
             return redirect()->route('dashboard')->with(['user_data' => $user_data]);
         } else {
-            Alert::error('Oops! Login Gagal.', 'Terdapat Kesalahan!');
+          
             return redirect()->back();
         }             
     }
