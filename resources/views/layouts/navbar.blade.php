@@ -16,7 +16,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                 <i class="fas fa-search"></i>
             </a>
@@ -46,6 +46,9 @@
             <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
                 <i class="fas fa-th-large"></i>
             </a>
+        </li> -->
+        <li class="nav-item">
+            <h5 style="font-weight:bold; margin-right:20px; font-size:18px">{{ Auth::user()->pegawai->nama }}</h5>
         </li>
     </ul>
 </nav>
