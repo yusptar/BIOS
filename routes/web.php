@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
 
 Auth::routes([
-    'register' => false, // Registration Routes...
+    // 'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
 ]);
@@ -115,4 +115,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/indikator-pelayanan-mcu-pelaut', [App\Http\Controllers\IKTController::class, 'indikator_pelayanan_mcu_pelaut'])->name('mcu-pelaut');
     Route::get('/indikator-pelayanan-penilikan-kesehatan-lingkungan-kerja-pelayaran', [App\Http\Controllers\IKTController::class, 'indikator_pelayanan_penilikan_kesling_kerja_pelayaran'])->name('kesling-pelayaran');
     Route::get('/indikator-penyediaan-dokumen-kesehatan-pelaut', [App\Http\Controllers\IKTController::class, 'indikator_penyediaan_dokumen_kesehatan_pelaut'])->name('kesehatan-pelaut');
+
+     // Lainnya
+     Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
+     Route::get('user-list', [App\Http\Controllers\UserController::class, 'user_list'])->name('user-list');
+     Route::post('user-detail', [App\Http\Controllers\UserController::class, 'user_detail'])->name('user.detail');
+     Route::post('users-store', [App\Http\Controllers\UserController::class, 'store'])->name('user-store');
+     Route::post('users-update', [App\Http\Controllers\UserController::class, 'update'])->name('user-update');
+     Route::post('users-delete', [App\Http\Controllers\UserController::class, 'destroy'])->name('user-delete');
 });

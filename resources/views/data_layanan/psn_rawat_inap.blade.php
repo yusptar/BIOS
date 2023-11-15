@@ -29,9 +29,16 @@
                             <label>Kode Kelas</label>
                             <select class="form-control" name="kode_kelas">
                                 <option disabled selected>-- Pilih Kode Kelas --</option>
-                                <option value="Kelas 1">Kelas 1</option>
-                                <option value="Kelas 2">Kelas 2</option>
-                                <option value="Kelas 3">Kelas 3</option>
+                                <option value="kelas 3">Kelas 3</option>
+                                <option value="kelas 2">Kelas 2</option>
+                                <option value="kelas 1">Kelas 1</option>
+                                <option value="VIP">VIP</option>
+                                <option value="VVIP">VVIP</option>
+                                <option value="HCU">Non Kelas (HCU)</option>
+                                <option value="ICU">Non Kelas (ICU)</option>
+                                <option value="NICU">Non Kelas (NICU)</option>
+                                <option value="ICCU">Non Kelas (ICCU)</option>
+                                <option value="PICU">Non Kelas (PICU)</option>
                             </select>
                         </div>
                         <div class="form-group">

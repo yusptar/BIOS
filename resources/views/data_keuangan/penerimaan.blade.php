@@ -24,10 +24,10 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                         <div class=" form-group">
                             <label>Kode Akun</label>
-                            <input type="text" class="form-control" name="kd_akun" placeholder="Masukkan 6 digit kode akun diawali dengan angka '4'">
+                            <input type="text" class="form-control" name="kd_akun"  placeholder="Masukkan 6 digit kode akun diawali dengan angka '4'" maxlength="6" required>
                         </div>
                         <div class="form-group">
                             <label>Jumlah</label>
@@ -77,19 +77,22 @@ $('#btn-submit').click(function() {
             url: "https://training-bios2.kemenkeu.go.id/api/ws/keuangan/akuntansi/penerimaan",
             type: "POST",
             data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('input[name=_token]').val()
+            },
             contentType: false,
             processData: false,
             success: function(data) {
-                console.log(data.data);
-                Swal.fire({
-                    title: "Berhasil!",
-                    text: "Data Berhasil ditambahkan",
-                    icon: "success",
-                    buttons: false,
-                    timer: 2000,
-                }).then(function() {
-                    window.location.href = "{{ route('penerimaan') }}"
-                });
+                console.log(data);
+                // Swal.fire({
+                //     title: "Berhasil!",
+                //     text: "Data Berhasil ditambahkan",
+                //     icon: "success",
+                //     buttons: false,
+                //     timer: 2000,
+                // }).then(function() {
+                //     window.location.href = "{{ route('penerimaan') }}"
+                // });
             },
             error: function(data) {
                 console.log(data);

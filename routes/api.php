@@ -26,25 +26,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'profil'], function () {
-    Route::apiResource('pages', PagesController::class);
-    Route::apiResource('jajarandireksi', JajaranDireksiController::class);
-});
+// Route::group(['prefix' => 'profil'], function () {
+//     Route::apiResource('pages', PagesController::class);
+//     Route::apiResource('jajarandireksi', JajaranDireksiController::class);
+// });
 
-Route::get('berita/popular', [BeritaController::class, 'indexPopular']);
-Route::apiResource('berita', BeritaController::class);
-Route::get('artikel/popular', [ArtikelController::class, 'indexPopular']);
-Route::apiResource('artikel', ArtikelController::class);
-Route::apiResource('parkir', ParkirController::class);
-Route::apiResource('poliklinik', PoliklinikController::class);
+// Route::get('berita/popular', [BeritaController::class, 'indexPopular']);
+// Route::apiResource('berita', BeritaController::class);
+// Route::get('artikel/popular', [ArtikelController::class, 'indexPopular']);
+// Route::apiResource('artikel', ArtikelController::class);
+// Route::apiResource('parkir', ParkirController::class);
+// Route::apiResource('poliklinik', PoliklinikController::class);
 
-Route::post('encrypt-file', [ContohEncryptController::class, 'store']);
-Route::get('decrypt-file', [ContohEncryptController::class, 'decrypt']);
-Route::apiResource('review', ReviewController::class);
-Route::apiResource('pengaduan', PengaduanController::class);
-Route::apiResource('jenis-laporan-pengaduan', JenisLaporanPengaduanController::class);
-Route::apiResource('spesialis', SpesialisController::class);
-Route::apiResource('permintaan-ppid', PermintaanPPIDController::class);
+// Route::post('encrypt-file', [ContohEncryptController::class, 'store']);
+// Route::get('decrypt-file', [ContohEncryptController::class, 'decrypt']);
+// Route::apiResource('review', ReviewController::class);
+// Route::apiResource('pengaduan', PengaduanController::class);
+// Route::apiResource('jenis-laporan-pengaduan', JenisLaporanPengaduanController::class);
+// Route::apiResource('spesialis', SpesialisController::class);
+// Route::apiResource('permintaan-ppid', PermintaanPPIDController::class);
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::post('/authentikasi', [App\Http\Controllers\API\BIOSController::class, 'authentikasi']);

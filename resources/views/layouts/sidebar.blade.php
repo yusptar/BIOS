@@ -222,6 +222,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="{{ route('psn-rawat-jalan') }}"
+                                class="nav-link {{ (request()->routeIs('psn-rawat-jalan')) ? 'active' : '' }}">
+                                <p>Jumlah Pasien Rawat Jalan/Poli</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('psn-rawat-inap') }}"
                                 class="nav-link {{ (request()->routeIs('psn-rawat-inap')) ? 'active' : '' }}">
                                 <p>Jumlah Pasien Rawat Inap</p>
@@ -231,6 +237,12 @@
                             <a href="{{ route('psn-rawat-darurat') }}"
                                 class="nav-link {{ (request()->routeIs('psn-rawat-darurat')) ? 'active' : '' }}">
                                 <p>Jumlah Pasien Rawat Darurat</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('kunj-rawat-jalan') }}"
+                                class="nav-link {{ (request()->routeIs('kunj-rawat-jalan')) ? 'active' : '' }}">
+                                <p>Jumlah Kunjungan Rawat Jalan</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -257,24 +269,12 @@
                                 <p>Jumlah Layanan Radiologi</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('lyn-forensik') }}"
                                 class="nav-link {{ (request()->routeIs('lyn-forensik')) ? 'active' : '' }}">
                                 <p>Jumlah Layanan Forensik</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('kunj-rawat-jalan') }}"
-                                class="nav-link {{ (request()->routeIs('kunj-rawat-jalan')) ? 'active' : '' }}">
-                                <p>Jumlah Kunjungan Rawat Jalan</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('psn-rawat-jalan') }}"
-                                class="nav-link {{ (request()->routeIs('psn-rawat-jalan')) ? 'active' : '' }}">
-                                <p>Jumlah Pasien Rawat Jalan/Poli</p>
-                            </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="{{ route('psn-bpjs-nonbpjs') }}"
                                 class="nav-link {{ (request()->routeIs('psn-bpjs-nonbpjs')) ? 'active' : '' }}">
@@ -484,6 +484,24 @@
                                 class="nav-link {{ (request()->routeIs('tanggap-komplain')) ? 'active' : '' }}">
                                 <p>Kecepatan Waktu Tanggap Komplain
                                 </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-header">LAINNYA</li>
+                <li class="nav-item {{ (request()->routeIs('users')) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ (request()->routeIs('users'))  ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Settings
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('users') }}"
+                                class="nav-link {{ (request()->routeIs('users')) ? 'active' : '' }}">
+                                <p>Users</p>
                             </a>
                         </li>
                     </ul>

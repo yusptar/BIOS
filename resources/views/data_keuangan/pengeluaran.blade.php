@@ -27,7 +27,7 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class=" form-group">
                             <label>Kode Akun</label>
-                            <input type="text" class="form-control" name="kd_akun" placeholder="Masukkan 6 digit kode akun diawali dengan angka '5'">
+                            <input type="text" class="form-control" name="kd_akun" placeholder="Masukkan 6 digit kode akun diawali dengan angka '5'" maxlength="5">
                         </div>
                         <div class="form-group">
                             <label>Jumlah</label>
@@ -74,7 +74,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/ api/ws/keuangan/akuntansi/pengeluaran",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/keuangan/akuntansi/pengeluaran",
             type: "POST",
             data: formData,
             contentType: false,

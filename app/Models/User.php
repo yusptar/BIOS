@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
 
-    protected $table = 'users_tte';
+    protected $table = 'users_bios';
     protected $primaryKey = 'id';
     public $timestamps = false;
     

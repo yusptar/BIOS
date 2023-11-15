@@ -24,7 +24,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class=" form-group">
                             <label>PNS</label>
                             <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS">
@@ -94,19 +94,22 @@ $('#btn-submit').click(function() {
             url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_gigi",
             type: "POST",
             data: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('input[name=_token]').val()
+            },
             contentType: false,
             processData: false,
             success: function(data) {
-                console.log(data.data);
-                Swal.fire({
-                    title: "Berhasil!",
-                    text: "Data Berhasil ditambahkan",
-                    icon: "success",
-                    buttons: false,
-                    timer: 2000,
-                }).then(function() {
-                    window.location.href = "{{ route('dktr-gigi') }}"
-                });
+                console.log(data);
+                // Swal.fire({
+                //     title: "Berhasil!",
+                //     text: "Data Berhasil ditambahkan",
+                //     icon: "success",
+                //     buttons: false,
+                //     timer: 2000,
+                // }).then(function() {
+                //     window.location.href = "{{ route('dktr-gigi') }}"
+                // });
             },
             error: function(data) {
                 console.log(data);
