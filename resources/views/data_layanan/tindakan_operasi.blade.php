@@ -28,9 +28,10 @@
                         <div class=" form-group">
                             <label>Klasifikasi Operasi</label>
                             <select class="form-control col-sm-5" name="klasifikasi_operasi" id="klasifikasi_operasi">
-                                <option value="ringan">Ringan</option>
-                                <option value="berat">Berat</option>
+                                <option value="" selected disabled>--- Pilih Klasifikasi Operasi ---</option>
+                                <option value="kecil">Kecil</option>
                                 <option value="sedang">Sedang</option>
+                                <option value="berat">Berat</option>
                                 <option value="canggih">Khusus</option>
                             </select>
                         </div>

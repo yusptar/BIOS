@@ -49,4 +49,15 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+// AUTH
 Route::post('/authentikasi', [App\Http\Controllers\API\BIOSController::class, 'authentikasi']);
+
+// SDM
+Route::post('/dataSDM', [App\Http\Controllers\API\BIOSController::class, 'dataSDM']);
+
+// LAYANAN
+Route::post('/dataLayanan', [App\Http\Controllers\API\BIOSController::class, 'dataLayanan']);
+Route::get('/get-data-psn',  [App\Http\Controllers\API\BIOSController::class, 'getDataPasienDarurat']);
+
+// IKT
+Route::post('/IKT', [App\Http\Controllers\API\BIOSController::class, 'IKT']);

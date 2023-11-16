@@ -62,6 +62,37 @@ if (day < 10) {
 const formattedDate = `${year}-${month}-${day}`;
 document.getElementById('tgl_transaksi').value = formattedDate;
 
+// Fungsi untuk mengisi formulir dengan data dari database
+function fillFormWithData(data) {
+    // Mengisi nilai alos pada formulir
+    $('input[name=alos]').val(data.alos);
+}
+
+// Fungsi untuk mengambil data dari database (contoh asumsi menggunakan endpoint '/api/getFormData')
+function fetchDataFromDatabase() {
+    $.ajax({
+        url: 'https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/alos',  // Ganti dengan endpoint yang sesuai di server Anda
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                // Memanggil fungsi untuk mengisi formulir
+                fillFormWithData(response.data);
+            } else {
+                console.error('Gagal mengambil data dari database');
+            }
+        },
+        error: function(error) {
+            console.error('Error fetching data from the database:', error);
+        }
+    });
+}
+
+// Mengisi formulir saat halaman dimuat
+$(document).ready(function() {
+    fetchDataFromDatabase();
+});
+
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();

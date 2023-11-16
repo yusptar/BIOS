@@ -87,26 +87,6 @@ class DataLayananController extends Controller
         return view('data_layanan.bto');
     }
     
-    public function prosentase_kejadian_pasien_jatuh()
-    {
-        return view('data_layanan.prsntase_kjd_psn_jatuh');
-    }
-    
-    public function pelayanan_dokpol()
-    {
-        return view('data_layanan.pelayanan_dokpol');
-    }
-    
-    public function sertifikat()
-    {
-        return view('data_layanan.sertifikat');
-    }
-    
-    public function brg_kalibrasi()
-    {
-        return view('data_layanan.kalibrasi');
-    }
-    
     public function indeks_kepuasan_masyarakat()
     {
         return view('data_layanan.ikm');
