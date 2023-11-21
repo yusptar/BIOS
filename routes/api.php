@@ -1,17 +1,5 @@
 <?php
 
-use App\Http\Controllers\API\ArtikelController;
-use App\Http\Controllers\API\ContohEncryptController;
-use App\Http\Controllers\API\BeritaController;
-use App\Http\Controllers\API\ParkirController;
-use App\Http\Controllers\API\JajaranDireksiController;
-use App\Http\Controllers\API\PagesController;
-use App\Http\Controllers\API\PoliklinikController;
-use App\Http\Controllers\API\ReviewController;
-use App\Http\Controllers\API\PengaduanController;
-use App\Http\Controllers\API\SpesialisController;
-use App\Http\Controllers\API\JenisLaporanPengaduanController;
-use App\Http\Controllers\API\PermintaanPPIDController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -57,7 +45,18 @@ Route::post('/dataSDM', [App\Http\Controllers\API\BIOSController::class, 'dataSD
 
 // LAYANAN
 Route::post('/dataLayanan', [App\Http\Controllers\API\BIOSController::class, 'dataLayanan']);
-Route::get('/get-data-psn',  [App\Http\Controllers\API\BIOSController::class, 'getDataPasienDarurat']);
+
+Route::get('/get-psn-ralan',  [App\Http\Controllers\API\BIOSController::class, 'getPasienRalan'])->name('getPsnRalan');
+Route::get('/get-psn-ranap',  [App\Http\Controllers\API\BIOSController::class, 'getPasienRanap'])->name('getPsnRanap');
+Route::get('/get-psn-darurat',  [App\Http\Controllers\API\BIOSController::class, 'getDataPasienDarurat'])->name('getPasienIGD');
+Route::get('/get-kunj-ralan',  [App\Http\Controllers\API\BIOSController::class, 'getKunjunganRalan'])->name('getRalan');
+Route::get('/get-lab-sampel',  [App\Http\Controllers\API\BIOSController::class, 'getLabSampel'])->name('getSampel');
+Route::get('/get-lab-param',  [App\Http\Controllers\API\BIOSController::class, 'getLabParameter'])->name('getParameter');
+
+Route::get('/get-operasi',  [App\Http\Controllers\API\BIOSController::class, 'getOperasi'])->name('getOperasi');
+Route::get('/get-radiologi',  [App\Http\Controllers\API\BIOSController::class, 'getRadiologi'])->name('getRadiologi');
+Route::get('/get-bpjs-non-bpjs',  [App\Http\Controllers\API\BIOSController::class, 'getPasienBPJSdanNonBPJS'])->name('getBPJSNonBPJS');
+Route::get('/get-farmasi',  [App\Http\Controllers\API\BIOSController::class, 'getFarmasi'])->name('getFarmasi');
 
 // IKT
 Route::post('/IKT', [App\Http\Controllers\API\BIOSController::class, 'IKT']);

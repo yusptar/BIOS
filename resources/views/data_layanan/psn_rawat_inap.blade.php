@@ -27,24 +27,24 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
                             <label>Kode Kelas</label>
-                            <select class="form-control" name="kode_kelas">
+                            <select class="form-control" name="kode_kelas" id="kelas">
                                 <option disabled selected>-- Pilih Kode Kelas --</option>
-                                <option value="kelas 3">Kelas 3</option>
-                                <option value="kelas 2">Kelas 2</option>
-                                <option value="kelas 1">Kelas 1</option>
+                                <option value="KELAS III">KELAS III</option>
+                                <option value="KELAS II">KELAS II</option>
+                                <option value="KELAS I">KELAS I</option>
                                 <option value="VIP">VIP</option>
                                 <option value="VVIP">VVIP</option>
-                                <option value="HCU">Non Kelas (HCU)</option>
-                                <option value="ICU">Non Kelas (ICU)</option>
-                                <option value="NICU">Non Kelas (NICU)</option>
+                                <option value="HCU">HCU - NON KELAS</option>
+                                <option value="ICU">ICU - NON KELAS</option>
+                                <!-- <option value="NICU">Non Kelas (NICU)</option>
                                 <option value="ICCU">Non Kelas (ICCU)</option>
-                                <option value="PICU">Non Kelas (PICU)</option>
+                                <option value="PICU">Non Kelas (PICU)</option> -->
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Jumlah Pasien</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien">
+                                placeholder="Masukkan jumlah pasien" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -77,6 +77,44 @@ if (day < 10) {
 // Format the date as YYYY-MM-DD
 const formattedDate = `${year}-${month}-${day}`;
 document.getElementById('tgl_transaksi').value = formattedDate;
+
+// Fungsi untuk mengisi formulir dengan data dari database
+function fillFormWithData(data) {
+    // Mengisi nilai jumlah pada formulir
+    $('input[name=jumlah]').val(data.result.jumlah);
+}
+
+// Fungsi untuk mengambil data dari database
+function fetchDataFromDatabase() {
+    var selectedCategory = $('#kelas').val();
+
+    $.ajax({
+        url: "{{ route('getPsnRanap') }}",
+        method: 'GET',
+        dataType: 'json',
+        data: { kelas: selectedCategory }, 
+        success: function(response, status, xhr) {
+            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            if (xhr.status === 200) { // Periksa status HTTP di sini
+                fillFormWithData(response);
+            } else if (xhr.status === 400) {
+                console.error('Gagal mengambil data:', response.message); 
+            }
+        },
+        error: function(error) {
+            console.error('Error fetching data from the database:', error);
+        }
+    });
+}
+
+// Mengisi formulir saat halaman dimuat
+$(document).ready(function() {
+    fetchDataFromDatabase();
+});
+
+// Menambahkan event listener untuk memanggil fetchDataFromDatabase saat opsi kelas berubah
+$('#kelas').change(fetchDataFromDatabase);
+
 
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {

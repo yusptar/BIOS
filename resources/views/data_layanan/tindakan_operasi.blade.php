@@ -27,18 +27,18 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class=" form-group">
                             <label>Klasifikasi Operasi</label>
-                            <select class="form-control col-sm-5" name="klasifikasi_operasi" id="klasifikasi_operasi">
+                            <select class="form-control col-sm-5" name="klasifikasi_operasi" id="kategori">
                                 <option value="" selected disabled>--- Pilih Klasifikasi Operasi ---</option>
-                                <option value="kecil">Kecil</option>
-                                <option value="sedang">Sedang</option>
-                                <option value="berat">Berat</option>
-                                <option value="canggih">Khusus</option>
+                                <option value="Khusus">Khusus</option>
+                                <option value="Besar">Besar</option>
+                                <option value="Sedang">Sedang</option>
+                                <option value="Kecil">Kecil</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Jumlah Pasien</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien">
+                                placeholder="Masukkan jumlah pasien" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -71,6 +71,44 @@ if (day < 10) {
 // Format the date as YYYY-MM-DD
 const formattedDate = `${year}-${month}-${day}`;
 document.getElementById('tgl_transaksi').value = formattedDate;
+
+// Fungsi untuk mengisi formulir dengan data dari database
+function fillFormWithData(data) {
+    // Mengisi nilai jumlah pada formulir
+    $('input[name=jumlah]').val(data.result.jumlah);
+}
+
+// Fungsi untuk mengambil data dari database
+function fetchDataFromDatabase() {
+    // Mendapatkan nilai kategori yang dipilih
+    var selectedCategory = $('#kategori').val();
+
+    $.ajax({
+        url: "{{ route('getOperasi') }}",
+        method: 'GET',
+        dataType: 'json',
+        data: { kategori: selectedCategory }, // Mengirim nilai kategori ke server
+        success: function(response, status, xhr) {
+            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            if (xhr.status === 200) { // Periksa status HTTP di sini
+                fillFormWithData(response);
+            } else if (xhr.status === 400) {
+                console.error('Gagal mengambil data:', response.message); // Ubah pesan kesalahan sesuai respons dari server
+            }
+        },
+        error: function(error) {
+            console.error('Error fetching data from the database:', error);
+        }
+    });
+}
+
+// Mengisi formulir saat halaman dimuat
+$(document).ready(function() {
+    fetchDataFromDatabase();
+});
+
+// Menambahkan event listener untuk memanggil fetchDataFromDatabase saat opsi kategori berubah
+$('#kategori').change(fetchDataFromDatabase);
 
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {

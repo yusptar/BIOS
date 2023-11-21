@@ -27,7 +27,7 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
                             <label>Nama Poli</label>
-                            <select class="form-control" name="nama_poli">
+                            <select class="form-control" name="nama_poli" id="nm_poli">
                                 <option disabled selected>-- Pilih Nama Poli --</option>
                                 <option value="ALERGI-IMMUNOLOGI KLINIK">004 - ALERGI-IMMUNOLOGI KLINIK</option>
                                 <option value="GERIATRI">006 - GERIATRI</option>
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label>Jumlah Pasien</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien">
+                                placeholder="Masukkan jumlah pasien" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -112,6 +112,43 @@ if (day < 10) {
 // Format the date as YYYY-MM-DD
 const formattedDate = `${year}-${month}-${day}`;
 document.getElementById('tgl_transaksi').value = formattedDate;
+
+// Fungsi untuk mengisi formulir dengan data dari database
+function fillFormWithData(data) {
+    // Mengisi nilai jumlah pada formulir
+    $('input[name=jumlah]').val(data.result.jumlah);
+}
+
+// Fungsi untuk mengambil data dari database
+function fetchDataFromDatabase() {
+    var selectedCategory = $('#nm_poli').val();
+    
+    $.ajax({
+        url: "{{ route('getPsnRalan') }}",
+        method: 'GET',
+        dataType: 'json',
+        data: { nm_poli: selectedCategory }, // Mengirim nilai kategori ke server
+        success: function(response, status, xhr) {
+            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            if (xhr.status === 200) { // Periksa status HTTP di sini
+                fillFormWithData(response);
+            } else if (xhr.status === 400) {
+                console.error('Gagal mengambil data:', response.message); // Ubah pesan kesalahan sesuai respons dari server
+            }
+        },
+        error: function(error) {
+            console.error('Error fetching data from the database:', error);
+        }
+    });
+}
+
+// Mengisi formulir saat halaman dimuat
+$(document).ready(function() {
+    fetchDataFromDatabase();
+});
+
+// Menambahkan event listener untuk memanggil fetchDataFromDatabase saat opsi kategori berubah
+$('#nm_poli').change(fetchDataFromDatabase);
 
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {

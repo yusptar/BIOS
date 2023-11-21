@@ -28,12 +28,12 @@
                         <div class="form-group">
                             <label>Jumlah BPJS</label>
                             <input type="number" class="form-control" name="jumlah_bpjs"
-                                placeholder="Masukkan jumlah pasien BPJS">
+                                placeholder="Masukkan jumlah pasien BPJS" disabled>
                         </div>
                         <div class="form-group">
                             <label>Jumlah Non BPJS</label>
                             <input type="number" class="form-control" name="jumlah_non_bpjs"
-                                placeholder="Masukkan jumlah pasien Non - BPJS">
+                                placeholder="Masukkan jumlah pasien Non - BPJS" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -66,6 +66,38 @@ if (day < 10) {
 // Format the date as YYYY-MM-DD
 const formattedDate = `${year}-${month}-${day}`;
 document.getElementById('tgl_transaksi').value = formattedDate;
+
+// Fungsi untuk mengisi formulir dengan data dari database
+function fillFormWithData(data) {
+    // Mengisi nilai jumlah pada formulir
+    $('input[name=jumlah_bpjs]').val(data.result.jumlah_bpjs);
+    $('input[name=jumlah_non_bpjs]').val(data.result.jumlah_non_bpjs);
+}
+
+// Fungsi untuk mengambil data dari database
+function fetchDataFromDatabase() {
+    $.ajax({
+        url: "{{ route('getBPJSNonBPJS') }}",
+        method: 'GET',
+        dataType: 'json',
+        success: function(response, status, xhr) {
+            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            if (xhr.status === 200) { // Periksa status HTTP di sini
+                fillFormWithData(response);
+            } else if (xhr.status === 400) {
+                console.error('Gagal mengambil data:', response.message); // Ubah pesan kesalahan sesuai respons dari server
+            }
+        },
+        error: function(error) {
+            console.error('Error fetching data from the database:', error);
+        }
+    });
+}
+
+// Mengisi formulir saat halaman dimuat
+$(document).ready(function() {
+    fetchDataFromDatabase();
+});
 
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
