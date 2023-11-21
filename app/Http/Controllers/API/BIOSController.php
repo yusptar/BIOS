@@ -277,6 +277,96 @@ class BIOSController extends Controller
         }
         return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
     }
+
+    public function getBOR()
+    {
+        try {
+            $data_hari = DB::table('kamar_inap')
+                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
+                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
+                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
+                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+                ->select(
+                    'kamar_inap.no_rawat',
+                    'reg_periksa.no_rkm_medis',
+                    'pasien.nm_pasien',
+                    DB::raw("CONCAT(kamar.kd_kamar, ' ', bangsal.nm_bangsal) AS kamar"),
+                    'kamar_inap.tgl_masuk',
+                    DB::raw("IF(kamar_inap.tgl_keluar = '0000-00-00', CURRENT_DATE(), kamar_inap.tgl_keluar) AS tgl_keluar"),
+                    'kamar_inap.lama',
+                    'kamar_inap.stts_pulang'
+                )
+                ->whereDate('kamar_inap.tgl_masuk', now()->format('Y-m-d'))
+                ->orderBy('kamar_inap.tgl_masuk')
+                ->get();
+            
+            $data_kamar = DB::table('kamar')
+                ->where('statusdata', '=', '1')
+                ->get();
+
+            $jumlah_hari = count($data_hari);
+            $jumlah_kamar = count($data_kamar);
+
+            // RUMUS BOR
+            $rumus_bor = ($jumlah_hari / ($jumlah_kamar * 1)) * 100;
+            $format_bor = number_format($rumus_bor, 2, '.', '');
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $format_bor]);
+    }
+
+    public function getTOI()
+    {
+        try {
+            $data = ResepObat::whereDate('tgl_perawatan', now()->format('Y-m-d'))
+                    ->get();
+
+            $count = count($data);
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
+
+    public function getALOS()
+    {
+        try {
+            $data = ResepObat::whereDate('tgl_perawatan', now()->format('Y-m-d'))
+                    ->get();
+
+            $count = count($data);
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
+
+    public function getBTO()
+    {
+        try {
+            $data = ResepObat::whereDate('tgl_perawatan', now()->format('Y-m-d'))
+                    ->get();
+
+            $count = count($data);
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
+
+    public function getIKM()
+    {
+        try {
+            $data = ResepObat::whereDate('tgl_perawatan', now()->format('Y-m-d'))
+                    ->get();
+
+            $count = count($data);
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
     // END DATA LAYANAN
 
 

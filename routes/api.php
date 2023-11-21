@@ -52,11 +52,15 @@ Route::get('/get-psn-darurat',  [App\Http\Controllers\API\BIOSController::class,
 Route::get('/get-kunj-ralan',  [App\Http\Controllers\API\BIOSController::class, 'getKunjunganRalan'])->name('getRalan');
 Route::get('/get-lab-sampel',  [App\Http\Controllers\API\BIOSController::class, 'getLabSampel'])->name('getSampel');
 Route::get('/get-lab-param',  [App\Http\Controllers\API\BIOSController::class, 'getLabParameter'])->name('getParameter');
-
 Route::get('/get-operasi',  [App\Http\Controllers\API\BIOSController::class, 'getOperasi'])->name('getOperasi');
 Route::get('/get-radiologi',  [App\Http\Controllers\API\BIOSController::class, 'getRadiologi'])->name('getRadiologi');
 Route::get('/get-bpjs-non-bpjs',  [App\Http\Controllers\API\BIOSController::class, 'getPasienBPJSdanNonBPJS'])->name('getBPJSNonBPJS');
 Route::get('/get-farmasi',  [App\Http\Controllers\API\BIOSController::class, 'getFarmasi'])->name('getFarmasi');
+Route::get('/get-bor',  [App\Http\Controllers\API\BIOSController::class, 'getBOR'])->name('getBOR');
+Route::get('/get-toi',  [App\Http\Controllers\API\BIOSController::class, 'getTOI'])->name('getTOI');
+Route::get('/get-alos',  [App\Http\Controllers\API\BIOSController::class, 'getALOS'])->name('getALOS');
+Route::get('/get-bto',  [App\Http\Controllers\API\BIOSController::class, 'getBTO'])->name('getBTO');
+Route::get('/get-ikm',  [App\Http\Controllers\API\BIOSController::class, 'getIKM'])->name('getIKM');
 
 // IKT
 Route::post('/IKT', [App\Http\Controllers\API\BIOSController::class, 'IKT']);
