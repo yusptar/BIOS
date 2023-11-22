@@ -214,13 +214,12 @@ class BIOSController extends Controller
     {
         try {
             $kategori = $request->input('kategori');
-
-            $data = Operasi::when($kategori, function ($query) use ($kategori) {
-                    return $query->where('kategori', $kategori);
-                })
+            
+            $data = DB::table('operasi')
                 ->whereDate('tgl_operasi', now()->format('Y-m-d'))
+                ->where('kategori', $kategori)
                 ->get();
-
+        
             $count = count($data);
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
