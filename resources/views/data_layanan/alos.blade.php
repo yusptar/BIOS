@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label>ALOS dalam satuan hari</label>
                             <input type="number" class="form-control" name="alos"
-                                placeholder="Masukkan ALOS dalam satuan hari">
+                                placeholder="Masukkan ALOS dalam satuan hari" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -62,24 +62,23 @@ if (day < 10) {
 const formattedDate = `${year}-${month}-${day}`;
 document.getElementById('tgl_transaksi').value = formattedDate;
 
-// Fungsi untuk mengisi formulir dengan data dari database
 function fillFormWithData(data) {
-    // Mengisi nilai alos pada formulir
-    $('input[name=alos]').val(data.alos);
+    // Mengisi nilai jumlah pada formulir
+    $('input[name=alos]').val(data.result.jumlah);
 }
 
-// Fungsi untuk mengambil data dari database (contoh asumsi menggunakan endpoint '/api/getFormData')
+// Fungsi untuk mengambil data dari database
 function fetchDataFromDatabase() {
     $.ajax({
-        url: 'https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/alos',  // Ganti dengan endpoint yang sesuai di server Anda
+        url: "{{ route('getALOS') }}",
         method: 'GET',
         dataType: 'json',
-        success: function(response) {
-            if (response.success) {
-                // Memanggil fungsi untuk mengisi formulir
-                fillFormWithData(response.data);
-            } else {
-                console.error('Gagal mengambil data dari database');
+        success: function(response, status, xhr) {
+            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            if (xhr.status === 200) { // Periksa status HTTP di sini
+                fillFormWithData(response);
+            } else if (xhr.status === 400) {
+                console.error('Gagal mengambil data:', response.message); // Ubah pesan kesalahan sesuai respons dari server
             }
         },
         error: function(error) {

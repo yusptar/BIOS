@@ -280,8 +280,59 @@ class BIOSController extends Controller
 
     public function getBOR()
     {
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
+
         try {
-            $data_hari = DB::table('kamar_inap')
+            $data_rawat = DB::table('kamar_inap')
+                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
+                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
+                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
+                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+                ->selectRaw("SUM(kamar_inap.lama) AS jumlah_hari")
+                ->whereMonth('kamar_inap.tgl_masuk', now()->format('m'))
+                ->whereYear('kamar_inap.tgl_masuk', now()->format('Y'))
+                ->first();
+
+            $data_kamar = DB::table('kamar')
+                ->where('statusdata', '=', '1')
+                ->get();
+
+            $jumlah_hari_perawatan = $data_rawat ? $data_rawat->jumlah_hari : 0;
+            $jumlah_kamar = count($data_kamar);
+            $jumlah_hari = $startDate->diffInDays($endDate) + 1;
+    
+            // RUMUS BOR
+            $rumus_bor = ($jumlah_hari_perawatan / ($jumlah_kamar * $jumlah_hari)) * 100;
+            $format_bor = number_format($rumus_bor, 2);
+            $bor = (int)$format_bor;
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $bor]);
+    }
+
+    public function getTOI()
+    {
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
+
+        try {
+            $data_rawat = DB::table('kamar_inap')
+                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
+                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
+                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
+                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+                ->selectRaw("SUM(kamar_inap.lama) AS jumlah_hari")
+                ->whereMonth('kamar_inap.tgl_masuk', now()->format('m'))
+                ->whereYear('kamar_inap.tgl_masuk', now()->format('Y'))
+                ->first();
+
+            $data_kamar = DB::table('kamar')
+                ->where('statusdata', '=', '1')
+                ->get();
+
+            $data_pasien = DB::table('kamar_inap')
                 ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
                 ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
                 ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
@@ -296,70 +347,120 @@ class BIOSController extends Controller
                     'kamar_inap.lama',
                     'kamar_inap.stts_pulang'
                 )
-                ->whereDate('kamar_inap.tgl_masuk', now()->format('Y-m-d'))
+                ->whereBetween('kamar_inap.tgl_masuk', [now()->startOfMonth()->format('Y-m-d'), now()->endOfMonth()->format('Y-m-d')])
                 ->orderBy('kamar_inap.tgl_masuk')
                 ->get();
             
-            $data_kamar = DB::table('kamar')
-                ->where('statusdata', '=', '1')
-                ->get();
-
-            $jumlah_hari = count($data_hari);
             $jumlah_kamar = count($data_kamar);
+            $periode = $startDate->diffInDays($endDate) + 1;
+            $jumlah_hari_perawatan = $data_rawat ? $data_rawat->jumlah_hari : 0;
+            $jumlah_pasien = count($data_pasien);
 
-            // RUMUS BOR
-            $rumus_bor = ($jumlah_hari / ($jumlah_kamar * 1)) * 100;
-            $format_bor = number_format($rumus_bor, 2, '.', '');
+            // RUMUS TOI
+            $rumus_toi = (($jumlah_kamar * $periode) - $jumlah_hari_perawatan) / $jumlah_pasien;
+            $format_toi = number_format($rumus_toi, 2);
+            $toi = (int)$format_toi;
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $format_bor]);
-    }
-
-    public function getTOI()
-    {
-        try {
-            $data = ResepObat::whereDate('tgl_perawatan', now()->format('Y-m-d'))
-                    ->get();
-
-            $count = count($data);
-        } catch (Exception $errmsg) {
-            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
-        }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $toi]);
     }
 
     public function getALOS()
     {
-        try {
-            $data = ResepObat::whereDate('tgl_perawatan', now()->format('Y-m-d'))
-                    ->get();
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
 
-            $count = count($data);
+        try {
+            $data_rawat = DB::table('kamar_inap')
+                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
+                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
+                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
+                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+                ->selectRaw("SUM(kamar_inap.lama) AS jumlah_hari")
+                ->whereMonth('kamar_inap.tgl_masuk', now()->format('m'))
+                ->whereYear('kamar_inap.tgl_masuk', now()->format('Y'))
+                ->first();
+            
+            $data_pasien = DB::table('kamar_inap')
+                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
+                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
+                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
+                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+                ->select(
+                    'kamar_inap.no_rawat',
+                    'reg_periksa.no_rkm_medis',
+                    'pasien.nm_pasien',
+                    DB::raw("CONCAT(kamar.kd_kamar, ' ', bangsal.nm_bangsal) AS kamar"),
+                    'kamar_inap.tgl_masuk',
+                    DB::raw("IF(kamar_inap.tgl_keluar = '0000-00-00', CURRENT_DATE(), kamar_inap.tgl_keluar) AS tgl_keluar"),
+                    'kamar_inap.lama',
+                    'kamar_inap.stts_pulang'
+                )
+                ->whereBetween('kamar_inap.tgl_masuk', [now()->startOfMonth()->format('Y-m-d'), now()->endOfMonth()->format('Y-m-d')])
+                ->orderBy('kamar_inap.tgl_masuk')
+                ->get();
+
+            $jumlah_hari_perawatan = $data_rawat ? $data_rawat->jumlah_hari : 0;
+            $jumlah_pasien = count($data_pasien);
+
+            $rumus_alos = ($jumlah_hari_perawatan / $jumlah_pasien);
+            $format_alos = number_format($rumus_alos, 2);
+            $alos = (int)$format_alos;
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $alos]);
     }
 
     public function getBTO()
     {
-        try {
-            $data = ResepObat::whereDate('tgl_perawatan', now()->format('Y-m-d'))
-                    ->get();
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
 
-            $count = count($data);
+        try {
+            $data_pasien = DB::table('kamar_inap')
+                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
+                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
+                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
+                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+                ->select(
+                    'kamar_inap.no_rawat',
+                    'reg_periksa.no_rkm_medis',
+                    'pasien.nm_pasien',
+                    DB::raw("CONCAT(kamar.kd_kamar, ' ', bangsal.nm_bangsal) AS kamar"),
+                    'kamar_inap.tgl_masuk',
+                    DB::raw("IF(kamar_inap.tgl_keluar = '0000-00-00', CURRENT_DATE(), kamar_inap.tgl_keluar) AS tgl_keluar"),
+                    'kamar_inap.lama',
+                    'kamar_inap.stts_pulang'
+                )
+                ->whereBetween('kamar_inap.tgl_masuk', [now()->startOfMonth()->format('Y-m-d'), now()->endOfMonth()->format('Y-m-d')])
+                ->orderBy('kamar_inap.tgl_masuk')
+                ->get();
+
+            $data_kamar = DB::table('kamar')
+                ->where('statusdata', '=', '1')
+                ->get();
+
+            $jumlah_pasien = count($data_pasien);
+            $jumlah_kamar = count($data_kamar);
+    
+            $rumus_bto = ($jumlah_pasien / $jumlah_kamar);
+            $format_bto = number_format($rumus_bto, 2);
+            $bto = (int)$format_bto;
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $bto]);
     }
 
     public function getIKM()
     {
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
+        
         try {
-            $data = ResepObat::whereDate('tgl_perawatan', now()->format('Y-m-d'))
-                    ->get();
+
 
             $count = count($data);
         } catch (Exception $errmsg) {

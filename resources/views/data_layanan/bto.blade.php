@@ -27,7 +27,7 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
                             <label>Frekuensi BTO</label>
-                            <input type="number" class="form-control" name="bto" placeholder="Masukkan frekuensi BTO">
+                            <input type="number" class="form-control" name="bto" placeholder="Masukkan frekuensi BTO" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -60,6 +60,36 @@ if (day < 10) {
 // Format the date as YYYY-MM-DD
 const formattedDate = `${year}-${month}-${day}`;
 document.getElementById('tgl_transaksi').value = formattedDate;
+
+function fillFormWithData(data) {
+    // Mengisi nilai jumlah pada formulir
+    $('input[name=bto]').val(data.result.jumlah);
+}
+
+// Fungsi untuk mengambil data dari database
+function fetchDataFromDatabase() {
+    $.ajax({
+        url: "{{ route('getBTO') }}",
+        method: 'GET',
+        dataType: 'json',
+        success: function(response, status, xhr) {
+            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            if (xhr.status === 200) { // Periksa status HTTP di sini
+                fillFormWithData(response);
+            } else if (xhr.status === 400) {
+                console.error('Gagal mengambil data:', response.message); // Ubah pesan kesalahan sesuai respons dari server
+            }
+        },
+        error: function(error) {
+            console.error('Error fetching data from the database:', error);
+        }
+    });
+}
+
+// Mengisi formulir saat halaman dimuat
+$(document).ready(function() {
+    fetchDataFromDatabase();
+});
 
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
