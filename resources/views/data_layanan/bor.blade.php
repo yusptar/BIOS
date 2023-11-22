@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">BOR (<i> Bed Occupancy Ratio </i>)</h1>
+                    <h1 class="m-0" style="font-weight:bold">BOR (<i> Bed Occupancy Ratio </i>) - (Dikirim Periode Bulanan)</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->

@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">IKM ( Indeks Kepuasan Masyarakat )</h1>
+                    <h1 class="m-0" style="font-weight:bold">IKM ( Indeks Kepuasan Masyarakat )<br>(Dikirim Periode Pelaksanaan Survei Kepuasan)</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->

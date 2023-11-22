@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">BTO (<i> Bed Turn Over </i>)</h1>
+                    <h1 class="m-0" style="font-weight:bold">BTO (<i> Bed Turn Over </i>) - (Dikirim Periode Bulanan)</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->

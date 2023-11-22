@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">ALOS (<i> Average Length of Soy </i>)</h1>
+                    <h1 class="m-0" style="font-weight:bold">ALOS (<i> Average Length of Soy </i>) - (Dikirim Periode Bulanan)</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
