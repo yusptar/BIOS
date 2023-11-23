@@ -16,10 +16,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <button class="btn btn-info" data-toggle="modal" data-target="#modal">Keterangan</button>
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title" style="font-weight:600">Input Form</h3>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#modal"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;Keterangan</button>
                 </div>
                 <form id="form-dokter-spesialis">
                     @csrf
@@ -57,9 +56,9 @@
       </div>
       <div class="modal-body">
         <!-- <p>1. Data transaksi pengeluaran yang dikirimkan di-grouping per tanggal transaksi per akun</p> -->
-        <p>1. Data bersifat akumulatif sampai dengan posisi data pada tanggal transaksi berkenaan</p>
-        <p>2. Data dikirimkan per periode harian</p>
-        <p>3. Data yang dikirimkan termasuk yang belum di SP3B/disahkan</p>
+        <p>● Data bersifat akumulatif sampai dengan posisi data pada tanggal transaksi berkenaan</p>
+        <p>● Data dikirimkan per periode harian</p>
+        <p>● Data yang dikirimkan termasuk yang belum di SP3B/disahkan</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

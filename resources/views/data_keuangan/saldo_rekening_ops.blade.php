@@ -16,11 +16,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <button class="btn btn-info" data-toggle="modal" data-target="#modal">Keterangan</button>
             <div class="card card-default">
-                
                 <div class="card-header">
-                    <h3 class="card-title" style="font-weight:600">Input Form</h3>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#modal"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;Keterangan</button>
                 </div>
                 <form id="form-dokter-spesialis">
                     @csrf
