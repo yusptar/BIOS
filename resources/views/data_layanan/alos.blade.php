@@ -27,8 +27,12 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
                             <label>ALOS dalam satuan hari</label>
-                            <input type="number" class="form-control" name="alos"
-                                placeholder="Masukkan ALOS dalam satuan hari" disabled>
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="alos" placeholder="Masukkan ALOS dalam satuan hari" disabled>
+                                <div class="input-group-prepend">
+                                    <p class="input-group-text">Hari</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class=" card-footer">

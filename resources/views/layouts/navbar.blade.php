@@ -48,7 +48,7 @@
             </a>
         </li> -->
         <li class="nav-item">
-            <h5 style="font-weight:bold; margin-right:20px; font-size:18px">{{ Auth::user()->pegawai->nama }}</h5>
+            <h5 style="font-weight:bold; margin-right:15px; font-size:16px">{{ Auth::user()->pegawai->nama }}</h5>
         </li>
     </ul>
 </nav>

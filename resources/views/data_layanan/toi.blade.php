@@ -27,8 +27,12 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
                             <label>TOI (<i>Turn Over Interval</i>) satuan hari</label>
-                            <input type="number" class="form-control" name="toi"
-                                placeholder="Masukkan TOI dalam satuan hari" disabled>
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="toi" placeholder="Masukkan TOI dalam satuan hari" disabled>
+                                <div class="input-group-prepend">
+                                    <p class="input-group-text">Hari</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class=" card-footer">

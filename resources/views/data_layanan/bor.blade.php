@@ -27,7 +27,13 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
                             <label>Presentase BOR (%)</label>
-                            <input type="number" class="form-control" name="bor" placeholder="Masukkan presentase BOR" disabled>
+                            <div class="input-group">
+                                <input type="number" class="form-control" name="bor" placeholder="Masukkan presentase BOR" disabled>
+                                <div class="input-group-prepend">
+                                    <p class="input-group-text"><i class="fa fa-percent"></i></p>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class=" card-footer">
