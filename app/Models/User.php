@@ -53,4 +53,18 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Pegawai::class, 'username', 'nik');
     }
+
+    public function getUserSIMRS(){
+        $result = DB::table('users_bios')
+                    ->join('pegawai', function ($join) {
+                        $join->on('users_bios.username', '=', 'pegawai.nik');
+                    })
+                    ->selectRaw('`users_bios`.`id` as id')
+                    ->selectRaw('`users_bios`.`username` as username')
+                    ->selectRaw('`users_bios`.`role` as role')
+                    ->selectRaw('`pegawai`.`nama` as nama')
+                    ->selectRaw('`pegawai`.`no_ktp` as no_ktp')
+                    ->get();
+        return $result;
+    }
 }
