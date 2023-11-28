@@ -350,23 +350,9 @@ class BIOSController extends Controller
                 ->where('statusdata', '=', '1')
                 ->get();
 
-            $data_pasien = DB::table('kamar_inap')
-                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
-                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
-                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
-                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
-                ->select(
-                    'kamar_inap.no_rawat',
-                    'reg_periksa.no_rkm_medis',
-                    'pasien.nm_pasien',
-                    DB::raw("CONCAT(kamar.kd_kamar, ' ', bangsal.nm_bangsal) AS kamar"),
-                    'kamar_inap.tgl_masuk',
-                    DB::raw("IF(kamar_inap.tgl_keluar = '0000-00-00', CURRENT_DATE(), kamar_inap.tgl_keluar) AS tgl_keluar"),
-                    'kamar_inap.lama',
-                    'kamar_inap.stts_pulang'
-                )
-                ->whereBetween('kamar_inap.tgl_masuk', [now()->startOfMonth()->format('Y-m-d'), now()->endOfMonth()->format('Y-m-d')])
-                ->orderBy('kamar_inap.tgl_masuk')
+            $data_pasien = KamarInap::with(['regPeriksa.pasien', 'kamar.bangsal'])
+                ->whereBetween('tgl_masuk', [now()->startOfMonth(), now()->endOfMonth()])
+                ->orderBy('tgl_masuk')
                 ->get();
             
             $jumlah_kamar = count($data_kamar);
@@ -381,7 +367,7 @@ class BIOSController extends Controller
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $toi]);
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $jumlah_pasien]);
     }
 
     public function getALOS()
@@ -400,23 +386,9 @@ class BIOSController extends Controller
                 ->whereYear('kamar_inap.tgl_masuk', now()->format('Y'))
                 ->first();
             
-            $data_pasien = DB::table('kamar_inap')
-                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
-                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
-                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
-                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
-                ->select(
-                    'kamar_inap.no_rawat',
-                    'reg_periksa.no_rkm_medis',
-                    'pasien.nm_pasien',
-                    DB::raw("CONCAT(kamar.kd_kamar, ' ', bangsal.nm_bangsal) AS kamar"),
-                    'kamar_inap.tgl_masuk',
-                    DB::raw("IF(kamar_inap.tgl_keluar = '0000-00-00', CURRENT_DATE(), kamar_inap.tgl_keluar) AS tgl_keluar"),
-                    'kamar_inap.lama',
-                    'kamar_inap.stts_pulang'
-                )
-                ->whereBetween('kamar_inap.tgl_masuk', [now()->startOfMonth()->format('Y-m-d'), now()->endOfMonth()->format('Y-m-d')])
-                ->orderBy('kamar_inap.tgl_masuk')
+            $data_pasien = KamarInap::with(['regPeriksa.pasien', 'kamar.bangsal'])
+                ->whereBetween('tgl_masuk', [now()->startOfMonth(), now()->endOfMonth()])
+                ->orderBy('tgl_masuk')
                 ->get();
 
             $jumlah_hari_perawatan = $data_rawat ? $data_rawat->jumlah_hari : 0;
@@ -437,23 +409,9 @@ class BIOSController extends Controller
         $endDate = Carbon::now()->endOfMonth();
 
         try {
-            $data_pasien = DB::table('kamar_inap')
-                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
-                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
-                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
-                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
-                ->select(
-                    'kamar_inap.no_rawat',
-                    'reg_periksa.no_rkm_medis',
-                    'pasien.nm_pasien',
-                    DB::raw("CONCAT(kamar.kd_kamar, ' ', bangsal.nm_bangsal) AS kamar"),
-                    'kamar_inap.tgl_masuk',
-                    DB::raw("IF(kamar_inap.tgl_keluar = '0000-00-00', CURRENT_DATE(), kamar_inap.tgl_keluar) AS tgl_keluar"),
-                    'kamar_inap.lama',
-                    'kamar_inap.stts_pulang'
-                )
-                ->whereBetween('kamar_inap.tgl_masuk', [now()->startOfMonth()->format('Y-m-d'), now()->endOfMonth()->format('Y-m-d')])
-                ->orderBy('kamar_inap.tgl_masuk')
+            $data_pasien = KamarInap::with(['regPeriksa.pasien', 'kamar.bangsal'])
+                ->whereBetween('tgl_masuk', [now()->startOfMonth(), now()->endOfMonth()])
+                ->orderBy('tgl_masuk')
                 ->get();
 
             $data_kamar = DB::table('kamar')
