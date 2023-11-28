@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use Exception;
 use \App\Models\RegPeriksa;
-use \App\Models\PeriksaLab;
+use \App\Models\PermintaanLab;
 use \App\Models\DetailPeriksaLab;
 use \App\Models\ResepObat;
 use \App\Models\PeriksaRadiologi;
@@ -183,9 +183,7 @@ class BIOSController extends Controller
     public function getLabSampel()
     {
         try {
-            $data = PeriksaLab::whereDate('tgl_periksa', now()->format('Y-m-d'))
-                    ->groupBy(['jam', 'kd_jenis_prw'])
-                    ->selectRaw('jam, kd_jenis_prw, COUNT(*) as total')
+            $data = PermintaanLab::whereDate('tgl_permintaan', now()->format('Y-m-d'))
                     ->get();
 
             $count = count($data);
@@ -198,16 +196,37 @@ class BIOSController extends Controller
     public function getLabParameter()
     {
         try {
-            $data = DetailPeriksaLab::whereDate('tgl_periksa', now()->format('Y-m-d'))
-                    ->groupBy(['jam', 'kd_jenis_prw'])
-                    ->selectRaw('jam, kd_jenis_prw, COUNT(*) as total')
+            $hematologi = DB::table('jns_perawatan_lab')
+                    ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
+                    ->where(function($query) {
+                        $query->where('jns_perawatan_lab.nm_perawatan', 'HEMATOLOGI')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'FAAL HEMOSTASIS');
+                    })
+                    ->select('jns_perawatan_lab.nm_perawatan')
                     ->get();
 
-            $count = count($data);
+            $kimia_klinis = DB::table('jns_perawatan_lab')
+                    ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
+                    ->where(function($query) {
+                        $query->where('jns_perawatan_lab.nm_perawatan', 'LEMAK')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'FAAL GINJAL')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'FAAL HATI');
+                    })
+                    ->select('jns_perawatan_lab.nm_perawatan')
+                    ->get();
+
+            // $data = DetailPeriksaLab::whereDate('tgl_periksa', now()->format('Y-m-d'))
+            //         ->groupBy(['jam', 'kd_jenis_prw'])
+            //         ->selectRaw('jam, kd_jenis_prw, COUNT(*) as total')
+            //         ->get();
+
+            $count_h = count($hematologi);
+            $count_k = count($kimia_klinis);
+
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah_h' => $count_h, 'jumlah_k' => $count_k, 'nama_lyn' => $count_h]);
     }
 
     public function getOperasi(Request $request)

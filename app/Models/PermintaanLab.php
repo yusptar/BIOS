@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PeriksaLab extends Model
+class PermintaanLab extends Model
 {
-    protected $table = 'periksa_lab';
+    protected $table = 'permintaan_lab';
     use HasFactory;
 }

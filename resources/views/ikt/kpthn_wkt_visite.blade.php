@@ -57,7 +57,7 @@
       <div class="modal-body">
         <!-- <p>1. Data transaksi pengeluaran yang dikirimkan di-grouping per tanggal transaksi per akun</p> -->
         <p>● Data yang dikirimkan merupakan posisi data pada saat tanggal berkenaan, tidak bersifat akumulatif</p>
-        <p>● Data dikirimkan per periode triwulanan.</p>
+        <p>● Data dikirimkan per periode semesteran.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

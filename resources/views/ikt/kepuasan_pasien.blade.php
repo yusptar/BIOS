@@ -51,7 +51,7 @@
       <div class="modal-body">
         <!-- <p>1. Data transaksi pengeluaran yang dikirimkan di-grouping per tanggal transaksi per akun</p> -->
         <p>● Data yang dikirimkan merupakan posisi data pada saat tanggal berkenaan, tidak bersifat akumulatif</p>
-        <p>● Data dikirimkan per periode tahunan.</p>
+        <p>● Data dikirimkan per periode semesteran.</p>
         <p>● Data yang dikirimkan sesuai dengan PerMenPanRB Nomor 14 tahun 2017.</p>
       </div>
       <div class="modal-footer">

@@ -14,7 +14,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <!-- <section class="content">
         <div class="container-fluid">
             <div class="card card-default">
                 <div class="card-header">
@@ -42,8 +42,53 @@
                 </form>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <button class="btn btn-info" data-toggle="modal" data-target="#modal"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;Keterangan</button>
+                        </div>
+                        <div class="card-body">
+                            <!-- <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input toggleSwitch" id="toggleSwitch" name="toggleSwitch" checked>
+                                <label class="custom-control-label" for="toggleSwitch">BELUM TTE</label>
+                            </div> -->
+                            <table class="table table-bordered table-hover" id="table-rm">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Layanan</th>
+                                        <th>Jumlah Layanan Lab Parameter</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <form id="form-dokter-spesialis">
+                                        @csrf
+                                        <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
+                                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
+                                        <tr>
+                                            <td scope="row">
+                                                <input type="text" class="form-control" name="nama_layanan" placeholder="Masukkan Nama Layanan" disabled value="Darah Lengkap (Hematologi)">
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control" name="jumlah" placeholder="Masukkan Jumlah Layanan" disabled>
+                                            </td>
+                                        </tr>
+                                    </form>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class=" card-footer">
+                            <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -57,7 +102,7 @@
       </div>
       <div class="modal-body">
         <!-- <p>1. Data transaksi pengeluaran yang dikirimkan di-grouping per tanggal transaksi per akun</p> -->
-        <p>● Data yang dikirimkan merupakan posisi data pada saat tanggal transaksi, tidak bersifat akumulatif</p>
+        <p>● Data yang dikirimkan merupakan posisi data pada saat tanggal transaksi, bersifat akumulatif</p>
         <p>● Data dikirimkan per periode harian</p>
       </div>
       <div class="modal-footer">
@@ -91,7 +136,9 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 // Fungsi untuk mengisi formulir dengan data dari database
 function fillFormWithData(data) {
     // Mengisi nilai jumlah pada formulir
-    $('input[name=jumlah]').val(data.result.jumlah);
+    $('input[name=nama_layanan]').val(data.result.nama_lyn);
+    $('input[name=jumlah_h]').val(data.result.jumlah_h);
+    $('input[name=jumlah_k]').val(data.result.jumlah_k);
 }
 
 // Fungsi untuk mengambil data dari database
