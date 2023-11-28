@@ -302,18 +302,13 @@ class BIOSController extends Controller
         $endDate = Carbon::now()->endOfMonth();
 
         try {
-            $data_rawat = DB::table('kamar_inap')
-                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
-                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
-                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
-                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+            $data_rawat = KamarInap::with(['regPeriksa.pasien', 'kamar.bangsal'])
                 ->selectRaw("SUM(kamar_inap.lama) AS jumlah_hari")
                 ->whereMonth('kamar_inap.tgl_masuk', now()->format('m'))
                 ->whereYear('kamar_inap.tgl_masuk', now()->format('Y'))
                 ->first();
 
-            $data_kamar = DB::table('kamar')
-                ->where('statusdata', '=', '1')
+            $data_kamar = Kamar::where('statusdata', '=', '1')
                 ->get();
 
             $jumlah_hari_perawatan = $data_rawat ? $data_rawat->jumlah_hari : 0;
@@ -336,18 +331,13 @@ class BIOSController extends Controller
         $endDate = Carbon::now()->endOfMonth();
 
         try {
-            $data_rawat = DB::table('kamar_inap')
-                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
-                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
-                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
-                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+            $data_rawat = KamarInap::with(['regPeriksa.pasien', 'kamar.bangsal'])
                 ->selectRaw("SUM(kamar_inap.lama) AS jumlah_hari")
                 ->whereMonth('kamar_inap.tgl_masuk', now()->format('m'))
                 ->whereYear('kamar_inap.tgl_masuk', now()->format('Y'))
                 ->first();
 
-            $data_kamar = DB::table('kamar')
-                ->where('statusdata', '=', '1')
+            $data_kamar = Kamar::where('statusdata', '=', '1')
                 ->get();
 
             $data_pasien = KamarInap::with(['regPeriksa.pasien', 'kamar.bangsal'])
@@ -376,11 +366,7 @@ class BIOSController extends Controller
         $endDate = Carbon::now()->endOfMonth();
 
         try {
-            $data_rawat = DB::table('kamar_inap')
-                ->join('reg_periksa', 'kamar_inap.no_rawat', '=', 'reg_periksa.no_rawat')
-                ->join('pasien', 'reg_periksa.no_rkm_medis', '=', 'pasien.no_rkm_medis')
-                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
-                ->join('bangsal', 'kamar.kd_bangsal', '=', 'bangsal.kd_bangsal')
+            $data_rawat = KamarInap::with(['regPeriksa.pasien', 'kamar.bangsal'])
                 ->selectRaw("SUM(kamar_inap.lama) AS jumlah_hari")
                 ->whereMonth('kamar_inap.tgl_masuk', now()->format('m'))
                 ->whereYear('kamar_inap.tgl_masuk', now()->format('Y'))
@@ -414,8 +400,7 @@ class BIOSController extends Controller
                 ->orderBy('tgl_masuk')
                 ->get();
 
-            $data_kamar = DB::table('kamar')
-                ->where('statusdata', '=', '1')
+            $data_kamar = Kamar::where('statusdata', '=', '1')
                 ->get();
 
             $jumlah_pasien = count($data_pasien);
@@ -430,22 +415,19 @@ class BIOSController extends Controller
         return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $bto]);
     }
 
-    public function getIKM()
-    {
-        $startDate = Carbon::now()->startOfMonth();
-        $endDate = Carbon::now()->endOfMonth();
+    // public function getIKM()
+    // {
+    //     $startDate = Carbon::now()->startOfMonth();
+    //     $endDate = Carbon::now()->endOfMonth();
         
-        try {
-
-
-            $count = count($data);
-        } catch (Exception $errmsg) {
-            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
-        }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
-    }
+    //     try {
+    //         $count = count($data);
+    //     } catch (Exception $errmsg) {
+    //         return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+    //     }
+    //     return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    // }
     // END DATA LAYANAN
-
 
     // IKT
     public function IKT(Request $request) // CONTOH STORE ($POST)
