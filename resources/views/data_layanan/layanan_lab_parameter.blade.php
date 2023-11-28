@@ -53,33 +53,37 @@
                             <button class="btn btn-info" data-toggle="modal" data-target="#modal"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;Keterangan</button>
                         </div>
                         <div class="card-body">
-                            <!-- <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input toggleSwitch" id="toggleSwitch" name="toggleSwitch" checked>
-                                <label class="custom-control-label" for="toggleSwitch">BELUM TTE</label>
-                            </div> -->
-                            <table class="table table-bordered table-hover" id="table-rm">
-                                <thead>
-                                    <tr>
-                                        <th>Nama Layanan</th>
-                                        <th>Jumlah Layanan Lab Parameter</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <form id="form-dokter-spesialis">
-                                        @csrf
+                            <form id="form-lab-param">
+                                @csrf
+                                <table class="table table-bordered table-hover" id="table-rm">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Layanan</th>
+                                            <th>Jumlah Layanan Lab Parameter</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                                         <tr>
                                             <td scope="row">
-                                                <input type="text" class="form-control" name="nama_layanan" placeholder="Masukkan Nama Layanan" disabled value="Darah Lengkap (Hematologi)">
+                                                <input type="text" class="form-control" name="nama_layanan" disabled value="HEMATOLOGI">
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" name="jumlah" placeholder="Masukkan Jumlah Layanan" disabled>
+                                                <input type="number" class="form-control" name="jumlah_h" placeholder="Masukkan Jumlah Layanan" disabled>
                                             </td>
                                         </tr>
-                                    </form>
-                                </tbody>
-                            </table>
+                                        <tr>
+                                            <td scope="row">
+                                                <input type="text" class="form-control" name="nama_layanan"  disabled value="KIMIA KLINIS">
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control" name="jumlah_k" placeholder="Masukkan Jumlah Layanan" disabled>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
                         </div>
                         <div class=" card-footer">
                             <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
@@ -136,7 +140,7 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 // Fungsi untuk mengisi formulir dengan data dari database
 function fillFormWithData(data) {
     // Mengisi nilai jumlah pada formulir
-    $('input[name=nama_layanan]').val(data.result.nama_lyn);
+    // $('input[name=nama_layanan]').val(data.result.nama_lyn);
     $('input[name=jumlah_h]').val(data.result.jumlah_h);
     $('input[name=jumlah_k]').val(data.result.jumlah_k);
 }
@@ -167,7 +171,7 @@ $(document).ready(function() {
 });
 
 $('#btn-submit').click(function() {
-    if ($('#form-dokter-spesialis')[0].checkValidity()) {
+    if ($('#form-lab-param')[0].checkValidity()) {
         var formData = new FormData();
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('nama_layanan', $('input[name=nama_layanan]').val());
@@ -203,7 +207,7 @@ $('#btn-submit').click(function() {
             }
         });
     } else {
-        $('#form-dokter-spesialis')[0].reportValidity();
+        $('#form-lab-param')[0].reportValidity();
     }
 });
 </script>

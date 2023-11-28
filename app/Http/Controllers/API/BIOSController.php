@@ -199,8 +199,9 @@ class BIOSController extends Controller
             $hematologi = DB::table('jns_perawatan_lab')
                     ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
                     ->where(function($query) {
-                        $query->where('jns_perawatan_lab.nm_perawatan', 'HEMATOLOGI')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'FAAL HEMOSTASIS');
+                        $query->where('jns_perawatan_lab.nm_perawatan', 'like', '%HEMATOLOGI%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL HEMOSTASIS%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Gambaran Sumsum%');
                     })
                     ->select('jns_perawatan_lab.nm_perawatan')
                     ->get();
@@ -208,9 +209,12 @@ class BIOSController extends Controller
             $kimia_klinis = DB::table('jns_perawatan_lab')
                     ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
                     ->where(function($query) {
-                        $query->where('jns_perawatan_lab.nm_perawatan', 'LEMAK')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'FAAL GINJAL')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'FAAL HATI');
+                        $query->where('jns_perawatan_lab.nm_perawatan', 'like', '%LEMAK%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL GINJAL%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL HATI%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%ELEKTROLIT%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%JANTUNG%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%DIABETES%');
                     })
                     ->select('jns_perawatan_lab.nm_perawatan')
                     ->get();
@@ -226,7 +230,7 @@ class BIOSController extends Controller
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah_h' => $count_h, 'jumlah_k' => $count_k, 'nama_lyn' => $count_h]);
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah_h' => $count_h, 'jumlah_k' => $count_k]);
     }
 
     public function getOperasi(Request $request)
@@ -415,18 +419,19 @@ class BIOSController extends Controller
         return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $bto]);
     }
 
-    // public function getIKM()
-    // {
-    //     $startDate = Carbon::now()->startOfMonth();
-    //     $endDate = Carbon::now()->endOfMonth();
-        
-    //     try {
-    //         $count = count($data);
-    //     } catch (Exception $errmsg) {
-    //         return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
-    //     }
-    //     return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
-    // }
+    public function getIKM()
+    {
+        $startDate = Carbon::now()->startOfMonth();
+        $endDate = Carbon::now()->endOfMonth();
+
+        try {
+            // BELUM TERDAPAT REFERENSI DATA PENGAMBILAN
+            $count = count($data);
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
     // END DATA LAYANAN
 
     // IKT
