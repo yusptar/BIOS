@@ -367,7 +367,7 @@ class BIOSController extends Controller
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $jumlah_pasien]);
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $toi]);
     }
 
     public function getALOS()
