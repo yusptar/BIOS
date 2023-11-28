@@ -72,7 +72,7 @@
                     class="nav-item {{ (request()->routeIs('penerimaan', 'pengeluaran', 'sldo-rkn-ops', 'sldo-rkn-kas', 'sldo-rkn-dana-kl')) ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ (request()->routeIs('penerimaan', 'pengeluaran', 'sldo-rkn-ops', 'sldo-rkn-kas', 'sldo-rkn-dana-kl')) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-money-bill"></i>
+                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
                         <p>
                             Data Keuangan
                             <i class="fas fa-angle-left right"></i>
@@ -116,7 +116,7 @@
                     class="nav-item {{ (request()->routeIs('dktr-spesialis', 'dktr-gigi', 'dktr-umum', 'tng-perawat', 'tng-bidan', 'pran-lab', 'radiographer', 'nutrisionist', 'fisioterapis', 'pharmacist', 'tng-professional', 'tng-non-medis', 'tng-non-medis-adm', 'sanitarian')) ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ (request()->routeIs('dktr-spesialis', 'dktr-gigi', 'dktr-umum', 'tng-perawat', 'tng-bidan', 'pran-lab', 'radiographer', 'nutrisionist', 'fisioterapis', 'pharmacist', 'tng-professional', 'tng-non-medis', 'tng-non-medis-adm', 'sanitarian')) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-copy"></i>
+                        <i class="nav-icon fas fa-user-friends"></i>
                         <p>
                             Data SDM
                             <i class="fas fa-angle-left right"></i>
@@ -214,7 +214,7 @@
                     class="nav-item {{ (request()->routeIs('psn-rawat-inap', 'psn-rawat-darurat', 'lab-sampel', 'lab-parameter', 'tndkn-operasi', 'lyn-radiologi', 'lyn-forensik', 'kunj-rawat-jalan', 'psn-rawat-jalan', 'psn-bpjs-nonbpjs', 'lyn-farmasi', 'bor', 'toi', 'alos', 'bto', 'ikm')) ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ (request()->routeIs('psn-rawat-inap', 'psn-rawat-darurat', 'lab-sampel', 'lab-parameter', 'tndkn-operasi', 'lyn-radiologi', 'lyn-forensik', 'kunj-rawat-jalan', 'psn-rawat-jalan', 'psn-bpjs-nonbpjs', 'lyn-farmasi', 'bor', 'toi', 'alos', 'bto', 'ikm')) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <i class="nav-icon fas fa-poll-h"></i>
                         <p>
                             Data Layanan
                             <i class="right fas fa-angle-left"></i>
@@ -323,7 +323,7 @@
                     class="nav-item {{ (request()->routeIs('vst-psn-10', 'vst-psn-10-12', 'vst-psn-12', 'dpjp-non-visite', 'kgtn-visite-psn', 'pobo', 'aset-blu', 'rkm-medis-elektronik', 'protokol-kesehatan', 'alat-kesehatan', 'kpuasan-psn', 'wkt-visite-dpjp', 'kebersihan-tangan', 'apd', 'identifikasi-pasien', 'seksio-emergensi', 'wkt-tunggu-rawat-jalan', 'ops-elektif', 'kepatuhan-wkt-visite-dokter', 'kritis-lab', 'form-nasional', 'alur-klinis', 'resiko-psn-jatuh', 'tanggap-komplain')) ? 'menu-open' : '' }}">
                     <a href="#"
                         class="nav-link {{ (request()->routeIs('vst-psn-10', 'vst-psn-10-12', 'vst-psn-12', 'dpjp-non-visite', 'kgtn-visite-psn', 'pobo', 'aset-blu', 'rkm-medis-elektronik', 'protokol-kesehatan', 'alat-kesehatan', 'kpuasan-psn', 'wkt-visite-dpjp', 'kebersihan-tangan', 'apd', 'identifikasi-pasien', 'seksio-emergensi', 'wkt-tunggu-rawat-jalan', 'ops-elektif', 'kepatuhan-wkt-visite-dokter', 'kritis-lab', 'form-nasional', 'alur-klinis', 'resiko-psn-jatuh', 'tanggap-komplain')) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-tree"></i>
+                        <i class="nav-icon fas fa-universal-access"></i>
                         <p>
                             (IKT) Indikator Kinerja Terpilih
                             <i class="fas fa-angle-left right"></i>
