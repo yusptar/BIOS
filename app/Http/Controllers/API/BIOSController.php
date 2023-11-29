@@ -201,7 +201,15 @@ class BIOSController extends Controller
                     ->where(function($query) {
                         $query->where('jns_perawatan_lab.nm_perawatan', 'like', '%HEMATOLOGI%')
                               ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL HEMOSTASIS%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Gambaran Sumsum%');
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Retikulosit%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%LED%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Golongan Darah%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%TIBC%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Evaluasi%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%APTT%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%D-Dimer%')
+                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%BMP%');
+                              
                     })
                     ->select('jns_perawatan_lab.nm_perawatan')
                     ->get();
@@ -214,6 +222,23 @@ class BIOSController extends Controller
                             ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL HATI%')
                             ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%ELEKTROLIT%')
                             ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%JANTUNG%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%ANALISA CAIRAN%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Malaria%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Urine%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Protein%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Bilirubin%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Sedmien%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Troponin I%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Glukosa%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Hba1C%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Cholesterol%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Trigliserida%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Ureum%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Kreatin%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Alkali%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%SGOT%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%SGPT%')
+                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Albumin%')
                             ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%DIABETES%');
                     })
                     ->select('jns_perawatan_lab.nm_perawatan')
