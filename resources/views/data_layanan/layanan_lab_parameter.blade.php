@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Layanan Laboratorium (parameter)</h1>
+                    <h1 class="m-0" style="font-weight:bold">Jumlah Layanan Laboratorium (Parameter)</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -14,7 +14,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <!-- <section class="content">
+    <section class="content">
         <div class="container-fluid">
             <div class="card card-default">
                 <div class="card-header">
@@ -42,7 +42,7 @@
                 </form>
             </div>
         </div>
-    </section> -->
+    </section>
     <!-- End Main content -->
     <section class="content">
         <div class="container-fluid">
