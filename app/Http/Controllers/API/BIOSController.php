@@ -196,6 +196,8 @@ class BIOSController extends Controller
     public function getLabParameter()
     {
         try {
+            $nama_layanan = $request->input('nama_layanan');
+                
             $hematologi = DB::table('jns_perawatan_lab')
                     ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
                     ->where(function($query) {

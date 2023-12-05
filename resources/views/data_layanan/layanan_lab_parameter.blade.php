@@ -26,14 +26,17 @@
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
-                            <label>Nama Layanan</label>
-                            <input type="text" class="form-control" name="nama_layanan"
-                                placeholder="Masukkan nama layanan">
+                            <label>NAMA LAYANAN</label>
+                            <select class="form-control" name="nama_layanan" id="nama_layanan">
+                                <option disabled selected>-- Pilih Kategori --</option>
+                                <option value="HEMATOLOGI">HEMATOLOGI</option>
+                                <option value="KIMIA KLINIS">KIMIA KLINIS</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>Jumlah Layanan Lab Parameter</label>
+                            <label>Jumlah Pasien</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah layanan lab parameter" disabled>
+                                placeholder="Masukkan jumlah pasien" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
