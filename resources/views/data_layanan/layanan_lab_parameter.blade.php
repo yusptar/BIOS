@@ -35,8 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label>Jumlah Pasien</label>
-                            <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah pasien" disabled>
+                            <input type="number" class="form-control" name="jumlah" placeholder="Masukkan jumlah pasien" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -47,7 +46,7 @@
         </div>
     </section>
     <!-- End Main content -->
-    <section class="content">
+    <!-- <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -95,7 +94,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 </div>
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -143,23 +142,24 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 // Fungsi untuk mengisi formulir dengan data dari database
 function fillFormWithData(data) {
     // Mengisi nilai jumlah pada formulir
-    // $('input[name=nama_layanan]').val(data.result.nama_lyn);
-    $('input[name=jumlah_h]').val(data.result.jumlah_h);
-    $('input[name=jumlah_k]').val(data.result.jumlah_k);
+    $('input[name=jumlah]').val(data.result.jumlah);
 }
 
 // Fungsi untuk mengambil data dari database
 function fetchDataFromDatabase() {
+    var selectedCategory = $('#nama_layanan').val();
+
     $.ajax({
         url: "{{ route('getParameter') }}",
         method: 'GET',
         dataType: 'json',
+        data: { nama_layanan: selectedCategory }, 
         success: function(response, status, xhr) {
             console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
             if (xhr.status === 200) { // Periksa status HTTP di sini
                 fillFormWithData(response);
             } else if (xhr.status === 400) {
-                console.error('Gagal mengambil data:', response.message); // Ubah pesan kesalahan sesuai respons dari server
+                console.error('Gagal mengambil data:', response.message); 
             }
         },
         error: function(error) {
@@ -172,6 +172,10 @@ function fetchDataFromDatabase() {
 $(document).ready(function() {
     fetchDataFromDatabase();
 });
+
+// Menambahkan event listener untuk memanggil fetchDataFromDatabase saat opsi kelas berubah
+$('#nama_layanan').change(fetchDataFromDatabase);
+
 
 $('#btn-submit').click(function() {
     if ($('#form-lab-param')[0].checkValidity()) {

@@ -193,71 +193,68 @@ class BIOSController extends Controller
         return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
     }
 
-    public function getLabParameter()
+    public function getLabParameter(Request $request)
     {
         try {
-            $nama_layanan = $request->input('nama_layanan');
-                
-            $hematologi = DB::table('jns_perawatan_lab')
-                    ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
-                    ->where(function($query) {
-                        $query->where('jns_perawatan_lab.nm_perawatan', 'like', '%HEMATOLOGI%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL HEMOSTASIS%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Retikulosit%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%LED%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Golongan Darah%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%TIBC%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Evaluasi%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%APTT%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%D-Dimer%')
-                              ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%BMP%');
-                              
-                    })
-                    ->select('jns_perawatan_lab.nm_perawatan')
-                    ->get();
-
-            $kimia_klinis = DB::table('jns_perawatan_lab')
-                    ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
-                    ->where(function($query) {
-                        $query->where('jns_perawatan_lab.nm_perawatan', 'like', '%LEMAK%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL GINJAL%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL HATI%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%ELEKTROLIT%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%JANTUNG%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%ANALISA CAIRAN%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Malaria%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Urine%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Protein%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Bilirubin%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Sedmien%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Troponin I%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Glukosa%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Hba1C%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Cholesterol%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Trigliserida%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Ureum%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Kreatin%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Alkali%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%SGOT%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%SGPT%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Albumin%')
-                            ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%DIABETES%');
-                    })
-                    ->select('jns_perawatan_lab.nm_perawatan')
-                    ->get();
-
-            // $data = DetailPeriksaLab::whereDate('tgl_periksa', now()->format('Y-m-d'))
-            //         ->groupBy(['jam', 'kd_jenis_prw'])
-            //         ->selectRaw('jam, kd_jenis_prw, COUNT(*) as total')
-            //         ->get();
-
-            $count_h = count($hematologi);
-            $count_k = count($kimia_klinis);
-
+            $nama_layanan = $request->input('nama_layanan');  
+            if ($nama_layanan == 'HEMATOLOGI'){
+                $hematologi = DB::table('jns_perawatan_lab')
+                ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
+                ->where(function($query) {
+                    $query->where('jns_perawatan_lab.nm_perawatan', 'like', '%HEMATOLOGI%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL HEMOSTASIS%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Retikulosit%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%LED%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Golongan Darah%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%TIBC%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Evaluasi%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%APTT%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%D-Dimer%')
+                          ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%BMP%');
+                          
+                })
+                ->select('jns_perawatan_lab.nm_perawatan')
+                ->get();
+                $count_h = count($hematologi);
+                return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count_h]);
+            } elseif ($nama_layanan == 'KIMIA KLINIS'){
+                $kimia_klinis = DB::table('jns_perawatan_lab')
+                ->join('permintaan_detail_permintaan_lab', 'jns_perawatan_lab.kd_jenis_prw', '=', 'permintaan_detail_permintaan_lab.kd_jenis_prw')
+                ->where(function($query) {
+                    $query->where('jns_perawatan_lab.nm_perawatan', 'like', '%LEMAK%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL GINJAL%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%FAAL HATI%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%ELEKTROLIT%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%JANTUNG%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%ANALISA CAIRAN%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Malaria%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Urine%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Protein%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Bilirubin%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Sedmien%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Troponin I%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Glukosa%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Hba1C%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Cholesterol%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Trigliserida%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Ureum%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Kreatin%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Alkali%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%SGOT%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%SGPT%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%Albumin%')
+                        ->orWhere('jns_perawatan_lab.nm_perawatan', 'like', '%DIABETES%');
+                })
+                ->select('jns_perawatan_lab.nm_perawatan')
+                ->get();
+                $count_k = count($kimia_klinis);
+                return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count_k]);
+            } else {
+                return ApiFormatter::createAPI(200, 'Success', ['jumlah' => 0]);
+            }
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
-        return ApiFormatter::createAPI(200, 'Success', ['jumlah_h' => $count_h, 'jumlah_k' => $count_k]);
     }
 
     public function getOperasi(Request $request)
