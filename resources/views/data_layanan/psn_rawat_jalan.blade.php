@@ -27,7 +27,7 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
                             <label>Nama Poli</label>
-                            <select class="form-control" name="nama_poli" id="nm_poli">
+                            <select class="form-control col-sm-5" name="nama_poli" id="nm_poli">
                                 <option disabled selected>-- Pilih Nama Poli --</option>
                                 <option value="ALERGI-IMMUNOLOGI KLINIK">004 - ALERGI-IMMUNOLOGI KLINIK</option>
                                 <option value="GERIATRI">006 - GERIATRI</option>

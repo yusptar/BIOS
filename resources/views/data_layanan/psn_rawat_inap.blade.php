@@ -27,7 +27,7 @@
                         <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
                         <div class="form-group">
                             <label>Kode Kelas</label>
-                            <select class="form-control" name="kode_kelas" id="kelas">
+                            <select class="form-control col-sm-5" name="kode_kelas" id="kelas">
                                 <option disabled selected>-- Pilih Kode Kelas --</option>
                                 <option value="KELAS III">KELAS III</option>
                                 <option value="KELAS II">KELAS II</option>
