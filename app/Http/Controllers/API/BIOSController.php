@@ -52,7 +52,7 @@ class BIOSController extends Controller
     public function dataSDM(Request $request) // CONTOH STORE ($POST)
     {
         try {
-             // Mengirim data ke API menggunakan Guzzle
+            // Mengirim data ke API menggunakan Guzzle
             $client = new Client();
             $response = $client->post('https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis', [
                 'json' => [
@@ -339,6 +339,7 @@ class BIOSController extends Controller
             $data_kamar = Kamar::where('statusdata', '=', '1')
                 ->get();
 
+            // PENGAMBILAN DATA JUMLAH UNTUK PERHITUNGAN RUMUS BOR
             $jumlah_hari_perawatan = $data_rawat ? $data_rawat->jumlah_hari : 0;
             $jumlah_kamar = count($data_kamar);
             $jumlah_hari = $startDate->diffInDays($endDate) + 1;

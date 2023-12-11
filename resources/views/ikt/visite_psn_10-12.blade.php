@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Visite Pasien > 10.00 s.d. 12.00</h1>
+                    <h1 class="m-0" style="font-weight:bold">Jumlah Visite Pasien Lebih Dari Jam 10.00 - 12.00</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
