@@ -26,10 +26,10 @@ class BIOSController extends Controller
         try {
              // Mengirim data ke API menggunakan Guzzle
             $client = new Client();
-            $response = $client->post('https://training-bios2.kemenkeu.go.id/api2/authenticate', [
+            $response = $client->post('https://training-bios2.kemenkeu.go.id/api/token', [
                 'json' => [
-                    'username' => $request->username,
-                    'password' => $request->password,
+                    'satker' => $request->satker,
+                    'key' => $request->key,
                 ],
                 // Tambahkan header sesuai kebutuhan (misalnya, header authorization)
                 'headers' => [
@@ -62,6 +62,7 @@ class BIOSController extends Controller
                     'anggota' => $request->anggota,
                     'non_pns_tetap' => $request->non_pns_tetap,
                     'kontrak' => $request->kontrak,
+                    'token' => $request->token,
                 ],
                 // Tambahkan header sesuai kebutuhan (misalnya, header authorization)
                 'headers' => [
