@@ -7,10 +7,11 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User;
 use App\Models\Pegawai; 
-
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Session;
-
+use Alert;
+use Exception;
 
 class LoginController extends Controller
 {
@@ -32,7 +33,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
-        // Authenticate the user
+            // Authenticate the user
         if (auth()->attempt($credentials)) {
             $user_data = Pegawai::where('nik', $credentials['username'])->first(); // Assuming 'username' is the NIK
             $ses_data = [
@@ -40,15 +41,15 @@ class LoginController extends Controller
                 'username' => $user_data->nama, // Assuming 'nama' is the username
             ];
             Session::put($ses_data);
-           
-            // session()->flash('user_name', $user_data->nama);
-            return redirect()->route('dashboard')->with(['user_data' => $user_data]);
+
+            Alert::success('Login Berhasil!', 'Selamat Datang!');
+            return redirect()->route('dashboard');         
         } else {
-          
+            Alert::error('Oops! Login Gagal.', 'Terdapat kesalahan pada username atau password! ');
             return redirect()->back();
-        }             
+        }
     }
-    
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

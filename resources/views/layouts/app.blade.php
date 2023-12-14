@@ -25,6 +25,10 @@
     <script src="{{ asset('auth/js/popper.js') }}"></script>
     <script src="{{ asset('auth/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('auth/js/main.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{{ asset('modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

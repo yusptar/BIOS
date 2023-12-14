@@ -24,19 +24,19 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
+                        <input type="hidden" name="_token" id="token" value=""/>
                         <div class=" form-group">
                             <label>PNS</label>
-                            <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS">
+                            <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS" required>
                         </div>
                         <div class="form-group">
                             <label>PPPK</label>
-                            <input type="number" class="form-control" name="pppk" placeholder="Masukkan jumlah PPPK">
+                            <input type="number" class="form-control" name="pppk" placeholder="Masukkan jumlah PPPK" required>
                         </div>
                         <div class="form-group">
                             <label>Anggota</label>
                             <input type="number" class="form-control" name="anggota"
-                                placeholder="Masukkan jumlah Anggota">
+                                placeholder="Masukkan jumlah Anggota" required>
                         </div>
                         <div class="form-group">
                             <label>Non PNS Tetap (Khusus Anggota TNI/Polri)</label>
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label>Kontrak</label>
                             <input type="number" class="form-control" name="kontrak"
-                                placeholder="Masukkan Jumlah Kontrak">
+                                placeholder="Masukkan Jumlah Kontrak" required>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -85,6 +85,8 @@
 <script>
 // Get the current date in the format YYYY-MM-DD
 const today = new Date();
+today.setDate(today.getDate() - 1); // Kurangi 1 hari dari tanggal saat ini
+
 const year = today.getFullYear();
 let month = today.getMonth() + 1;
 let day = today.getDate();
@@ -97,6 +99,7 @@ if (month < 10) {
 if (day < 10) {
     day = '0' + day;
 }
+
 // Format the date as YYYY-MM-DD
 const formattedDate = `${year}-${month}-${day}`;
 document.getElementById('tgl_transaksi').value = formattedDate;
@@ -104,11 +107,13 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        var token = $('#token').val(); 
+
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('pns', $('input[name=pns]').val());
         formData.append('pppk', $('input[name=pppk]').val());
         formData.append('anggota', $('input[name=anggota]').val());
-        formData.append('non_pns_tetap', $('input[non_pns_tetap]').val());
+        formData.append('non_pns_tetap', $('input[name=non_pns_tetap]').val());
         formData.append('kontrak', $('input[name=kontrak]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
@@ -117,17 +122,18 @@ $('#btn-submit').click(function() {
             data: formData,
             contentType: false,
             processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
             success: function(data) {
-                console.log(data.data);
+                console.log(data);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",
                     icon: "success",
                     buttons: false,
                     timer: 2000,
-                }).then(function() {
-                    window.location.href = "{{ route('dktr-spesialis') }}"
-                });
+                })
             },
             error: function(data) {
                 console.log(data);

@@ -17,6 +17,8 @@
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        <input type="text" name="satker" value="{{ env('KD_SATKER') }}" hidden>
+                        <input type="text" name="key" value="{{ env('KEY_DEV') }}" hidden>
                         <div class="form-group">
                             <input id="username" type="text"
                                 class="form-control @error('username') is-invalid @enderror" name="username" required
