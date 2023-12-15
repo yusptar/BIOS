@@ -17,7 +17,6 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-
     // public function login(Request $request){
     //     $credentials = $request->only('username', 'password');
 
@@ -35,15 +34,35 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
             // Authenticate the user
         if (auth()->attempt($credentials)) {
-            $user_data = Pegawai::where('nik', $credentials['username'])->first(); // Assuming 'username' is the NIK
+            $user_data = Pegawai::where('nik', $credentials['username'])->first(); 
             $ses_data = [
-                'id' => $user_data->nik, // Assuming 'nik' is the user ID
-                'username' => $user_data->nama, // Assuming 'nama' is the username
+                'id' => $user_data->nik, 
+                'username' => $user_data->nama, 
             ];
             Session::put($ses_data);
 
-            Alert::success('Login Berhasil!', 'Selamat Datang!');
-            return redirect()->route('dashboard');         
+            try {
+                $client = new Client();
+                $response = $client->post('https://training-bios2.kemenkeu.go.id/api/token', [
+                    'json' => [
+                        'satker' => $request->satker,
+                        'key' => $request->key,
+                    ],
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                    ],
+                ]);
+                $apiResponse = json_decode($response->getBody(), true);
+                $accessToken = $apiResponse['token'];
+
+                auth()->user()->update(['token' => $accessToken]);
+                
+                echo "<script>console.log(" . json_encode($apiResponse) . ");</script>";
+                Alert::success('Login Berhasil!', 'Selamat Datang!');
+                return redirect()->route('dashboard');    
+            } catch (Exception $errmsg) {
+                echo "<script>console.error(" . $errmsg->getMessage() . ");</script>";
+            }
         } else {
             Alert::error('Oops! Login Gagal.', 'Terdapat kesalahan pada username atau password! ');
             return redirect()->back();

@@ -24,7 +24,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" id="token" value=""/>
+                        <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
                         <div class=" form-group">
                             <label>PNS</label>
                             <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS" required>

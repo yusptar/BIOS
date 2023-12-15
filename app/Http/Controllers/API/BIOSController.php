@@ -33,13 +33,13 @@ class BIOSController extends Controller
                 ],
                 // Tambahkan header sesuai kebutuhan (misalnya, header authorization)
                 'headers' => [
-                    'Authorization' => 'Bearer YOUR_ACCESS_TOKEN',
+                    'Authorization' => 'Bearer BEARER_TOKEN',
                     'Content-Type' => 'application/json',
                 ],
             ]);
-
             // Mendapatkan respons dari API
             $apiResponse = json_decode($response->getBody(), true);
+            $accessToken = $apiResponse['token'];
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }

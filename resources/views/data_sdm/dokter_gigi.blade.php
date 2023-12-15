@@ -24,7 +24,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                        <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
                         <div class=" form-group">
                             <label>PNS</label>
                             <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS">
@@ -104,33 +104,33 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        var token = $('#token').val(); 
+        
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('pns', $('input[name=pns]').val());
         formData.append('pppk', $('input[name=pppk]').val());
         formData.append('anggota', $('input[name=anggota]').val());
-        formData.append('non_pns_tetap', $('input[non_pns_tetap]').val());
+        formData.append('non_pns_tetap', $('input[name=non_pns_tetap]').val());
         formData.append('kontrak', $('input[name=kontrak]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
             url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_gigi",
             type: "POST",
             data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('input[name=_token]').val()
-            },
             contentType: false,
             processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
             success: function(data) {
                 console.log(data);
-                // Swal.fire({
-                //     title: "Berhasil!",
-                //     text: "Data Berhasil ditambahkan",
-                //     icon: "success",
-                //     buttons: false,
-                //     timer: 2000,
-                // }).then(function() {
-                //     window.location.href = "{{ route('dktr-gigi') }}"
-                // });
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: "Data Berhasil ditambahkan",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                })
             },
             error: function(data) {
                 console.log(data);

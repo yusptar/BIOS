@@ -24,7 +24,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
+                        <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
                         <div class=" form-group">
                             <label>PNS</label>
                             <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS">
@@ -104,6 +104,8 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        var token = $('#token').val(); 
+
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('pns', $('input[name=pns]').val());
         formData.append('pppk', $('input[name=pppk]').val());
@@ -117,6 +119,9 @@ $('#btn-submit').click(function() {
             data: formData,
             contentType: false,
             processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
             success: function(data) {
                 console.log(data.data);
                 Swal.fire({
