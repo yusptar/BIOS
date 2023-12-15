@@ -123,16 +123,14 @@ $('#btn-submit').click(function() {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + token);
             },
             success: function(data) {
-                console.log(data.data);
+                console.log(data);
                 Swal.fire({
                     title: "Berhasil!",
-                    text: "Data Berhasil ditambahkan",
+                    text: data.message,
                     icon: "success",
                     buttons: false,
                     timer: 2000,
-                }).then(function() {
-                    window.location.href = "{{ route('sanitarian') }}"
-                });
+                })
             },
             error: function(data) {
                 console.log(data);
