@@ -24,7 +24,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                        <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
                         <div class=" form-group">
                             <label>Kode Akun</label>
                             <input type="text" class="form-control" name="kd_akun"  placeholder="Masukkan 6 digit kode akun diawali dengan angka '4'" maxlength="6" required>
@@ -91,6 +91,8 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        var token = $('#token').val(); 
+        
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('kd_akun', $('input[name=kd_akun]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
@@ -99,22 +101,20 @@ $('#btn-submit').click(function() {
             url: "https://training-bios2.kemenkeu.go.id/api/ws/keuangan/akuntansi/penerimaan",
             type: "POST",
             data: formData,
-            headers: {
-                'X-CSRF-TOKEN': $('input[name=_token]').val()
-            },
             contentType: false,
             processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
             success: function(data) {
                 console.log(data);
-                // Swal.fire({
-                //     title: "Berhasil!",
-                //     text: "Data Berhasil ditambahkan",
-                //     icon: "success",
-                //     buttons: false,
-                //     timer: 2000,
-                // }).then(function() {
-                //     window.location.href = "{{ route('penerimaan') }}"
-                // });
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: "Data Berhasil ditambahkan",
+                    icon: "success",
+                    buttons: false,
+                    timer: 2000,
+                })
             },
             error: function(data) {
                 console.log(data);

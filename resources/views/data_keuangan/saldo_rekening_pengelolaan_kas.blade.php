@@ -24,10 +24,10 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
+                        <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
                         <div class=" form-group">
                             <label>Kode Bank</label>
-                            <input type="number" class="form-control" name="kdbank" placeholder="Masukkan 3 digit kode bank, terdapat di BIOS (Referensi - Ref Bank)">
+                            <input type="number" class="form-control" name="kdbank" placeholder="Masukkan 3 digit kode bank, terdapat di BIOS (Referensi - Ref Bank)" maxlength="3" required>
                         </div>
                         <div class="form-group">
                             <label>No Bilyet</label>
@@ -99,29 +99,32 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        var token = $('#token').val(); 
+        
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('kdbank', $('input[name=kdbank]').val());
         formData.append('no_bilyet', $('input[name=no_bilyet]').val());
         formData.append('nilai_deposito', $('input[name=nilai_deposito]').val());
-        formData.append('nilai_bunga', $('input[nilai_bunga]').val());
+        formData.append('nilai_bunga', $('input[name=nilai_bunga]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/ api/ws/keuangan/saldo/saldo_pengelolaan_kas",
+            url: "https://training-bios2.kemenkeu.go.id/api/ws/keuangan/saldo/saldo_pengelolaan_kas",
             type: "POST",
             data: formData,
             contentType: false,
             processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
             success: function(data) {
-                console.log(data.data);
+                console.log(data);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",
                     icon: "success",
                     buttons: false,
                     timer: 2000,
-                }).then(function() {
-                    window.location.href = "{{ route('sldo-rkn-kas') }}"
-                });
+                })
             },
             error: function(data) {
                 console.log(data);

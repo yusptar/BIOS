@@ -110,7 +110,7 @@ $('#btn-submit').click(function() {
         formData.append('pns', $('input[name=pns]').val());
         formData.append('pppk', $('input[name=pppk]').val());
         formData.append('anggota', $('input[name=anggota]').val());
-        formData.append('non_pns_tetap', $('input[non_pns_tetap]').val());
+        formData.append('non_pns_tetap', $('input[name=non_pns_tetap]').val());
         formData.append('kontrak', $('input[name=kontrak]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({

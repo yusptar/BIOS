@@ -24,7 +24,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
-                        <input type="hidden" name="_token" value="Wm0qbXXO6oIkYEbFWl4as7auxZdxYa06" />
+                        <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
                         <div class="form-group">
                             <label>Kode Kelas</label>
                             <select class="form-control col-sm-5" name="kode_kelas" id="kelas">
@@ -140,6 +140,7 @@ $('#kelas').change(fetchDataFromDatabase);
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        var token = $('#token').val(); 
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('kode_kelas', $('input[name=kode_kelas]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
@@ -150,17 +151,18 @@ $('#btn-submit').click(function() {
             data: formData,
             contentType: false,
             processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
             success: function(data) {
-                console.log(data.data);
+                console.log(data);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",
                     icon: "success",
                     buttons: false,
                     timer: 2000,
-                }).then(function() {
-                    window.location.href = "{{ route('psn-rawat-inap') }}"
-                });
+                })
             },
             error: function(data) {
                 console.log(data);
