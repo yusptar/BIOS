@@ -25,6 +25,7 @@
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
+                        <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
                         <div class="form-group">
                             <label>Presentase Waktu Kepatuhan</label>
                             <input type="number" class="form-control" name="jumlah"
@@ -86,6 +87,8 @@ document.getElementById('tgl_transaksi').value = formattedDate;
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
+        var token = $('#token').val(); 
+        
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
@@ -95,17 +98,18 @@ $('#btn-submit').click(function() {
             data: formData,
             contentType: false,
             processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            },
             success: function(data) {
-                console.log(data.data);
+                console.log(data);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",
                     icon: "success",
                     buttons: false,
                     timer: 2000,
-                }).then(function() {
-                    window.location.href = "{{ route('wkt-visite-dpjp') }}"
-                });
+                })
             },
             error: function(data) {
                 console.log(data);

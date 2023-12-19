@@ -25,7 +25,7 @@
                         <form id="form-users">
                             @csrf
                             <div class="card-body">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                <input type="text" name="_token" value="{{ Auth::user()->token }}" hidden/>
                                 <div class="form-group">
                                     <label>Pilih Role <span style="color:red;">*</span></label>
                                     <select name="role" id="role" class="form-control">
@@ -147,9 +147,7 @@ $('#btn-submit').click(function() {
                     icon: "success",
                     buttons: false,
                     timer: 3000,
-                }).then(function() {
-                    window.location.href = "{{ route('users') }}"
-                });
+                })
             },
             error: function(data) {
                 console.log(data);
