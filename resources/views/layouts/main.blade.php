@@ -118,6 +118,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns-tz@2.5.0"></script>
     @include('sweetalert::alert')
     <!-- Other Script -->
     @yield('script')

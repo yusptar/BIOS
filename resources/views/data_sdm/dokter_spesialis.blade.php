@@ -85,23 +85,8 @@
 <script>
 // Get the current date in the format YYYY-MM-DD
 const today = new Date();
-today.setDate(today.getDate() - 1); // Kurangi 1 hari dari tanggal saat ini
-
-const year = today.getFullYear();
-let month = today.getMonth() + 1;
-let day = today.getDate();
-
-// Add leading zero for single-digit months and days
-if (month < 10) {
-    month = '0' + month;
-}
-
-if (day < 10) {
-    day = '0' + day;
-}
-
-// Format the date as YYYY-MM-DD
-const formattedDate = `${year}-${month}-${day}`;
+// today.setDate(today.getDate() - 1);
+const formattedDate = today.toISOString().slice(0, 10);
 document.getElementById('tgl_transaksi').value = formattedDate;
 
 $('#btn-submit').click(function() {
