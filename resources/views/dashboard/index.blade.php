@@ -18,8 +18,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
+          <!-- <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
               <div class="inner">
                 <h3>Satker</h3>
@@ -31,9 +30,7 @@
               <a href="#" class="small-box-footer"><i class="fas fa-info-circle"></i></a>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>Key Dev</h3>
@@ -44,7 +41,7 @@
               </div>
               <a href="#" class="small-box-footer"><i class="fas fa-info-circle"></i></a>
             </div>
-          </div>
+          </div> -->
           <!-- <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
               <div class="inner">

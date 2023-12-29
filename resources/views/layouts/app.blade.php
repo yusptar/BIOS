@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="img js-fullheight" style="background-image: url(auth/images/background.jpg);">
+<body class="img js-fullheight" style="background-image: url(img/tes.jpg);">
 
 
 

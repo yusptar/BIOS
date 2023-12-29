@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<br><br>
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
                 <img src="{{ asset('auth/images/logo-nagara.png') }}" class="mr-4" alt="">
-                <img src="{{ asset('auth/images/logo-blu.png') }}" alt="">
+                <img src="{{ asset('img/logo-blu.png') }}" width="40%"alt="">
                 <br><br>
-                <h3 class="mb-4 text-center"><strong>BIOS G2 Next-Gen</strong></h3>
+                <h3 class="mb-4 text-center" style="color:white;"><strong>BIOS G2 <br>(Web Service)</strong></h3>
             </div>
         </div>
         <div class="row justify-content-center">
