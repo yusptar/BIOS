@@ -489,4 +489,23 @@ class BIOSController extends Controller
         }
         return ApiFormatter::createAPI(200, 'Success', $apiResponse);
     }
+    
+    public function getVisitePasien(Request $request)
+    {
+    
+        try {
+            $data = DB::table('rawat_inap_dr')
+            ->whereDate('reg_periksa.tgl_registrasi', now()->format('Y-m-d'))
+            ->where('kamar.kelas', $kelas) // Tambahkan kondisi where untuk kelas
+            ->get();
+            
+        $count = count($data);
+            $count = count($data);
+
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
 }
+

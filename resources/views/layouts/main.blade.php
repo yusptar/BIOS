@@ -48,7 +48,6 @@
         <div class="preloader flex-column justify-content-center align-items-center">
             <img src="{{ asset('auth/images/logo-nagara.png') }}" alt="BIOS Webservice"
                 height="200" width="200">
-            <br>
         </div>
         <!-- include navbar -->
         @include('layouts.navbar')
