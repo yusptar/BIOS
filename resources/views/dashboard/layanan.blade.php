@@ -56,24 +56,6 @@
                 <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
             </div>
-
-            <!-- PIE CHART -->
-            <div class="card card-danger card-outline">
-              <div class="card-header">
-                <h3 class="card-title"><strong>Trend Pemberian Layanan Layanan</strong></h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-            </div>
           </div>
 
           <!-- /.col (LEFT) -->
@@ -102,19 +84,16 @@
             <!-- BAR CHART -->
             <div class="card card-success card-outline">
               <div class="card-header">
-                <h3 class="card-title"><strong>Akses Direktorat PPKBLU</strong></h3>
+                <h3 class="card-title"><strong>Trend Pemberian Layanan</strong></h3>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
                 </div>
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
             </div>
