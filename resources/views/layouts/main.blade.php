@@ -118,6 +118,12 @@
     <script src="{{ asset('modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/date-fns-tz@2.5.0"></script>
+
+    <!-- CHARTS -->
+    <script src="{{ asset('admin/plugins/flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('admin/plugins/flot/plugins/jquery.flot.resize.js') }}"></script>
+    <script src="{{ asset('admin/plugins/flot/plugins/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('admin/plugins/chart.js/Chart.min.js') }}"></script>
     @include('sweetalert::alert')
     <!-- Other Script -->
     @yield('script')
