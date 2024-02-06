@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('dashboard') }}" class="brand-link">
+    <a href="{{ route('home') }}" class="brand-link">
         <div class="text-center">
             <img src="{{ asset('auth/images/logo-nagara.png') }}" alt="" width="60%" height="60%">
         </div>
@@ -28,8 +28,9 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <!-- <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                <li class="nav-header">DASHBOARD</li>
+                <li class="nav-item {{ (request()->routeIs('dashboard-layanan', 'dashboard-keuangan', 'dashboard-sdm', 'dashboard-pendukung')) ? 'menu-open' : '' }}" >
+                    <a href="#" class="nav-link {{ (request()->routeIs('dashboard-layanan', 'dashboard-keuangan', 'dashboard-sdm', 'dashboard-pendukung')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -38,35 +39,27 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('dktr-spesialis') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v1</p>
+                            <a href="{{ route('dashboard-layanan') }}" class="nav-link {{ (request()->routeIs('dashboard-layanan')) ? 'active' : '' }}">
+                                <p>Dashboard Layanan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dktr-umum') }} " class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v2</p>
+                            <a href="{{ route('dashboard-keuangan') }}" class="nav-link {{ (request()->routeIs('dashboard-keuangan')) ? 'active' : '' }}">
+                                <p>Dashboard Keuangan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('dktr-gigi') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
+                            <a href="{{ route('dashboard-sdm') }}" class="nav-link {{ (request()->routeIs('dashboard-sdm')) ? 'active' : '' }}">
+                                <p>Dashboard SDM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard-pendukung') }}" class="nav-link {{ (request()->routeIs('dashboard-pendukung')) ? 'active' : '' }}">
+                                <p>Dashboard Pendukung</p>
                             </a>
                         </li>
                     </ul>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Widgets
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li> -->
-
+                </li>
                 <li class="nav-header">RUMPUN KESEHATAN</li>
                 <li
                     class="nav-item {{ (request()->routeIs('penerimaan', 'pengeluaran', 'sldo-rkn-ops', 'sldo-rkn-kas', 'sldo-rkn-dana-kl')) ? 'menu-open' : '' }}">

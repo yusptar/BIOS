@@ -16,19 +16,6 @@ use Exception;
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
-
-    // public function login(Request $request){
-    //     $credentials = $request->only('username', 'password');
-
-    //     if(auth()->attempt($credentials)){
-    //         Alert::success('Login Berhasil!', 'Selamat Datang');
-    //         return redirect()->route('dashboard');
-    //     }else{
-    //         Alert::error('Oops! Login Gagal.', 'Terdapat Kesalahan!');
-    //         return redirect()->back();
-    //     }
-    // }
-
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
@@ -59,7 +46,7 @@ class LoginController extends Controller
                 
                 echo "<script>console.log(" . json_encode($apiResponse) . ");</script>";
                 Alert::success('Login Berhasil!', 'Selamat Datang!');
-                return redirect()->route('dashboard');    
+                return redirect()->route('home');    
             } catch (Exception $errmsg) {
                 echo "<script>console.error(" . $errmsg->getMessage() . ");</script>";
             }

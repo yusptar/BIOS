@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
+
 
 Auth::routes([
     // 'register' => false, // Registration Routes...
@@ -21,10 +21,18 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
 ]);
 
-Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
 
 // add login middleware
 Route::group(['middleware' => ['auth']], function () {
+    // Dashboard
+    Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
+    Route::get('home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
+    Route::get('dashboard-layanan', [App\Http\Controllers\DashboardController::class, 'layanan'])->name('dashboard-layanan');
+    Route::get('dashboard-sdm', [App\Http\Controllers\DashboardController::class, 'sdm'])->name('dashboard-sdm');
+    Route::get('dashboard-keuangan', [App\Http\Controllers\DashboardController::class, 'keuangan'])->name('dashboard-keuangan');
+    Route::get('dashboard-pendukung', [App\Http\Controllers\DashboardController::class, 'pendukung'])->name('dashboard-pendukung');
+
     // Route Data Keuangan
     Route::get('/penerimaan', [App\Http\Controllers\DataKeuanganController::class, 'penerimaan'])->name('penerimaan');
     Route::get('/pengeluaran', [App\Http\Controllers\DataKeuanganController::class, 'pengeluaran'])->name('pengeluaran');

@@ -20,4 +20,24 @@ class DashboardController extends Controller
     {
         return view('dashboard.index');
     }
+
+    public function layanan()
+    {
+        return view('dashboard.layanan');
+    }
+
+    public function sdm()
+    {
+        return view('dashboard.sdm');
+    }
+
+    public function keuangan()
+    {
+        return view('dashboard.keuangan');
+    }
+
+    public function pendukung()
+    {
+        return view('dashboard.pendukung');
+    }
 }

@@ -15,12 +15,7 @@
 </head>
 
 <body class="img js-fullheight" style="background-image: url(img/tes.jpg);">
-
-
-
     @yield('content')
-
-
     <script src="{{ asset('auth/js/jquery.min.js') }}"></script>
     <script src="{{ asset('auth/js/popper.js') }}"></script>
     <script src="{{ asset('auth/js/bootstrap.min.js') }}"></script>
