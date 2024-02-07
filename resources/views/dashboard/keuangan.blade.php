@@ -41,41 +41,27 @@
             <!-- /.card -->
 
             <!-- DONUT CHART -->
-            <div class="card card-danger card-outline">
+            <div class="card card-primary card-outline">
               <div class="card-header">
-                <h3 class="card-title"><strong>Jumlah Saldo Kas</strong></h3>
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  <strong>Jumlah Saldo Kas</strong>
+                </h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
+                  Real time
+                  <div class="btn-group" id="realtimeKAS" data-toggle="btn-toggle">
+                    <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On</button>
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
+                  </div>
                 </div>
               </div>
               <div class="card-body">
-                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <div id="saldoKas" style="height: 300px;"></div>
               </div>
-              <!-- /.card-body -->
+              <!-- /.card-body-->
             </div>
             <!-- /.card -->
-
-            <!-- PIE CHART -->
-            <!-- <div class="card card-danger card-outline">
-              <div class="card-header">
-                <h3 class="card-title"><strong>Saldo Rekening BLU</strong></h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-            </div> -->
-
           </div>
           <!-- /.col (LEFT) -->
           <div class="col-md-6">
@@ -103,42 +89,27 @@
             <!-- /.card -->
 
             <!-- BAR CHART -->
-            <div class="card card-success card-outline">
+            <div class="card card-primary card-outline">
               <div class="card-header">
-                <h3 class="card-title"><strong>Saldo Rekening BLU</strong></h3>
+                <h3 class="card-title">
+                  <i class="far fa-chart-bar"></i>
+                  <strong>Jumlah Saldo Rekening BLU</strong>
+                </h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
+                  Real time
+                  <div class="btn-group" id="realtimeBLU" data-toggle="btn-toggle">
+                    <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On</button>
+                    <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
+                  </div>
                 </div>
               </div>
               <div class="card-body">
-                <div class="chart">
-                  <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
+                <div id="saldoBLU" style="height: 300px;"></div>
               </div>
-              <!-- /.card-body -->
+              <!-- /.card-body-->
             </div>
             <!-- /.card -->
-
-            <!-- STACKED BAR CHART -->
-            <!-- <div class="card card-success card-outline">
-              <div class="card-header">
-                <h3 class="card-title">Stacked Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-            </div> -->
 
           </div>
           <!-- /.col (RIGHT) -->
@@ -152,8 +123,10 @@
 @section('script')
 <script>
   $(function () {
+    // //---------------------
+    // //- REALISASI PENDAPATAN -
+    // //---------------------
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-
     var areaChartData = {
       labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -209,118 +182,265 @@
       options: areaChartOptions
     })
 
-    //-------------
-    //- LINE CHART -
-    //--------------
-    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-    var lineChartOptions = $.extend(true, {}, areaChartOptions)
-    var lineChartData = $.extend(true, {}, areaChartData)
-    lineChartData.datasets[0].fill = false;
-    lineChartData.datasets[1].fill = false;
-    lineChartOptions.datasetFill = false
+    // //-------------
+    // //- LINE CHART -
+    // //--------------
+    // var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+    // var lineChartOptions = $.extend(true, {}, areaChartOptions)
+    // var lineChartData = $.extend(true, {}, areaChartData)
+    // lineChartData.datasets[0].fill = false;
+    // lineChartData.datasets[1].fill = false;
+    // lineChartOptions.datasetFill = false
 
-    var lineChart = new Chart(lineChartCanvas, {
-      type: 'line',
-      data: lineChartData,
-      options: lineChartOptions
-    })
+    // var lineChart = new Chart(lineChartCanvas, {
+    //   type: 'line',
+    //   data: lineChartData,
+    //   options: lineChartOptions
+    // })
 
-    //-------------
-    //- DONUT CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-    var donutData        = {
-      labels: [
-          'Chrome',
-          'IE',
-          'FireFox',
-          'Safari',
-          'Opera',
-          'Navigator',
-      ],
-      datasets: [
-        {
-          data: [700,500,400,600,300,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+    // //-------------
+    // //- DONUT CHART -
+    // //-------------
+    // // Get context with jQuery - using jQuery's .get() method.
+    // var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+    // var donutData        = {
+    //   labels: [
+    //       'Chrome',
+    //       'IE',
+    //       'FireFox',
+    //       'Safari',
+    //       'Opera',
+    //       'Navigator',
+    //   ],
+    //   datasets: [
+    //     {
+    //       data: [700,500,400,600,300,100],
+    //       backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+    //     }
+    //   ]
+    // }
+    // var donutOptions     = {
+    //   maintainAspectRatio : false,
+    //   responsive : true,
+    // }
+    // //Create pie or douhnut chart
+    // // You can switch between pie and douhnut using the method below.
+    // new Chart(donutChartCanvas, {
+    //   type: 'doughnut',
+    //   data: donutData,
+    //   options: donutOptions
+    // })
+
+    // //-------------
+    // //- PIE CHART -
+    // //-------------
+    // // Get context with jQuery - using jQuery's .get() method.
+    // var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    // var pieData        = donutData;
+    // var pieOptions     = {
+    //   maintainAspectRatio : false,
+    //   responsive : true,
+    // }
+    // //Create pie or douhnut chart
+    // // You can switch between pie and douhnut using the method below.
+    // new Chart(pieChartCanvas, {
+    //   type: 'pie',
+    //   data: pieData,
+    //   options: pieOptions
+    // })
+
+    // //-------------
+    // //- BAR CHART -
+    // //-------------
+    // var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    // var barChartData = $.extend(true, {}, areaChartData)
+    // var temp0 = areaChartData.datasets[0]
+    // var temp1 = areaChartData.datasets[1]
+    // barChartData.datasets[0] = temp1
+    // barChartData.datasets[1] = temp0
+
+    // var barChartOptions = {
+    //   responsive              : true,
+    //   maintainAspectRatio     : false,
+    //   datasetFill             : false
+    // }
+
+    // new Chart(barChartCanvas, {
+    //   type: 'bar',
+    //   data: barChartData,
+    //   options: barChartOptions
+    // })
+
+    // //---------------------
+    // //- STACKED BAR CHART -
+    // //---------------------
+    // var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    // var stackedBarChartData = $.extend(true, {}, barChartData)
+
+    // var stackedBarChartOptions = {
+    //   responsive              : true,
+    //   maintainAspectRatio     : false,
+    //   scales: {
+    //     xAxes: [{
+    //       stacked: true,
+    //     }],
+    //     yAxes: [{
+    //       stacked: true
+    //     }]
+    //   }
+    // }
+
+    // new Chart(stackedBarChartCanvas, {
+    //   type: 'bar',
+    //   data: stackedBarChartData,
+    //   options: stackedBarChartOptions
+    // })
+    
+
+    // //---------------------
+    // //- JUMLAH SALDO KAS -
+    // //---------------------
+    var data       = [],
+        totalPoints = 100
+
+    function getRandomData() {
+
+      if (data.length > 0) {
+        data = data.slice(1)
+      }
+
+      // Do a random walk
+      while (data.length < totalPoints) {
+
+        var prev = data.length > 0 ? data[data.length - 1] : 50,
+            y    = prev + Math.random() * 10 - 5
+
+        if (y < 0) {
+          y = 0
+        } else if (y > 100) {
+          y = 100
         }
-      ]
-    }
-    var donutOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    new Chart(donutChartCanvas, {
-      type: 'doughnut',
-      data: donutData,
-      options: donutOptions
-    })
 
-    //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieData        = donutData;
-    var pieOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
-    //Create pie or douhnut chart
-    // You can switch between pie and douhnut using the method below.
-    new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: pieData,
-      options: pieOptions
-    })
+        data.push(y)
+      }
 
-    //-------------
-    //- BAR CHART -
-    //-------------
-    var barChartCanvas = $('#barChart').get(0).getContext('2d')
-    var barChartData = $.extend(true, {}, areaChartData)
-    var temp0 = areaChartData.datasets[0]
-    var temp1 = areaChartData.datasets[1]
-    barChartData.datasets[0] = temp1
-    barChartData.datasets[1] = temp0
+      // Zip the generated y values with the x values
+      var res = []
+      for (var i = 0; i < data.length; ++i) {
+        res.push([i, data[i]])
+      }
 
-    var barChartOptions = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      datasetFill             : false
+      return res
     }
 
-    new Chart(barChartCanvas, {
-      type: 'bar',
-      data: barChartData,
-      options: barChartOptions
-    })
+    var interactive_KAS = $.plot('#saldoKas', [
+        {
+          data: getRandomData(),
+        }
+      ],
+      {
+        grid: {
+          borderColor: '#f3f3f3',
+          borderWidth: 1,
+          tickColor: '#f3f3f3'
+        },
+        series: {
+          color: '#3c8dbc',
+          lines: {
+            lineWidth: 2,
+            show: true,
+            fill: true,
+          },
+        },
+        yaxis: {
+          min: 0,
+          max: 100,
+          show: true
+        },
+        xaxis: {
+          show: true
+        }
+      }
+    )
 
-    //---------------------
-    //- STACKED BAR CHART -
-    //---------------------
-    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-    var stackedBarChartData = $.extend(true, {}, barChartData)
-
-    var stackedBarChartOptions = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      scales: {
-        xAxes: [{
-          stacked: true,
-        }],
-        yAxes: [{
-          stacked: true
-        }]
+    var updateInterval = 500 //Fetch data ever x milliseconds
+    var realtimeKAS    = 'on' //If == to on then fetch data every x seconds. else stop fetching
+    function updateSaldoKAS() {
+      interactive_KAS.setData([getRandomData()])
+      interactive_KAS.draw()
+      if (realtimeKAS === 'on') {
+        setTimeout(updateSaldoKAS, updateInterval)
       }
     }
 
-    new Chart(stackedBarChartCanvas, {
-      type: 'bar',
-      data: stackedBarChartData,
-      options: stackedBarChartOptions
+    if (realtimeKAS === 'on') {
+      updateSaldoKAS()
+    }
+  
+    $('#realtimeKAS .btn').click(function () {
+      if ($(this).data('toggle') === 'on') {
+        realtimeKAS = 'on'
+      }
+      else {
+        realtimeKAS = 'off'
+      }
+      updateSaldoKAS()
+    })
+
+    // //---------------------
+    // //- SALDO REKENING BLU -
+    // //---------------------
+    var interactive_BLU = $.plot('#saldoBLU', [
+        {
+          data: getRandomData(),
+        }
+      ],
+      {
+        grid: {
+          borderColor: '#f3f3f3',
+          borderWidth: 1,
+          tickColor: '#f3f3f3'
+        },
+        series: {
+          color: '#3c8dbc',
+          lines: {
+            lineWidth: 2,
+            show: true,
+            fill: true,
+          },
+        },
+        yaxis: {
+          min: 0,
+          max: 100,
+          show: true
+        },
+        xaxis: {
+          show: true
+        }
+      }
+    )
+    var updateInterval = 500
+    var realtimeBLU = 'on'
+    
+    function updateSaldoBLU() {
+      interactive_BLU.setData([getRandomData()])
+      interactive_BLU.draw()
+      if (realtimeBLU === 'on') {
+        setTimeout(updateSaldoBLU, updateInterval)
+      }
+    }
+
+    if (realtimeBLU === 'on') {
+      updateSaldoBLU()
+    }
+    $('#realtimeBLU .btn').click(function () {
+      if ($(this).data('toggle') === 'on') {
+        realtimeBLU = 'on'
+      }
+      else {
+        realtimeBLU = 'off'
+      }
+      updateSaldoBLU()
     })
   })
 </script>
