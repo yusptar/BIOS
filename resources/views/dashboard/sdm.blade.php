@@ -150,52 +150,38 @@
     //-------------
     //- KOMPOSISI SDM -
     //--------------
-    var komposisiCanvas = $('#pieChart').get(0).getContext('2d')
-    var komposisiData        = {
-      labels: [
-          'Chrome',
-          'IE',
-          'FireFox',
-          'Safari',
-          'Opera',
-          'Navigator',
-      ],
-      datasets: [
-        {
-          data: [700,500,400,600,300,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-        }
-      ]
-    }
-    var komposisiOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
+    var komposisiCanvas = $('#pieChart').get(0).getContext('2d');
+    var komposisiData = {
+        labels: <?= json_encode($labels1) ?>,
+        datasets: [
+            {
+                data: <?= json_encode($data1) ?>,
+                backgroundColor: <?= json_encode($backgroundColors1) ?>,
+            }
+        ]
+    };
+    var komposisiOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+    };
     new Chart(komposisiCanvas, {
-      type: 'pie',
-      data: komposisiData,
-      options: komposisiOptions
-    })
+        type: 'pie',
+        data: komposisiData,
+        options: komposisiOptions
+    });
 
     //-------------
     //- PROFIL SDM -
     //-------------
     var profilCanvas = $('#donutChart').get(0).getContext('2d')
     var profilData        = {
-      labels: [
-          'Chrome',
-          'IE',
-          'FireFox',
-          'Safari',
-          'Opera',
-          'Navigator',
-      ],
-      datasets: [
-        {
-          data: [700,500,400,600,300,100],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-        }
-      ]
+      labels: <?= json_encode($labels2) ?>,
+        datasets: [
+            {
+                data: <?= json_encode($data2) ?>,
+                backgroundColor: <?= json_encode($backgroundColors2) ?>,
+            }
+        ]
     }
     var profilOptions     = {
       maintainAspectRatio : false,
