@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>BIOS Webservice</title>
+    <title>BIOS WebService | Rumah Sakit Tk.II dr. Soepraoen</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('auth/images/logo-nagara.png') }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
