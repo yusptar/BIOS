@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <canvas id="bar1Chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <canvas id="bar2Chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="bar2Chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  <canvas id="bar1Chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
             </div>
@@ -108,7 +108,7 @@
     //-------------
     var bar1Canvas = $('#bar1Chart').get(0).getContext('2d')
     var bar1Data = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : <?php echo json_encode($months); ?>,
       datasets: [
         {
           label               : 'Digital Goods',
@@ -177,59 +177,70 @@
     //- JUMLAH PENGGUNAAN LAYANAN -
     //-------------
     var bar2Canvas = $('#bar2Chart').get(0).getContext('2d')
-    var bar2Data = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    // Data dari backend
+    var ralanData = <?php echo json_encode($ralan); ?>;
+    var ranapData = <?php echo json_encode($ranap); ?>;
+    var radiologiData = <?php echo json_encode($radiologi); ?>;
+
+    // Struktur data yang diharapkan oleh chart.js
+    var chartData = {
+      labels: <?php echo json_encode($months); ?>,
       datasets: [
         {
-          label               : 'Digital Goods',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
-          pointRadius          : false,
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
-          pointHighlightFill  : '#fff',
+          label: 'Ralan',
+          backgroundColor: 'rgba(60,141,188,0.9)',
+          borderColor: 'rgba(60,141,188,0.8)',
+          pointRadius: false,
+          pointColor: '#3b8bba',
+          pointStrokeColor: 'rgba(60,141,188,1)',
+          pointHighlightFill: '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [100, 48, 40, 19, 86, 27, 90]
+          data: ralanData.map(item => item.total)
         },
         {
-          label               : 'Electronics',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
-          pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
+          label: 'Ranap',
+          backgroundColor: 'rgba(210, 214, 222, 1)',
+          borderColor: 'rgba(210, 214, 222, 1)',
+          pointRadius: false,
+          pointColor: 'rgba(210, 214, 222, 1)',
+          pointStrokeColor: '#c1c7d1',
+          pointHighlightFill: '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data: ranapData.map(item => item.total)
         },
+        {
+          label: 'Radiologi',
+          backgroundColor: 'black',
+          borderColor: 'black',
+          pointRadius: false,
+          pointColor: 'black',
+          pointStrokeColor: '#c1c7d1',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data: radiologiData.map(item => item.total)
+        }
       ]
-    }
+    };
 
     var bar2Options = {
-      maintainAspectRatio : false,
-      responsive : true,
+      maintainAspectRatio: false,
+      responsive: true,
       legend: {
         display: false
       },
       scales: {
         xAxes: [{
-          gridLines : {
-            display : false,
+          gridLines: {
+            display: false,
           }
         }],
         yAxes: [{
-          gridLines : {
-            display : false,
+          gridLines: {
+            display: false,
           }
         }]
       }
-    }
-
-    var bar2Data = $.extend(true, {}, bar2Data)
-    var temp0 = bar2Data.datasets[0]
-    var temp1 = bar2Data.datasets[1]
-    bar2Data.datasets[0] = temp1
-    bar2Data.datasets[1] = temp0
+    };
 
     var bar2Options = {
       responsive              : true,
@@ -239,50 +250,54 @@
 
     new Chart(bar2Canvas, {
       type: 'bar',
-      data: bar2Data,
+      data: chartData,
       options: bar2Options
-    })
+    });
 
     //-------------
     //- TREND PEMBERIAN LAYANAN -
     //--------------
     var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+
+    var ralanData = <?php echo json_encode($ralan); ?>;
+    var ranapData = <?php echo json_encode($ranap); ?>;
+    var radiologiData = <?php echo json_encode($radiologi); ?>;
     var lineChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  :  <?php echo json_encode($months); ?>,
       datasets: [
         {
-          label               : 'Digital Goods',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
-          pointRadius          : false,
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
-          pointHighlightFill  : '#fff',
+          label: 'Ralan',
+          backgroundColor: 'rgba(60,141,188,0.9)',
+          borderColor: 'rgba(60,141,188,0.8)',
+          pointRadius: false,
+          pointColor: '#3b8bba',
+          pointStrokeColor: 'rgba(60,141,188,1)',
+          pointHighlightFill: '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [100, 48, 40, 19, 86, 27, 90]
+          data: ralanData.map(item => item.total)
         },
         {
-          label               : 'Electronics',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
-          pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
+          label: 'Ranap',
+          backgroundColor: 'rgba(210, 214, 222, 1)',
+          borderColor: 'rgba(210, 214, 222, 1)',
+          pointRadius: false,
+          pointColor: 'rgba(210, 214, 222, 1)',
+          pointStrokeColor: '#c1c7d1',
+          pointHighlightFill: '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data: ranapData.map(item => item.total)
         },
         {
-          label               : 'Clothing',
-          backgroundColor     : 'rgba(255, 99, 132, 0.9)',
-          borderColor         : 'rgba(255, 99, 132, 0.8)',
-          pointRadius          : false,
-          pointColor          : '#ff6384',
-          pointStrokeColor    : 'rgba(255, 99, 132, 1)',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(255, 99, 132, 1)',
-          data                : [45, 25, 12, 32, 48, 50, 38]
-        },
+          label: 'Radiologi',
+          backgroundColor: 'black',
+          borderColor: 'black',
+          pointRadius: false,
+          pointColor: 'black',
+          pointStrokeColor: '#c1c7d1',
+          pointHighlightFill: '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data: radiologiData.map(item => item.total)
+        }
         // Add more datasets as needed
       ]
     }
