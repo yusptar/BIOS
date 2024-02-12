@@ -30,6 +30,13 @@ class DashboardController extends Controller
             $months[] = date('F', mktime(0, 0, 0, $i, 1));
         }
 
+        $months_survey = [
+            ['January', 'February', 'March'],
+            ['April', 'May', 'June'],
+            ['July', 'August', 'September'],
+            ['October', 'November', 'December']
+        ];
+
         $ralan = RegPeriksa::select(DB::raw('MONTH(tgl_registrasi) as month'), DB::raw('COUNT(*) as total'))
                     ->where('status_lanjut', 'Ralan')
                     ->whereYear('tgl_registrasi', $year)
@@ -50,7 +57,7 @@ class DashboardController extends Controller
                     ->orderBy(DB::raw('MONTH(tgl_periksa)'))
                     ->get();
                     
-        return view('dashboard.layanan', compact('ralan', 'ranap', 'radiologi', 'months'));
+        return view('dashboard.layanan', compact('ralan', 'ranap', 'radiologi', 'months', 'months_survey'));
     }
 
     public function sdm()

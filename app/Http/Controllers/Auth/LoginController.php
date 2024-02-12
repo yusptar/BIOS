@@ -41,15 +41,13 @@ class LoginController extends Controller
                 ]);
                 $apiResponse = json_decode($response->getBody(), true);
                 $accessToken = $apiResponse['token'];
-
                 auth()->user()->update(['token' => $accessToken]);
-                
                 echo "<script>console.log(" . json_encode($apiResponse) . ");</script>";
-                Alert::success('Login Berhasil!', 'Selamat Datang!');
-                return redirect()->route('home');    
             } catch (Exception $errmsg) {
                 echo "<script>console.error(" . $errmsg->getMessage() . ");</script>";
             }
+            Alert::success('Login Berhasil!', 'Selamat Datang!');
+            return redirect()->route('dashboard');    
         } else {
             Alert::error('Oops! Login Gagal.', 'Terdapat kesalahan pada username atau password! ');
             return redirect()->back();

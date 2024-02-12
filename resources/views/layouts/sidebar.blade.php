@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('home') }}" class="brand-link">
+    <a href="{{ route('dashboard') }}" class="brand-link">
         <div class="text-center">
             <img src="{{ asset('auth/images/logo-nagara.png') }}" alt="" width="60%" height="60%">
         </div>

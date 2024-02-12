@@ -23,11 +23,14 @@ Auth::routes([
 
 
 
+
+
 // add login middleware
 Route::group(['middleware' => ['auth']], function () {
-    // Dashboard
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
-    Route::get('home', [App\Http\Controllers\DashboardController::class, 'index'])->name('home');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    
+    // Dashboard
     Route::get('dashboard-layanan', [App\Http\Controllers\DashboardController::class, 'layanan'])->name('dashboard-layanan');
     Route::get('dashboard-sdm', [App\Http\Controllers\DashboardController::class, 'sdm'])->name('dashboard-sdm');
     Route::get('dashboard-keuangan', [App\Http\Controllers\DashboardController::class, 'keuangan'])->name('dashboard-keuangan');

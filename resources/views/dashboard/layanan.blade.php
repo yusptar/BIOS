@@ -108,10 +108,10 @@
     //-------------
     var bar1Canvas = $('#bar1Chart').get(0).getContext('2d')
     var bar1Data = {
-      labels  : <?php echo json_encode($months); ?>,
+      labels  : <?php echo json_encode($months_survey); ?>,
       datasets: [
         {
-          label               : 'Digital Goods',
+          label               : 'Nilai Konversi',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           pointRadius          : false,
@@ -119,10 +119,10 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [100, 48, 40, 19, 86, 27, 90]
+          data                : [85.03, 85.37, 85.49, 86.74]
         },
         {
-          label               : 'Electronics',
+          label               : 'Nilai Indeks',
           backgroundColor     : 'rgba(210, 214, 222, 1)',
           borderColor         : 'rgba(210, 214, 222, 1)',
           pointRadius         : false,
@@ -130,7 +130,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data                : [3.40, 3.41, 3.42, 3.47]
         },
       ]
     }
