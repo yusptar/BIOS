@@ -87,7 +87,12 @@ class DashboardController extends Controller
 
     public function keuangan()
     {
-        return view('dashboard.keuangan');
+        $months = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = date('F', mktime(0, 0, 0, $i, 1));
+        }
+        
+        return view('dashboard.keuangan', compact('months'));
     }
 
     public function pendukung()

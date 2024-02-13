@@ -128,10 +128,10 @@
     // //---------------------
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
     var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : <?php echo json_encode($months); ?>,
       datasets: [
         {
-          label               : 'Digital Goods',
+          label               : 'Pendapatan',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           pointRadius          : false,
@@ -139,10 +139,10 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
+          data                : [10, 48, 40, 19, 86, 27, 90, 40, 19, 86, 27, 90]
         },
         {
-          label               : 'Electronics',
+          label               : 'Pengeluaran',
           backgroundColor     : 'rgba(210, 214, 222, 1)',
           borderColor         : 'rgba(210, 214, 222, 1)',
           pointRadius         : false,
@@ -150,7 +150,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data                : [65, 59, 80, 81, 56, 55, 40, 40, 19, 86, 27, 90]
         },
       ]
     }
@@ -173,6 +173,12 @@
           }
         }]
       }
+    }
+
+    var areaChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
     }
 
     // This will get the first returned node in the jQuery collection.
