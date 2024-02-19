@@ -17,11 +17,11 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <!-- AREA CHART -->
             <div class="card card-primary card-outline">
               <div class="card-header">
-                <h3 class="card-title">Area Chart</h3>
+                <h3 class="card-title">Maturity Rating</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -32,131 +32,158 @@
                   </button> -->
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body ">
                 <div class="chart">
-                  <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  <div>
+                    <div class="col-md-6" style="display: flex; justify-content:center; margin-top:20px; margin-right:10%; margin-left:10%">
+                      <img src="{{ asset('img/hexagonal.png')}}" alt="" width="60%" height="40%">
+                        <div class="col-md-6">
+                          <table border="1" style="margin-left:50%; margin-top:30%">
+                            <tr>
+                                <th style="text-align:center; padding: 15px; ">Keuangan</th>
+                                <th style="text-align:center; padding: 15px; ">Pelayanan</th>
+                                <th style="text-align:center; padding: 15px; ">Kapabilitas Internal</th>
+                                <th style="text-align:center; padding: 15px; ">Tata Kelola & Kepemimpinan</th>
+                                <th style="text-align:center; padding: 15px; ">Inovasi</th>
+                                <th style="text-align:center; padding: 15px; ">Lingkungan</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 15px; ">2.38</th>
+                                <th style="text-align:center; padding: 15px; ">2.90</th>
+                                <th style="text-align:center; padding: 15px; ">3.25</th>
+                                <th style="text-align:center; padding: 15px; ">3.00</th>
+                                <th style="text-align:center; padding: 15px; ">2.75</th>
+                                <th style="text-align:center; padding: 15px; ">2.50</th>
+                            </tr>
+                          </table>
+                        </div>
+                    </div>
+                  <div>
+                  <br>
+                  <div style="display: flex; justify-content:center;">
+                    <div>
+                        <table border="1">
+                            <tr>
+                                <th style="text-align:center; padding: 51px;">1.1 Likuiditias</th>
+                                <th style="text-align:center; padding: 8px;">1.00</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 55px;">1.2 Efisiensi</th>
+                                <th style="text-align:center; padding: 8px;">3.50</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 55px;">1.3 Efektivitas</th>
+                                <th style="text-align:center; padding: 8px;">1.00</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 55px;">1.4 Tingkat<br>Kemandirian<br></th>
+                                <th style="text-align:center; padding: 8px;">4.00</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-left:5px">
+                        <table border="1">
+                            <tr>
+                                <th style="text-align:center; padding: 27px;">2.1 Indeks<br>Kepuasan<br>Masyarakat</th>
+                                <th style="text-align:center; padding: 8px;">2.00</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 31px;">2.2 Efisiensi<br>Waktu<br>Pelayanan</th>
+                                <th style="text-align:center; padding: 8px;">1.50</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 31px;">2.3 Sistem<br>Pengaduan<br>Layanan</th>
+                                <th style="text-align:center; padding: 8px;">3.33</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 31px;">2.4 Tingkat<br>Keberhasilan<br>Pemenuhan<br>Layanan</th>
+                                <th style="text-align:center; padding: 8px;">4.75</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-left:5px">
+                        <table border="1">
+                            <tr>
+                                <th style="text-align:center; padding: 39px;">3.1 Sumber<br>Daya Manusia</th>
+                                <th style="text-align:center; padding: 8px;">2.00</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 43px;">3.2 Proses<br>Bisnis</th>
+                                <th style="text-align:center; padding: 8px;">1.50</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 55px;">3.3 Teknologi</th>
+                                <th style="text-align:center; padding: 8px;">3.33</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 55px;">3.4 Customer<br>Focus</th>
+                                <th style="text-align:center; padding: 8px;">4.75</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-left:5px">
+                        <table border="1">
+                            <tr>
+                                <th style="text-align:center; padding: 27px;">4.1 Perencanaan<br>Strategis</th>
+                                <th style="text-align:center; padding: 8px;">2.00</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 31px;">4.2 Etika<br>Bisnis</th>
+                                <th style="text-align:center; padding: 8px;">1.50</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 31px;">4.3 Stakeholder<br>Relationship</th>
+                                <th style="text-align:center; padding: 8px;">3.33</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 31px;">4.4 Manajemen<br>Risiko</th>
+                                <th style="text-align:center; padding: 8px;">4.75</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 23px;">4.5 Pengawasan<br>dan<br>Pengendalian</th>
+                                <th style="text-align:center; padding: 8px;">4.75</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-left:5px">
+                        <table border="1">
+                            <tr>
+                                <th style="text-align:center; padding: 39px;">5.1 Keterlibatan<br>Penggunaan Jasa</th>
+                                <th style="text-align:center; padding: 8px;">2.00</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 43px;">5.2 Proses<br>Inovasi</th>
+                                <th style="text-align:center; padding: 8px;">1.50</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 48px;">5.3 Manajemen<br>Pengetahuan</th>
+                                <th style="text-align:center; padding: 8px;">3.33</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 49px;">5.4 Manajemen<br>Perubahan</th>
+                                <th style="text-align:center; padding: 8px;">4.75</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-left:5px">
+                        <table border="1">
+                            <tr>
+                                <th style="text-align:center; padding: 135px 108px 80px 80px;">6.1 Enviromental<br>Footprint<br>Management</th>
+                                <th style="text-align:center; padding: 8px;">2.00</th>
+                            </tr>
+                            <tr>
+                                <th style="text-align:center; padding: 135px 108px 80px 80px;">6.2 Penggunaan<br>Sumber Daya</th>
+                                <th style="text-align:center; padding: 8px;">1.50</th>
+                            </tr>
+                        </table>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
-
-            <!-- DONUT CHART -->
-            <div class="card card-danger card-outline">
-              <div class="card-header">
-                <h3 class="card-title">Donut Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- PIE CHART -->
-            <div class="card card-danger card-outline">
-              <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
           </div>
-          <!-- /.col (LEFT) -->
-          <div class="col-md-6">
-            <!-- LINE CHART -->
-            <div class="card card-info card-outline">
-              <div class="card-header">
-                <h3 class="card-title">Line Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- BAR CHART -->
-            <div class="card card-success card-outline">
-              <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- STACKED BAR CHART -->
-            <div class="card card-success card-outline">
-              <div class="card-header">
-                <h3 class="card-title">Stacked Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-          </div>
-          <!-- /.col (RIGHT) -->
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->

@@ -38,7 +38,40 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Toastr -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/toastr/toastr.min.css') }}">
-
+    <style>
+        .hexagon {
+            position: relative;
+            width: 200px;
+            height: 115.47px;
+            background-color: #6C7A89;
+            margin: 57.74px 0;
+        }
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+        }
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 57.74px solid #6C7A89;
+        }
+        .hexagon:after {
+            top: 100%;
+            width: 0;
+            border-top: 57.74px solid #6C7A89;
+        }
+        .hexagon-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
