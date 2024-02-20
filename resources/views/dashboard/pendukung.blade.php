@@ -38,7 +38,7 @@
                     <div class="col-md-6" style="display: flex; justify-content:center; margin-top:20px; margin-right:10%; margin-left:10%">
                       <img src="{{ asset('img/hexagonal.png')}}" alt="" width="60%" height="40%">
                         <div class="col-md-6">
-                          <table border="1" style="margin-left:50%; margin-top:30%">
+                          <table border="1" style="margin-left:50%; margin-top:30%; ">
                             <tr>
                                 <th style="text-align:center; padding: 15px; ">Keuangan</th>
                                 <th style="text-align:center; padding: 15px; ">Pelayanan</th>
@@ -48,12 +48,12 @@
                                 <th style="text-align:center; padding: 15px; ">Lingkungan</th>
                             </tr>
                             <tr>
-                                <th style="text-align:center; padding: 15px; ">2.38</th>
-                                <th style="text-align:center; padding: 15px; ">2.90</th>
-                                <th style="text-align:center; padding: 15px; ">3.25</th>
-                                <th style="text-align:center; padding: 15px; ">3.00</th>
-                                <th style="text-align:center; padding: 15px; ">2.75</th>
-                                <th style="text-align:center; padding: 15px; ">2.50</th>
+                                <th style="text-align:center; padding: 15px; background-color: rgb(239, 119, 74);">2.38</th>
+                                <th style="text-align:center; padding: 15px; background-color: rgb(244, 209, 102);">2.90</th>
+                                <th style="text-align:center; padding: 15px; background-color: rgb(244, 209, 102);">3.25</th>
+                                <th style="text-align:center; padding: 15px; background-color: rgb(244, 209, 102);">3.00</th>
+                                <th style="text-align:center; padding: 15px; background-color: rgb(244, 209, 102);">2.75</th>
+                                <th style="text-align:center; padding: 15px; background-color: rgb(239, 119, 74);">2.50</th>
                             </tr>
                           </table>
                         </div>
@@ -65,19 +65,19 @@
                         <table border="1">
                             <tr>
                                 <th style="text-align:center; padding: 51px;">1.1 Likuiditias</th>
-                                <th style="text-align:center; padding: 8px;">1.00</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(190, 42, 62); color:white;">1.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 55px;">1.2 Efisiensi</th>
-                                <th style="text-align:center; padding: 8px;">3.50</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(94, 156, 164); color:white;">3.50</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 55px;">1.3 Efektivitas</th>
-                                <th style="text-align:center; padding: 8px;">1.00</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(190, 42, 62); color:white;">1.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 55px;">1.4 Tingkat<br>Kemandirian<br></th>
-                                <th style="text-align:center; padding: 8px;">4.00</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(94, 156, 164); color:white;">4.00</th>
                             </tr>
                         </table>
                     </div>
