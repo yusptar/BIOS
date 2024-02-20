@@ -85,19 +85,19 @@
                         <table border="1">
                             <tr>
                                 <th style="text-align:center; padding: 27px;">2.1 Indeks<br>Kepuasan<br>Masyarakat</th>
-                                <th style="text-align:center; padding: 8px;">2.00</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(239, 119, 74);">2.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 31px;">2.2 Efisiensi<br>Waktu<br>Pelayanan</th>
-                                <th style="text-align:center; padding: 8px;">1.50</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(190, 42, 62); color:white;">1.50</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 31px;">2.3 Sistem<br>Pengaduan<br>Layanan</th>
-                                <th style="text-align:center; padding: 8px;">3.33</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.33</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 31px;">2.4 Tingkat<br>Keberhasilan<br>Pemenuhan<br>Layanan</th>
-                                <th style="text-align:center; padding: 8px;">4.75</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(16, 100, 112); color:white;">4.75</th>
                             </tr>
                         </table>
                     </div>
@@ -105,19 +105,19 @@
                         <table border="1">
                             <tr>
                                 <th style="text-align:center; padding: 39px;">3.1 Sumber<br>Daya Manusia</th>
-                                <th style="text-align:center; padding: 8px;">2.00</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                             <tr>
-                                <th style="text-align:center; padding: 43px;">3.2 Proses<br>Bisnis</th>
-                                <th style="text-align:center; padding: 8px;">1.50</th>
+                                <th style="text-align:center; padding: 43px; ">3.2 Proses<br>Bisnis</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 55px;">3.3 Teknologi</th>
-                                <th style="text-align:center; padding: 8px;">3.33</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(94, 156, 164); color:white;">4.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 55px;">3.4 Customer<br>Focus</th>
-                                <th style="text-align:center; padding: 8px;">4.75</th>
+                                <th style="text-align:center; padding: 8px;  background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                         </table>
                     </div>
@@ -125,23 +125,23 @@
                         <table border="1">
                             <tr>
                                 <th style="text-align:center; padding: 27px;">4.1 Perencanaan<br>Strategis</th>
-                                <th style="text-align:center; padding: 8px;">2.00</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(94, 156, 164); color:white;">4.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 31px;">4.2 Etika<br>Bisnis</th>
-                                <th style="text-align:center; padding: 8px;">1.50</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(239, 119, 74);">2.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 31px;">4.3 Stakeholder<br>Relationship</th>
-                                <th style="text-align:center; padding: 8px;">3.33</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 31px;">4.4 Manajemen<br>Risiko</th>
-                                <th style="text-align:center; padding: 8px;">4.75</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 23px;">4.5 Pengawasan<br>dan<br>Pengendalian</th>
-                                <th style="text-align:center; padding: 8px;">4.75</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                         </table>
                     </div>
@@ -149,19 +149,19 @@
                         <table border="1">
                             <tr>
                                 <th style="text-align:center; padding: 39px;">5.1 Keterlibatan<br>Penggunaan Jasa</th>
-                                <th style="text-align:center; padding: 8px;">2.00</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(239, 119, 74);">2.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 43px;">5.2 Proses<br>Inovasi</th>
-                                <th style="text-align:center; padding: 8px;">1.50</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 48px;">5.3 Manajemen<br>Pengetahuan</th>
-                                <th style="text-align:center; padding: 8px;">3.33</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 49px;">5.4 Manajemen<br>Perubahan</th>
-                                <th style="text-align:center; padding: 8px;">4.75</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                         </table>
                     </div>
@@ -169,11 +169,11 @@
                         <table border="1">
                             <tr>
                                 <th style="text-align:center; padding: 135px 108px 80px 80px;">6.1 Enviromental<br>Footprint<br>Management</th>
-                                <th style="text-align:center; padding: 8px;">2.00</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(239, 119, 74);">2.00</th>
                             </tr>
                             <tr>
                                 <th style="text-align:center; padding: 135px 108px 80px 80px;">6.2 Penggunaan<br>Sumber Daya</th>
-                                <th style="text-align:center; padding: 8px;">1.50</th>
+                                <th style="text-align:center; padding: 8px; background-color: rgb(244, 209, 102);">3.00</th>
                             </tr>
                         </table>
                     </div>
