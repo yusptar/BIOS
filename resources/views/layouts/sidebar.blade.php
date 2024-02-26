@@ -28,6 +28,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               @can('admin')
                 <li class="nav-header">DASHBOARD</li>
                 <li class="nav-item {{ (request()->routeIs('dashboard-layanan', 'dashboard-keuangan', 'dashboard-sdm', 'dashboard-pendukung')) ? 'menu-open' : '' }}" >
                     <a href="#" class="nav-link {{ (request()->routeIs('dashboard-layanan', 'dashboard-keuangan', 'dashboard-sdm', 'dashboard-pendukung')) ? 'active' : '' }}">
@@ -499,17 +500,41 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-header">LOG OUT</li>
-                <li class="nav-item">
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();" class="nav-link">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                        </form>
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p>Log Out</p>
+                @endcan
+                @can('direktorat')
+                <li class="nav-header">DASHBOARD</li>
+                <li class="nav-item {{ (request()->routeIs('dashboard-layanan', 'dashboard-keuangan', 'dashboard-sdm', 'dashboard-pendukung')) ? 'menu-open' : '' }}" >
+                    <a href="#" class="nav-link {{ (request()->routeIs('dashboard-layanan', 'dashboard-keuangan', 'dashboard-sdm', 'dashboard-pendukung')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard-layanan') }}" class="nav-link {{ (request()->routeIs('dashboard-layanan')) ? 'active' : '' }}">
+                                <p>Dashboard Layanan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard-keuangan') }}" class="nav-link {{ (request()->routeIs('dashboard-keuangan')) ? 'active' : '' }}">
+                                <p>Dashboard Keuangan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard-sdm') }}" class="nav-link {{ (request()->routeIs('dashboard-sdm')) ? 'active' : '' }}">
+                                <p>Dashboard SDM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard-pendukung') }}" class="nav-link {{ (request()->routeIs('dashboard-pendukung')) ? 'active' : '' }}">
+                                <p>Dashboard Pendukung</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
