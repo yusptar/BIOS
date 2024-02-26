@@ -31,6 +31,7 @@
                                     <select name="role" id="role" class="form-control">
                                         <option disabled selected>-- Pilih Role --</option>
                                         <option value="admin">Admin</option>
+                                        <option value="direktorat">Direktorat PPKBLU</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
