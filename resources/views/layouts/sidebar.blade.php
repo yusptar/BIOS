@@ -522,7 +522,7 @@
                                 <p>Dashboard Keuangan</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="{{ route('dashboard-sdm') }}" class="nav-link {{ (request()->routeIs('dashboard-sdm')) ? 'active' : '' }}">
                                 <p>Dashboard SDM</p>
                             </a>
@@ -531,7 +531,7 @@
                             <a href="{{ route('dashboard-pendukung') }}" class="nav-link {{ (request()->routeIs('dashboard-pendukung')) ? 'active' : '' }}">
                                 <p>Dashboard Pendukung</p>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 @endcan
