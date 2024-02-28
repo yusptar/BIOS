@@ -12,7 +12,7 @@
             <a href="#" class="nav-link">Contact</a>
         </li> -->
     </ul>
-
+    @can('admin')
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
     <!-- Navbar Search -->
@@ -31,5 +31,26 @@
             </ul>
         </li>
     </ul>
+    @endcan
+    @can('direktorat')
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+    <!-- Navbar Search -->
+        <li class="nav-item">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:black; font-weight:bold; font-size:16px">Direktorat PPKBLU</a>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();" class="nav-link">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
+                        <strong>Log Out</strong>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    @endcan
 </nav>
 <!-- /.navbar -->
