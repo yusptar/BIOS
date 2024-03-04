@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label>Jumlah Visite Pasien</label>
                             <input type="number" class="form-control" name="jumlah"
-                                placeholder="Masukkan jumlah visite pasien">
+                                placeholder="Masukkan jumlah visite pasien" disabled>
                         </div>
                     </div>
                     <div class=" card-footer">
@@ -70,6 +70,38 @@ const today = new Date();
 // today.setDate(today.getDate() - 1);
 const formattedDate = today.toISOString().slice(0, 10);
 document.getElementById('tgl_transaksi').value = formattedDate;
+
+// Fungsi untuk mengisi formulir dengan data dari database
+function fillFormWithData(data) {
+    // Mengisi nilai jumlah pada formulir
+    $('input[name=jumlah]').val(data.result.jumlah);
+}
+
+// Fungsi untuk mengambil data dari database
+function fetchDataFromDatabase() {
+    $.ajax({
+        url: "{{ route('getVP12') }}",
+        method: 'GET',
+        dataType: 'json',
+        success: function(response, status, xhr) {
+            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            if (xhr.status === 200) { // Periksa status HTTP di sini
+                fillFormWithData(response);
+            } else if (xhr.status === 400) {
+                console.error('Gagal mengambil data:', response.message); // Ubah pesan kesalahan sesuai respons dari server
+            }
+        },
+        error: function(error) {
+            console.error('Error fetching data from the database:', error);
+        }
+    });
+}
+
+// Mengisi formulir saat halaman dimuat
+$(document).ready(function() {
+    fetchDataFromDatabase();
+});
+
 
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {

@@ -63,6 +63,10 @@ Route::get('/get-ikm',  [App\Http\Controllers\API\BIOSController::class, 'getIKM
 
 // IKT
 Route::post('/IKT', [App\Http\Controllers\API\BIOSController::class, 'IKT']);
-Route::get('/get-bto',  [App\Http\Controllers\API\BIOSController::class, 'getBTO'])->name('getBTO');
-Route::get('/get-ikm',  [App\Http\Controllers\API\BIOSController::class, 'getIKM'])->name('getIKM');
+Route::get('/get-visite-10',  [App\Http\Controllers\API\BIOSController::class, 'getVisitePasien10'])->name('getVP10');
+Route::get('/get-visite-10-12',  [App\Http\Controllers\API\BIOSController::class, 'getVisitePasien1012'])->name('getVP1012');
+Route::get('/get-visite-12',  [App\Http\Controllers\API\BIOSController::class, 'getVisitePasien12'])->name('getVP12');
+Route::get('/get-dpjp-non-visite',  [App\Http\Controllers\API\BIOSController::class, 'getDPJPNonVisite'])->name('getDPJP');
+Route::get('/get-visite-pertama',  [App\Http\Controllers\API\BIOSController::class, 'getKegiatanVisitePertama'])->name('getVisitePertama');
+
 
