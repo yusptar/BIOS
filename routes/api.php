@@ -45,7 +45,6 @@ Route::post('/dataSDM', [App\Http\Controllers\API\BIOSController::class, 'dataSD
 
 // LAYANAN
 Route::post('/dataLayanan', [App\Http\Controllers\API\BIOSController::class, 'dataLayanan']);
-
 Route::get('/get-psn-ralan',  [App\Http\Controllers\API\BIOSController::class, 'getPasienRalan'])->name('getPsnRalan');
 Route::get('/get-psn-ranap',  [App\Http\Controllers\API\BIOSController::class, 'getPasienRanap'])->name('getPsnRanap');
 Route::get('/get-psn-darurat',  [App\Http\Controllers\API\BIOSController::class, 'getDataPasienDarurat'])->name('getPasienIGD');
@@ -64,3 +63,6 @@ Route::get('/get-ikm',  [App\Http\Controllers\API\BIOSController::class, 'getIKM
 
 // IKT
 Route::post('/IKT', [App\Http\Controllers\API\BIOSController::class, 'IKT']);
+Route::get('/get-bto',  [App\Http\Controllers\API\BIOSController::class, 'getBTO'])->name('getBTO');
+Route::get('/get-ikm',  [App\Http\Controllers\API\BIOSController::class, 'getIKM'])->name('getIKM');
+

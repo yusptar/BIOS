@@ -460,7 +460,7 @@ class BIOSController extends Controller
     }
     // END DATA LAYANAN
 
-    // IKT
+    // START DATA IKT
     public function IKT(Request $request) // CONTOH STORE ($POST)
     {
         try {
@@ -490,16 +490,15 @@ class BIOSController extends Controller
         return ApiFormatter::createAPI(200, 'Success', $apiResponse);
     }
     
-    public function getVisitePasien(Request $request)
+    public function getVisitePasien10(Request $request)
     {
     
         try {
-            $data = DB::table('rawat_inap_dr')
-            ->whereDate('reg_periksa.tgl_registrasi', now()->format('Y-m-d'))
-            ->where('kamar.kelas', $kelas) // Tambahkan kondisi where untuk kelas
+            $data = DB::table('rawat_inap_drpr')
+            ->whereDate('tgl_perawatan', now()->format('Y-m-d'))
+            ->whereTime('jam_rawat', '<=', '10:00:00')
             ->get();
             
-        $count = count($data);
             $count = count($data);
 
         } catch (Exception $errmsg) {
@@ -507,5 +506,77 @@ class BIOSController extends Controller
         }
         return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
     }
+
+    public function getVisitePasien1012(Request $request)
+    {
+    
+        try {
+            $data = DB::table('rawat_inap_drpr')
+            ->whereDate('tgl_perawatan', now()->format('Y-m-d'))
+            ->whereTime('jam_rawat', '>', '10:00:00')
+            ->whereTime('jam_rawat', '<=', '12:00:00')
+            ->get();
+            
+            $count = count($data);
+
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
+
+    
+    public function getVisitePasien12(Request $request)
+    {
+    
+        try {
+            $data = DB::table('rawat_inap_drpr')
+            ->whereDate('tgl_perawatan', now()->format('Y-m-d'))
+            ->whereTime('jam_rawat', '>', '12:00:00')
+            ->get();
+            
+            $count = count($data);
+
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
+
+
+    public function getDPJPNonVisite(Request $request)
+    {
+        try {
+            $kategori = $request->input('kategori');
+            
+            $data = DB::table('operasi')
+                ->whereDate('tgl_operasi', now()->format('Y-m-d'))
+                ->where('kategori', $kategori)
+                ->get();
+        
+            $count = count($data);
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
+    
+    public function getKegiatanVisitePertama(Request $request)
+    {
+        try {
+            $kategori = $request->input('kategori');
+            
+            $data = DB::table('operasi')
+                ->whereDate('tgl_operasi', now()->format('Y-m-d'))
+                ->where('kategori', $kategori)
+                ->get();
+        
+            $count = count($data);
+        } catch (Exception $errmsg) {
+            return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
+        }
+        return ApiFormatter::createAPI(200, 'Success', ['jumlah' => $count]);
+    }
+    // END DATA IKT
 }
 
