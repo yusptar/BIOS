@@ -547,14 +547,17 @@ class BIOSController extends Controller
     public function getDPJPNonVisite(Request $request)
     {
         try {
-            $kategori = $request->input('kategori');
-            
-            $data = DB::table('operasi')
-                ->whereDate('tgl_operasi', now()->format('Y-m-d'))
-                ->where('kategori', $kategori)
+            $data = DB::table('dokter')
+                ->leftJoin('rawat_inap_drpr', function($join) {
+                    $join->on('dokter.kd_dokter', '=', 'rawat_inap_drpr.kd_dokter')
+                        ->whereDate('rawat_inap_drpr.tgl_perawatan', now()->format('Y-m-d'));
+                })
+                ->whereNull('rawat_inap_drpr.kd_dokter')
+                ->select('dokter.*')
                 ->get();
-        
+
             $count = count($data);
+        
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
