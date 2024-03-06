@@ -567,14 +567,12 @@ class BIOSController extends Controller
     public function getKegiatanVisitePertama(Request $request)
     {
         try {
-            $kategori = $request->input('kategori');
+            $data = DB::table('rawat_inap_drpr')
+            ->whereDate('tgl_perawatan', now()->format('Y-m-d'))
+            ->get();
             
-            $data = DB::table('operasi')
-                ->whereDate('tgl_operasi', now()->format('Y-m-d'))
-                ->where('kategori', $kategori)
-                ->get();
-        
             $count = count($data);
+
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
         }
