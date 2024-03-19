@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\DB;
 
 class ResepController extends Controller
 {
-    public function getResepDokter(Request $request)
+    public function getResepObat(Request $request)
     {
         try {
-            $data = DB::table('resep_dokter')
+            $data = DB::table('resep_obat')
+            ->whereDate('tgl_peresepan', now())
             ->get();
         } catch (Exception $errmsg) {
             return ApiFormatter::createAPI(400, 'Failed' . $errmsg);
