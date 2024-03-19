@@ -69,4 +69,6 @@ Route::get('/get-visite-12',  [App\Http\Controllers\API\BIOSController::class, '
 Route::get('/get-dpjp-non-visite',  [App\Http\Controllers\API\BIOSController::class, 'getDPJPNonVisite'])->name('getDPJP');
 Route::get('/get-visite-pertama',  [App\Http\Controllers\API\BIOSController::class, 'getKegiatanVisitePertama'])->name('getVisitePertama');
 
+// APLIKASI RESEP (NITIP)
+Route::get('/resep-dokter',  [App\Http\Controllers\API\ResepController::class, 'getResepDokter'])->name('getResep');
 
