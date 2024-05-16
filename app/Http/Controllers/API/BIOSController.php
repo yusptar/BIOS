@@ -26,7 +26,7 @@ class BIOSController extends Controller
         try {
              // Mengirim data ke API menggunakan Guzzle
             $client = new Client();
-            $response = $client->post('https://training-bios2.kemenkeu.go.id/api/token', [
+            $response = $client->post('*', [
                 'json' => [
                     'satker' => $request->satker,
                     'key' => $request->key,
@@ -121,7 +121,7 @@ class BIOSController extends Controller
                 ->join('poliklinik', 'reg_periksa.kd_poli', '=', 'poliklinik.kd_poli')
                 ->where('reg_periksa.status_lanjut', 'Ralan')
                 ->whereDate('reg_periksa.tgl_registrasi', now()->format('Y-m-d'))
-                ->where('poliklinik.nm_poli', $nm_poli) // Tambahkan kondisi where untuk kelas
+                ->where('poliklinik.nm_poli', $nm_poli) 
                 ->get();
 
             $count = count($data);
@@ -141,7 +141,7 @@ class BIOSController extends Controller
                 ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
                 ->where('reg_periksa.status_lanjut', 'Ranap')
                 ->whereDate('reg_periksa.tgl_registrasi', now()->format('Y-m-d'))
-                ->where('kamar.kelas', $kelas) // Tambahkan kondisi where untuk kelas
+                ->where('kamar.kelas', $kelas) 
                 ->get();
                 
             $count = count($data);

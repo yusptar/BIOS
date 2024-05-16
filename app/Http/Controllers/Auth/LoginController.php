@@ -12,13 +12,13 @@ use Illuminate\Http\Request;
 use Session;
 use Alert;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
     public function login(Request $request)
     {
-      
         $credentials = $request->only('username', 'password');
         // Authenticate the user
         if (auth()->attempt($credentials)) {
@@ -29,10 +29,10 @@ class LoginController extends Controller
                     'username' => $user_data->nama, 
                 ];
                 Session::put($ses_data);
-    
+                
                 try {
                     $client = new Client();
-                    $response = $client->post('https://training-bios2.kemenkeu.go.id/api/token', [
+                    $response = $client->post(getenv('AUTH_TOKEN'), [
                         'json' => [
                             'satker' => $request->satker,
                             'key' => $request->key,
@@ -44,7 +44,7 @@ class LoginController extends Controller
                     $apiResponse = json_decode($response->getBody(), true);
                     $accessToken = $apiResponse['token'];
                     auth()->user()->update(['token' => $accessToken]);
-                    echo "<script>console.log(" . json_encode($apiResponse) . ");</script>";
+                    // echo "<script>console.log(" . json_encode($apiResponse) . ");</script>";
                 } catch (Exception $errmsg) {
                     echo "<script>console.error(" . $errmsg->getMessage() . ");</script>";
                 }

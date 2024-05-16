@@ -96,7 +96,7 @@ $('#btn-submit').click(function() {
         formData.append('nilai_bunga', $('input[name=nilai_bunga]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/keuangan/saldo/saldo_pengelolaan_kas",
+            url: '{{ env('KEU_SALDO_KAS') }}',
             type: "POST",
             data: formData,
             contentType: false,

@@ -96,7 +96,7 @@ $('#btn-submit').click(function() {
         formData.append('saldo_akhir', $('input[name=saldo_akhir]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/keuangan/saldo/saldo_operasional",
+            url: '{{ env('KEU_SALDO_OPS') }}',
             type: "POST",
             data: formData,
             contentType: false,
