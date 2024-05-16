@@ -113,7 +113,7 @@ $('#btn-submit').click(function() {
         formData.append('toi', $('input[name=toi]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/toi",
+            url: '{{ env('LYN_TOI') }}',
             type: "POST",
             data: formData,
             contentType: false,

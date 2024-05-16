@@ -117,7 +117,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah_non_bpjs', $('input[name=jumlah_non_bpjs]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/bpjs_nonbpbjs",
+            url: '{{ env('LYN_PSN_BPJS_NONBPJS') }}',
             type: "POST",
             data: formData,
             contentType: false,

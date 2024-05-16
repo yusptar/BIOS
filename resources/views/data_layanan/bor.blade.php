@@ -114,7 +114,7 @@ $('#btn-submit').click(function() {
         formData.append('bor', $('input[name=bor]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/bor",
+            url: '{{ env('LYN_BOR') }}',
             type: "POST",
             data: formData,
             contentType: false,

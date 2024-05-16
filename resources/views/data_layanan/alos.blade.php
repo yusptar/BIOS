@@ -113,7 +113,7 @@ $('#btn-submit').click(function() {
         formData.append('alos', $('input[name=alos]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/alos",
+            url: '{{ env('LYN_ALOS') }}',
             type: "POST",
             data: formData,
             contentType: false,

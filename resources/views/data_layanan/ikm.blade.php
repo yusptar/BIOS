@@ -79,7 +79,7 @@ $('#btn-submit').click(function() {
         formData.append('nilai_indeks', $('input[name=nilai_indeks]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/layanan/ikm_kesehatan",
+            url: '{{ env('LYN_IKM') }}',
             type: "POST",
             data: formData,
             contentType: false,
