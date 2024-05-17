@@ -102,7 +102,7 @@ $('#btn-submit').click(function() {
         formData.append('non_pns_tetap', $('input[name=non_pns_tetap]').val());
         formData.append('kontrak', $('input[name=kontrak]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_umum",
+            url: '{{ env('SDM_D_UMUM') }}',
             type: "POST",
             data: formData,
             contentType: false,
