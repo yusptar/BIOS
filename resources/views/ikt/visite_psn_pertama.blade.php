@@ -112,7 +112,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/ikt/visite_pertama",
+            url: '{{ env('IKT_VST_PERTAMA') }}',
             type: "POST",
             data: formData,
             contentType: false,

@@ -94,7 +94,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/ikt/kepatuhan_waktu_visite_dokter",
+            url: '{{ env('IKT_KPTHN_WKT_VST') }}',
             type: "POST",
             data: formData,
             contentType: false,

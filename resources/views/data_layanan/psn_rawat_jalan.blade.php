@@ -168,7 +168,7 @@ $('#btn-submit').click(function() {
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: '{{ env('LYN_RAWAT_INAP') }}',
+            url: '{{ env('LYN_RAWAT_JALAN') }}',
             type: "POST",
             data: formData,
             contentType: false,

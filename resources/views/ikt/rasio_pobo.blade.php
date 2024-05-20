@@ -79,7 +79,7 @@ $('#btn-submit').click(function() {
         formData.append('pobo', $('input[name=pobo]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
-            url: "https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/ikt/rasio_pobo",
+            url: '{{ env('IKT_RASIO_POBO') }}',
             type: "POST",
             data: formData,
             contentType: false,

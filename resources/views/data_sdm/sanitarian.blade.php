@@ -49,6 +49,9 @@
                                 placeholder="Masukkan Jumlah Kontrak">
                         </div>
                     </div>
+                    <!-- <div id="loading-spinner" style="position:absolute; top:50%; left:50%; transform: translate(-50%, -50%);">
+                        <img src="{{ asset('img/spinner.gif') }}" alt="" width="120" height="120">
+                    </div> -->
                     <div class="card-footer">
                         <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
                     </div>
@@ -114,11 +117,11 @@ $('#btn-submit').click(function() {
                 console.log(data);
                 Swal.fire({
                     title: "Berhasil!",
-                    text: data.message,
+                    text: "Data Berhasil ditambahkan",
                     icon: "success",
                     buttons: false,
                     timer: 2000,
-                })
+                });
             },
             error: function(data) {
                 console.log(data);
