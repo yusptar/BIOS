@@ -54,7 +54,7 @@ class BIOSController extends Controller
         try {
             // Mengirim data ke API menggunakan Guzzle
             $client = new Client();
-            $response = $client->post('https://training-bios2.kemenkeu.go.id/api/ws/kesehatan/sdm/dokter_spesialis', [
+            $response = $client->post('*', [
                 'json' => [
                     'tgl_transaksi' =>  Carbon::now()->format('Y-m-d'),
                     'pns' => $request->pns,
@@ -88,7 +88,7 @@ class BIOSController extends Controller
         try {
              // Mengirim data ke API menggunakan Guzzle
             $client = new Client();
-            $response = $client->post('https://training-bios2.kemenkeu.go.id/api2/authenticate', [
+            $response = $client->post('*', [
                 'json' => [
                     'tgl_transaksi' =>  Carbon::now()->format('Y-m-d'),
                     'pns' => $request->pns,
