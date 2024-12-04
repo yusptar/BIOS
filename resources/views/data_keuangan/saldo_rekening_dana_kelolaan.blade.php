@@ -75,7 +75,7 @@
 <script>
 // Get the current date in the format YYYY-MM-DD
 const today = new Date();
-// today.setDate(today.getDate() - 1);
+today.setDate(today.getDate() - 1);
 const formattedDate = today.toISOString().slice(0, 10);
 document.getElementById('tgl_transaksi').value = formattedDate;
 
@@ -99,7 +99,7 @@ $('#btn-submit').click(function() {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + token);
             },
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",
@@ -109,7 +109,7 @@ $('#btn-submit').click(function() {
                 })
             },
             error: function(data) {
-                console.log(data);
+                // console.log(data);
                 Swal.fire({
                     title: "Gagal!",
                     text: "Data gagal ditambahkan",

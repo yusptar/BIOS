@@ -71,7 +71,7 @@
 <script>
 // Get the current date in the format YYYY-MM-DD
 const today = new Date();
-// today.setDate(today.getDate() - 1);
+today.setDate(today.getDate() - 1);
 const formattedDate = today.toISOString().slice(0, 10);
 document.getElementById('tgl_transaksi').value = formattedDate;
 
@@ -80,18 +80,17 @@ function fillFormWithData(data) {
     $('input[name=alos]').val(data.result.jumlah);
 }
 
-// Fungsi untuk mengambil data dari database
 function fetchDataFromDatabase() {
     $.ajax({
         url: "{{ route('getALOS') }}",
         method: 'GET',
         dataType: 'json',
         success: function(response, status, xhr) {
-            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
-            if (xhr.status === 200) { // Periksa status HTTP di sini
+            // console.log(response); 
+            if (xhr.status === 200) {
                 fillFormWithData(response);
             } else if (xhr.status === 400) {
-                console.error('Gagal mengambil data:', response.message); // Ubah pesan kesalahan sesuai respons dari server
+                console.error('Gagal mengambil data:', response.message); 
             }
         },
         error: function(error) {

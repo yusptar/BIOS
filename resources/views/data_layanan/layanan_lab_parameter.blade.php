@@ -122,7 +122,7 @@
 <script>
 // Get the current date in the format YYYY-MM-DD
 const today = new Date();
-// today.setDate(today.getDate() - 1);
+today.setDate(today.getDate() - 1);
 const formattedDate = today.toISOString().slice(0, 10);
 document.getElementById('tgl_transaksi').value = formattedDate;
 
@@ -142,7 +142,7 @@ function fetchDataFromDatabase() {
         dataType: 'json',
         data: { nama_layanan: selectedCategory }, 
         success: function(response, status, xhr) {
-            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            // console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
             if (xhr.status === 200) { // Periksa status HTTP di sini
                 fillFormWithData(response);
             } else if (xhr.status === 400) {

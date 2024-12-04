@@ -67,7 +67,7 @@
 <script>
 // Add leading zero for single-digit months and days
 const today = new Date();
-// today.setDate(today.getDate() - 1);
+today.setDate(today.getDate() - 1);
 const formattedDate = today.toISOString().slice(0, 10);
 document.getElementById('tgl_transaksi').value = formattedDate;
 
@@ -84,7 +84,7 @@ function fetchDataFromDatabase() {
         method: 'GET',
         dataType: 'json',
         success: function(response, status, xhr) {
-            console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
+            // console.log(response); // Tambahkan ini untuk melihat respons lengkap di konsol
             if (xhr.status === 200) { // Periksa status HTTP di sini
                 fillFormWithData(response);
             } else if (xhr.status === 400) {
