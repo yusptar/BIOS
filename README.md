@@ -1,2 +1,2 @@
-# Web Service BIOS G2 Next-Gen, Codename: Endgame
-DIREKTORAT JENDERAL PERBENDAHARAAN KEMENTERIAN KEUANGAN 2022
+# Web TTE (Tanda Tangan Elektronik)
+BSRE X Rumkit Tk.II dr. Soepraoen
