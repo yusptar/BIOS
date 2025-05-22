@@ -167,9 +167,14 @@ $('#nama_layanan').change(fetchDataFromDatabase);
 $('#btn-submit').click(function() {
     if ($('#form-lab-param')[0].checkValidity()) {
         var formData = new FormData();
-        var token = $('#token').val(); 
+        var token = $('#token').val();
+    
+        var tglTransaksi = $('input[name=tgl_transaksi]').val();
+        var nmLayanan = $('select[name=nama_layanan]').val();
+        var jumlah = $('input[name=jumlah]').val();
+
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
-        formData.append('nama_layanan', $('input[name=nama_layanan]').val());
+        formData.append('nama_layanan', $('select[name=nama_layanan]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
@@ -183,6 +188,9 @@ $('#btn-submit').click(function() {
             },
             success: function(data) {
                 console.log(data);
+                console.log('tgl_transaksi:', tglTransaksi);
+                console.log('nama_layanan:', nmLayanan);
+                console.log('jumlah:', jumlah);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",

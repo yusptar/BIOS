@@ -162,7 +162,12 @@ $('#nm_poli').change(fetchDataFromDatabase);
 $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
-        var token = $('#token').val(); 
+        var token = $('#token').val();
+        
+        var tglTransaksi = $('input[name=tgl_transaksi]').val();
+        var namaPoli = $('select[name=nama_poli]').val();
+        var jumlah = $('input[name=jumlah]').val();
+
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
         formData.append('nama_poli', $('select[name=nama_poli]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
@@ -178,6 +183,9 @@ $('#btn-submit').click(function() {
             },
             success: function(data) {
                 console.log(data);
+                console.log('tgl_transaksi:', tglTransaksi);
+                console.log('nama_poli:', namaPoli);
+                console.log('jumlah:', jumlah);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",

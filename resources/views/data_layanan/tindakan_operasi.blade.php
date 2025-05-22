@@ -123,8 +123,13 @@ $('#btn-submit').click(function() {
     if ($('#form-dokter-spesialis')[0].checkValidity()) {
         var formData = new FormData();
         var token = $('#token').val(); 
+
+        var tglTransaksi = $('input[name=tgl_transaksi]').val();
+        var klasifikasi = $('select[name=klasifikasi_operasi]').val();
+        var jumlah = $('input[name=jumlah]').val();
+        
         formData.append('tgl_transaksi', $('input[name=tgl_transaksi]').val());
-        formData.append('klasifikasi_operasi', $('input[name=klasifikasi_operasi]').val());
+        formData.append('klasifikasi_operasi', $('select[name=klasifikasi_operasi]').val());
         formData.append('jumlah', $('input[name=jumlah]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
@@ -138,6 +143,9 @@ $('#btn-submit').click(function() {
             },
             success: function(data) {
                 console.log(data);
+                console.log('tgl_transaksi:', tglTransaksi);
+                console.log('klasifikasi_operasi:', klasifikasi);
+                console.log('jumlah:', jumlah);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",

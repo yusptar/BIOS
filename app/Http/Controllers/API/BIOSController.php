@@ -91,11 +91,9 @@ class BIOSController extends Controller
             $response = $client->post('*', [
                 'json' => [
                     'tgl_transaksi' =>  Carbon::now()->format('Y-m-d'),
-                    'pns' => $request->pns,
-                    'pppk' => $request->pppk,
-                    'anggota' => $request->anggota,
-                    'non_pns_tetap' => $request->non_pns_tetap,
-                    'kontrak' => $request->kontrak,
+                    'kode_kelas' => $request->kode_kelas,
+                    'jumlah' => $request->jumlah,
+                    'token' => $request->token,
                 ],
                 // Tambahkan header sesuai kebutuhan (misalnya, header authorization)
                 'headers' => [
