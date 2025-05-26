@@ -29,27 +29,19 @@
                             <label>Nama Poli</label>
                             <select class="form-control col-sm-5" name="nama_poli" id="nm_poli">
                                 <option disabled selected>-- Pilih Nama Poli --</option>
-                                <option value="ALERGI-IMMUNOLOGI KLINIK">004 - ALERGI-IMMUNOLOGI KLINIK</option>
-                                <option value="GERIATRI">006 - GERIATRI</option>
-                                <option value="PULMONOLOGI">012 - PULMONOLOGI</option>
-                                <option value="KARDIOVASKULAR">015 - KARDIOVASKULAR</option>
                                 <option value="BEDAH ONKOLOGI">017 - BEDAH ONKOLOGI</option>
-                                <option value="BEDAH DIGESTIF">018 - BEDAH DIGESTIF</option>
                                 <option value="ONKOLOGI GINEKOLOGI">021 - ONKOLOGI GINEKOLOGI</option>
-                                <option value="UROGINEKOLOGI REKONTRUKSI">022 - UROGINEKOLOGI REKONTRUKSI</option>
-                                <option value="NEUROLOGI">068 - NEUROLOGI</option>
-                                <option value="THT KOMUNITAS">075 - THT KOMUNITAS</option>
-                                <option value="NEUROMSUKULAR, SARAF PERIFER">083 - NEUROMSUKULAR, SARAF PERIFER</option>
-                                <option value="FAAL PARU KLINIK">099 - FAAL PARU KLINIK</option>
+                                <option value="NEUROMUSKULAR, SARAF PERIFER">083 - NEUROMUSKULAR, SARAF PERIFER</option>
+                                <option value="RADIOTERAPI">168 - RADIOTERAPI</option>
+                                <option value="Akupuntur">AKP - Akupuntur</option>
                                 <option value="Poli Anak">ANA - Poli Anak</option>
                                 <option value="GIGI BEDAH MULUT">BDM - GIGI BEDAH MULUT</option>
                                 <option value="BEDAH PLASTIK">BDP - BEDAH PLASTIK</option>
                                 <option value="Poli Bedah">BED - Poli Bedah</option>
                                 <option value="BEDAH SARAF">BSY - BEDAH SARAF</option>
-                                <option value="BTKV (BEDAH THORAX KARDIOVASKU)">BTK - BTKV (BEDAH THORAX KARDIOVASKU)</option>
-                                <option value="Geriatri">GER - Geriatri</option>
-                                <option value="Poli Gigi">GIG - Poli Gigi</option>
-                                <option value="Gizi">GIZ - Gizi</option>
+                                <option value="BTKV (BEDAH THORAX KARDIOVASKU">BTK - BTKV (BEDAH THORAX KARDIOVASKU</option>
+                                <option value="ENDOSKOPI">EDK - ENDOSKOPI</option>
+                                <option value="GIGI PERIODONTI">GPR - GIGI PERIODONTI</option>
                                 <option value="Hemodialisa">HDL - Hemodialisa</option>
                                 <option value="Unit IGD">IGDK - Unit IGD</option>
                                 <option value="Poli Penyakit Dalam">INT - Poli Penyakit Dalam</option>
@@ -59,18 +51,17 @@
                                 <option value="Kemoterapi">KEMO - Kemoterapi</option>
                                 <option value="KULIT KELAMIN">KLT - KULIT KELAMIN</option>
                                 <option value="GIGI PEDODONTIS">KON - GIGI PEDODONTIS</option>
-                                <option value="LABORATORIUM PATOLOGI ANATOMI">LPA - LABORATORIUM PATOLOGI ANATOMI</option>
                                 <option value="LABORATORIUM PATOLOGI KLINIS">LPK - LABORATORIUM PATOLOGI KLINIS</option>
                                 <option value="Poli Penyakit Mata">MAT - Poli Penyakit Mata</option>
                                 <option value="Medical Check Up">MCU - Medical Check Up</option>
                                 <option value="Poli Obstetri/Gyn">OBG - Poli Obstetri/Gyn</option>
-                                <option value="Poli Paru Paru">PAR - Poli Paru Paru</option>
-                                <option value="GIGI PENYAKIT MULUT">PNM - GIGI PENYAKIT MULUT</option>
+                                <option value="ORTHOPEDI">ORT - ORTHOPEDI</option>
+                                <option value="Poli Paru-Paru">PAR - Poli Paru-Paru</option>
                                 <option value="GIGI PROSTHODONTI">PTD - GIGI PROSTHODONTI</option>
                                 <option value="RADIOLOGI">RAD - RADIOLOGI</option>
-                                <option value="Poli Penyakit Saraf">SAR - Poli Penyakit Saraf</option>
-                                <option value="Poli Telinga/Hidung/Tenggorokan">THT - Poli Telinga/Hidung/Tenggorokan
-                                </option>
+                                <option value="SARANA RADIOTERAPI">RAT - SARANA RADIOTERAPI</option>
+                                <option value="Poli Penyakit Syaraf">SAR - Poli Penyakit Syaraf</option>
+                                <option value="Poli Telinga/Hidung/Tenggorok">THT - Poli Telinga/Hidung/Tenggorok</option>
                                 <option value="Unit Gawat Darurat">UGD - Unit Gawat Darurat</option>
                                 <option value="UROLOGI">URO - UROLOGI</option>
                                 <option value="VCT">VCT - VCT</option>
