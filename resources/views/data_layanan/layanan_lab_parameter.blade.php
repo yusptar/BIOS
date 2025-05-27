@@ -107,7 +107,7 @@
       </div>
       <div class="modal-body">
         <!-- <p>1. Data transaksi pengeluaran yang dikirimkan di-grouping per tanggal transaksi per akun</p> -->
-        <p>● Data yang dikirimkan merupakan posisi data pada saat tanggal transaksi, bersifat akumulatif</p>
+        <p>● Data yang dikirimkan merupakan posisi data terakhir pada saat tanggal berkenaan, tidak akumulatif </p>
         <p>● Data dikirimkan per periode harian</p>
       </div>
       <div class="modal-footer">
