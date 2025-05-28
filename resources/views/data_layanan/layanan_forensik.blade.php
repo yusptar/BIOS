@@ -63,7 +63,7 @@ $('#btn-submit').click(function() {
             contentType: false,
             processData: false,
             success: function(data) {
-                console.log(data.data);
+                // console.log(data.data);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",

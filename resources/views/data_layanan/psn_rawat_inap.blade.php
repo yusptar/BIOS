@@ -148,10 +148,10 @@ $('#btn-submit').click(function() {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + token);
             },
             success: function(data) {
-                console.log(data);
-                console.log('tgl_transaksi:', tglTransaksi);
-                console.log('kode_kelas:', kodeKelas);
-                console.log('jumlah:', jumlah);
+                // console.log(data);
+                // console.log('tgl_transaksi:', tglTransaksi);
+                // console.log('kode_kelas:', kodeKelas);
+                // console.log('jumlah:', jumlah);
                 Swal.fire({
                     title: "Berhasil!",
                     text: "Data Berhasil ditambahkan",
