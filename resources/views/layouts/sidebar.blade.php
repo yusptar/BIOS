@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link">
         <div class="text-center">
-            <img src="{{ asset('auth/images/logo-nagara.png') }}" alt="" width="60%" height="60%">
+            <img src="{{ asset('auth/images/logo-rs.png') }}" alt="" width="60%" height="60%">
         </div>
     </a>
 

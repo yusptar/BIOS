@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>BIOS WebService | Rumah Sakit Tk.II dr. Soepraoen</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('auth/images/logo-nagara.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('auth/images/logo-rs.png') }}">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -79,7 +79,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img src="{{ asset('auth/images/logo-nagara.png') }}" alt="BIOS Webservice"
+            <img src="{{ asset('auth/images/logo-rs.png') }}" alt="BIOS Webservice"
                 height="200" width="200">
         </div>
         <!-- include navbar -->
