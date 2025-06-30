@@ -56,6 +56,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'igd_token' => env('IGD_TOKEN'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
