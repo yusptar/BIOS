@@ -29,7 +29,7 @@ class SendRalan extends Command
             }
 
             $accessToken = $authResponse->json('token'); 
-            $tanggal = now()->format('Y-m-d');
+            $tanggal = now()->subDay()->format('Y-m-d');
             $jumlah = $this->getRalan($tanggal);
 
             foreach ($jumlah as $nama_poli => $total_pasien) {

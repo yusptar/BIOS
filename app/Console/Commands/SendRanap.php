@@ -29,7 +29,7 @@ class SendRanap extends Command
             }
 
             $accessToken = $authResponse->json('token'); 
-            $tanggal = now()->format('Y-m-d');
+            $tanggal = now()->subDay()->format('Y-m-d');
             $jumlah = $this->getRanap($tanggal);
 
             foreach ($jumlah as $kode_kelas => $total_pasien) {

@@ -29,7 +29,7 @@ class SendLabParameter extends Command
             }
 
             $accessToken = $authResponse->json('token'); 
-            $tanggal = now()->format('Y-m-d');
+            $tanggal = now()->subDay()->format('Y-m-d');
             $jumlah = $this->getLabParameter($tanggal);
 
             $this->sendLabData('HEMATOLOGI', $tanggal, $jumlah['hematologi'], $accessToken);

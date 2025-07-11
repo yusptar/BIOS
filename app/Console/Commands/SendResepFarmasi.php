@@ -28,7 +28,7 @@ class SendResepFarmasi extends Command
 
             $accessToken = $authResponse->json('token'); 
 
-            $tanggal = now()->format('Y-m-d');
+            $tanggal = now()->subDay()->format('Y-m-d');
             $jumlah = $this->getResep($tanggal);
 
             $sendResponse = Http::withToken($accessToken)->post(env('LYN_FARMASI'), [

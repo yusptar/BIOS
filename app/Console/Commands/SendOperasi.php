@@ -30,7 +30,7 @@ class SendOperasi extends Command
 
             $accessToken = $authResponse->json('token'); 
 
-            $tanggal = now()->format('Y-m-d');
+            $tanggal = now()->subDay()->format('Y-m-d');
             $jumlah = $this->getOperasi($tanggal);
 
             $this->sendOperasiData('Khusus', $tanggal, $jumlah['Khusus'], $accessToken);
