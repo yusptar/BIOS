@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class SendIGDData extends Command
+class SendKunjRalan extends Command
 {
-    protected $signature = 'igd:send';
+    protected $signature = 'kunjralan:send';
     protected $description = '';
 
     public function handle()
@@ -29,9 +29,9 @@ class SendIGDData extends Command
             $accessToken = $authResponse->json('token'); 
 
             $tanggal = now()->format('Y-m-d');
-            $jumlah = $this->ambilDataIGD($tanggal);
+            $jumlah = $this->getKunjunganRalan($tanggal);
 
-            $sendResponse = Http::withToken($accessToken)->post(env('LYN_RAWAT_DARURAT'), [
+            $sendResponse = Http::withToken($accessToken)->post(env('LYN_KUNJ_RALAN'), [
                 'tgl_transaksi' => $tanggal,
                 'jumlah' => $jumlah,
             ]);
@@ -51,7 +51,7 @@ class SendIGDData extends Command
                 Log::error('Failed to send.', ['body' => $sendResponse->body()]);
                 $this->error('Gagal mengirim data.');
                 $this->line('Tanggal Transaksi : ' . $tanggal);
-                $this->line('Jumlah Pasien IGD : ' . $jumlah);
+                $this->line('Jumlah : ' . $jumlah);
             }
 
         } catch (\Exception $e) {
@@ -59,9 +59,9 @@ class SendIGDData extends Command
         }
     }
 
-    private function ambilDataIGD($tanggal)
+    private function getKunjunganRalan($tanggal)
     {
-        return \App\Models\RegPeriksa::where('kd_poli', 'UGD')
+        return \App\Models\RegPeriksa::where('status_lanjut', 'Ralan')
             ->whereDate('tgl_registrasi', $tanggal)
             ->count();
     }

@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class SendIGDData extends Command
+class SendLabSampel extends Command
 {
-    protected $signature = 'igd:send';
+    protected $signature = 'labsampel:send';
     protected $description = '';
 
     public function handle()
@@ -29,9 +29,9 @@ class SendIGDData extends Command
             $accessToken = $authResponse->json('token'); 
 
             $tanggal = now()->format('Y-m-d');
-            $jumlah = $this->ambilDataIGD($tanggal);
+            $jumlah = $this->getLabSampel($tanggal);
 
-            $sendResponse = Http::withToken($accessToken)->post(env('LYN_RAWAT_DARURAT'), [
+            $sendResponse = Http::withToken($accessToken)->post(env('LYN_SAMPEL'), [
                 'tgl_transaksi' => $tanggal,
                 'jumlah' => $jumlah,
             ]);
@@ -51,7 +51,7 @@ class SendIGDData extends Command
                 Log::error('Failed to send.', ['body' => $sendResponse->body()]);
                 $this->error('Gagal mengirim data.');
                 $this->line('Tanggal Transaksi : ' . $tanggal);
-                $this->line('Jumlah Pasien IGD : ' . $jumlah);
+                $this->line('Jumlah : ' . $jumlah);
             }
 
         } catch (\Exception $e) {
@@ -59,10 +59,8 @@ class SendIGDData extends Command
         }
     }
 
-    private function ambilDataIGD($tanggal)
+    private function getLabSampel($tanggal)
     {
-        return \App\Models\RegPeriksa::where('kd_poli', 'UGD')
-            ->whereDate('tgl_registrasi', $tanggal)
-            ->count();
+        return \App\Models\PermintaanLab::whereDate('tgl_permintaan', $tanggal)->count();
     }
 }

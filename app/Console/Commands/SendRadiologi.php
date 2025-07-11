@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class SendIGDData extends Command
+class SendRadiologi extends Command
 {
-    protected $signature = 'igd:send';
+    protected $signature = 'radiologi:send';
     protected $description = '';
 
     public function handle()
@@ -29,9 +29,9 @@ class SendIGDData extends Command
             $accessToken = $authResponse->json('token'); 
 
             $tanggal = now()->format('Y-m-d');
-            $jumlah = $this->ambilDataIGD($tanggal);
+            $jumlah = $this->ambilDataRadiologi($tanggal);
 
-            $sendResponse = Http::withToken($accessToken)->post(env('LYN_RAWAT_DARURAT'), [
+            $sendResponse = Http::withToken($accessToken)->post(env('LYN_RADIOLOGI'), [
                 'tgl_transaksi' => $tanggal,
                 'jumlah' => $jumlah,
             ]);
@@ -59,10 +59,8 @@ class SendIGDData extends Command
         }
     }
 
-    private function ambilDataIGD($tanggal)
+    private function ambilDataRadiologi($tanggal)
     {
-        return \App\Models\RegPeriksa::where('kd_poli', 'UGD')
-            ->whereDate('tgl_registrasi', $tanggal)
-            ->count();
+        return \App\Models\PeriksaRadiologi::whereDate('tgl_periksa', $tanggal)->count();
     }
 }
