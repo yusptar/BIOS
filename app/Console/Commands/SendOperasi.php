@@ -45,7 +45,7 @@ class SendOperasi extends Command
     private function getOperasi($tanggal)
     {
         try {
-            $kategori_operasi = ['Khusus', 'Besar', 'Sedang', 'Kecil'];
+            $kategori_operasi = ['Khusus', 'Besar', 'Sedang', 'Kecil', 'Elektive','Emergency'];
             $jumlah = [];
 
             foreach ($kategori_operasi as $kategori) {
@@ -78,7 +78,7 @@ class SendOperasi extends Command
         ]);
 
         if ($response->successful()) {
-            Log::info("[$operasi] Data dikirim berhasil.", [
+            Log::info("OPERASI - [$operasi] Data dikirim berhasil.", [
                 'tanggal_transaksi' => $tanggal,
                 'klasifikasi_operasi' => $operasi,
                 'jumlah' => $jumlah,

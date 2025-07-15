@@ -37,7 +37,7 @@ class SendKunjRalan extends Command
             ]);
 
             if ($sendResponse->successful()) {
-                Log::info('Data sent successfully.', [
+                Log::info('KUNJUNGAN RALAN Data sent successfully.', [
                     'tanggal_transaksi' => $tanggal,
                     'jumlah' => $jumlah,
                     'response' => $sendResponse->json()
@@ -61,8 +61,7 @@ class SendKunjRalan extends Command
 
     private function getKunjunganRalan($tanggal)
     {
-        return \App\Models\RegPeriksa::where('status_lanjut', 'Ralan')
-            ->whereDate('tgl_registrasi', $tanggal)
+        return \App\Models\RegPeriksa::whereDate('tgl_registrasi', $tanggal)
             ->count();
     }
 }

@@ -37,7 +37,7 @@ class SendRadiologi extends Command
             ]);
 
             if ($sendResponse->successful()) {
-                Log::info('Data sent successfully.', [
+                Log::info('RADIOLOGI Data sent successfully.', [
                     'tanggal_transaksi' => $tanggal,
                     'jumlah' => $jumlah,
                     'response' => $sendResponse->json()

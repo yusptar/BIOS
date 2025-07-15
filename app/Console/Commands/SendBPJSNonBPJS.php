@@ -38,7 +38,7 @@ class SendBPJSNonBPJS extends Command
             ]);
 
             if ($sendResponse->successful()) {
-                Log::info('Data sent successfully.', [
+                Log::info('BPJS & Non BPJS Data sent successfully.', [
                     'tgl_transaksi' => $tanggal,
                     'jumlah_bpjs' => $jumlah['jumlah_bpjs'],
                     'jumlah_non_bpjs' => $jumlah['jumlah_non_bpjs'],

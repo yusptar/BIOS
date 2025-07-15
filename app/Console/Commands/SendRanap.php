@@ -43,7 +43,7 @@ class SendRanap extends Command
     private function getRanap($tanggal)
     {
         try {
-            $kode_kelas = ['KELAS III', 'KELAS II', 'KELAS I', 'VIP', 'VVIP', 'HCU', 'ICU'];
+            $kode_kelas = ['VVIP','VIP','UTAMA','KELAS I','KELAS II','KELAS III','ICU','ICCU','NICU','PICU','IGD','UGD','RUANG BERSALIN','HCU','RUANG ISOLASI','NIMCU','SUPER VVIP','NIMCU','CVCU'];
             $jumlah = [];
 
             foreach ($kode_kelas as $kode) {
@@ -51,7 +51,7 @@ class SendRanap extends Command
                     ->join('kamar_inap', 'reg_periksa.no_rawat', '=', 'kamar_inap.no_rawat')
                     ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
                     ->where('reg_periksa.status_lanjut', 'Ranap')
-                    ->whereDate('reg_periksa.tgl_registrasi', $tanggal)
+                    ->whereDate('kamar_inap.tgl_masuk', $tanggal)
                     ->where('kamar.kelas', $kode) 
                     ->count();
             }
@@ -73,7 +73,7 @@ class SendRanap extends Command
         ]);
 
         if ($response->successful()) {
-            Log::info("[$kode_kelas] Data dikirim berhasil.", [
+            Log::info("RANAP - [$kode_kelas] Data dikirim berhasil.", [
                 'tanggal_transaksi' => $tanggal,
                 'kode_kelas' => $kode_kelas,
                 'jumlah' => $jumlah,

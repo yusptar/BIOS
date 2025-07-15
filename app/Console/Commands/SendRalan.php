@@ -108,7 +108,7 @@ class SendRalan extends Command
         ]);
 
         if ($response->successful()) {
-            Log::info("[$nampol] Data dikirim berhasil.", [
+            Log::info("RALAN - [$nampol] Data dikirim berhasil.", [
                 'tanggal_transaksi' => $tanggal,
                 'nama_poli' => $nampol,
                 'jumlah' => $jumlah,
