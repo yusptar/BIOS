@@ -18,9 +18,9 @@ class SendOperasi extends Command
         try {
             $authResponse = Http::withHeaders([
                 'Content-Type' => 'application/json'
-            ])->post(env('AUTH_TOKEN'), [
+            ])->post(env('PROD_TOKEN'), [
                 'satker' => env('KD_SATKER'),
-                'key' => env('KEY_DEV'),
+                'key' => env('KEY_PROD'),
             ]);
 
             if (!$authResponse->successful()) {
@@ -37,6 +37,8 @@ class SendOperasi extends Command
             $this->sendOperasiData('Besar', $tanggal, $jumlah['Besar'], $accessToken);
             $this->sendOperasiData('Sedang', $tanggal, $jumlah['Sedang'], $accessToken);
             $this->sendOperasiData('Kecil', $tanggal, $jumlah['Kecil'], $accessToken);
+            $this->sendOperasiData('Elektive', $tanggal, $jumlah['Elektive'], $accessToken);
+            $this->sendOperasiData('Emergency', $tanggal, $jumlah['Emergency'], $accessToken);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }

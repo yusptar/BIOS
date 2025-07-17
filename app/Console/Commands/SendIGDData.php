@@ -16,9 +16,9 @@ class SendIGDData extends Command
         try {
             $authResponse = Http::withHeaders([
                 'Content-Type' => 'application/json'
-            ])->post(env('AUTH_TOKEN'), [
+            ])->post(env('PROD_TOKEN'), [
                 'satker' => env('KD_SATKER'),
-                'key' => env('KEY_DEV'),
+                'key' => env('KEY_PROD'),
             ]);
 
             if (!$authResponse->successful()) {
