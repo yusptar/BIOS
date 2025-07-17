@@ -43,74 +43,94 @@ class SendLabParameter extends Command
     private function getLabParameter($tanggal)
     {
         try {
+            // $hematologi = DB::table('periksa_lab as p')
+            //     ->join('jns_perawatan_lab as j', 'j.kd_jenis_prw', '=', 'p.kd_jenis_prw')
+            //     ->join('template_laboratorium as t', 'j.kd_jenis_prw', '=', 't.kd_jenis_prw')
+            //     ->join('detail_periksa_lab as d', 't.kd_jenis_prw', '=', 'd.kd_jenis_prw')
+            //     ->where(function ($query) {
+            //         $query->where(function ($sub) {
+            //             $sub->where(function ($q) {
+            //                 $q->where('t.Pemeriksaan', 'like', '%Lekosit%')
+            //                 ->orWhere('t.Pemeriksaan', 'like', '%Eritrosit%');
+            //             })->where('j.nm_perawatan', 'like', '%HEMATOLOGI%');
+            //         })
+            //         ->orWhere('t.Pemeriksaan', 'like', '%Hemoglobin%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%Trombosit%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%Retikulosit%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%HCT%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%MCH%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%MCV%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%MCHC%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%LED%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%Golongan Darah%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%Morfologi%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%Masa Perdarahan%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%Masa Pembekuan%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%PT%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%APTT%')
+            //         ->orWhere('t.Pemeriksaan', 'like', '%BMP%')
+            //         ->orWhere('j.nm_perawatan', 'like', '%Rhesus%')
+            //         ->orWhere('j.nm_perawatan', 'like', '%HAPUSAN DARAH TEPI%')
+            //         ->orWhere('j.nm_perawatan', 'like', '%Morofologi%')
+            //         ->orWhere('j.nm_perawatan', 'like', '%BMP%');
+            //     })
+            //     ->whereDate('p.tgl_periksa', $tanggal)
+            //     ->count();
+
+            // $kimia_klinis = DB::table('periksa_lab as p')
+            //     ->join('jns_perawatan_lab as j', 'j.kd_jenis_prw', '=', 'p.kd_jenis_prw')
+            //     ->join('template_laboratorium as t', 'j.kd_jenis_prw', '=', 't.kd_jenis_prw')
+            //     ->join('detail_periksa_lab as d', 't.kd_jenis_prw', '=', 'd.kd_jenis_prw')
+            //     ->where(function ($query) {
+            //         $query->where('t.Pemeriksaan', 'like', '%T3%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%T4%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%TSH%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Glukosa%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Kolesterol%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Trigliser%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Ureum%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Kreatinin%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Uric Acid%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Alkali%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Bilirubin Direk%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Bilirubin Total%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Total Protein%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Albumin%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Globulin%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Natrium%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Kalium%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Chlorida%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%BGA%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Widal%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%VDRL%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%IgM SALMONELLA%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Anti Dengue%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%HBsAg%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%ANTI HCV%')
+            //             ->orWhere('j.nm_perawatan', 'like', '%ANTI HIV%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%Malaria ICT%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%TROPONIN 1 RAPID%')
+            //             ->orWhere('t.Pemeriksaan', 'like', '%TROPONIN I ( RAPID )%');
+            //     })
+            //     ->whereDate('p.tgl_periksa', $tanggal)
+            //     ->count();
+
             $hematologi = DB::table('periksa_lab as p')
-                ->join('jns_perawatan_lab as j', 'j.kd_jenis_prw', '=', 'p.kd_jenis_prw')
-                ->join('template_laboratorium as t', 'j.kd_jenis_prw', '=', 't.kd_jenis_prw')
-                ->where(function ($query) {
-                    $query->where(function ($sub) {
-                        $sub->where(function ($q) {
-                            $q->where('t.Pemeriksaan', 'like', '%Lekosit%')
-                            ->orWhere('t.Pemeriksaan', 'like', '%Eritrosit%');
-                        })->where('j.nm_perawatan', 'like', '%HEMATOLOGI%');
-                    })
-                    ->orWhere('t.Pemeriksaan', 'like', '%Hemoglobin%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%Trombosit%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%Retikulosit%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%HCT%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%MCH%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%MCV%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%MCHC%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%LED%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%Golongan Darah%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%Morfologi%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%Masa Perdarahan%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%Masa Pembekuan%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%PT%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%APTT%')
-                    ->orWhere('t.Pemeriksaan', 'like', '%BMP%')
-                    ->orWhere('j.nm_perawatan', 'like', '%Rhesus%')
-                    ->orWhere('j.nm_perawatan', 'like', '%HAPUSAN DARAH TEPI%')
-                    ->orWhere('j.nm_perawatan', 'like', '%Morofologi%')
-                    ->orWhere('j.nm_perawatan', 'like', '%BMP%');
-                })
+                ->join('detail_periksa_lab as d', 'p.no_rawat', '=', 'd.no_rawat')
+                ->join('template_laboratorium as t', 't.id_template', '=', 'd.id_template')
                 ->whereDate('p.tgl_periksa', $tanggal)
+                ->whereIn('t.kd_jenis_prw', ['LAB0059','LAB0060', 'LAB0022', 'LAB0003', 'J000054'])
                 ->count();
 
             $kimia_klinis = DB::table('periksa_lab as p')
-                ->join('jns_perawatan_lab as j', 'j.kd_jenis_prw', '=', 'p.kd_jenis_prw')
-                ->join('template_laboratorium as t', 'j.kd_jenis_prw', '=', 't.kd_jenis_prw')
-                ->where(function ($query) {
-                    $query->where('t.Pemeriksaan', 'like', '%T3%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%T4%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%TSH%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Glukosa%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Kolesterol%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Trigliser%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Ureum%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Kreatinin%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Uric Acid%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Alkali%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Bilirubin Direk%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Bilirubin Total%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Total Protein%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Albumin%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Globulin%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Natrium%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Kalium%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Chlorida%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%BGA%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Widal%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%VDRL%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%IgM SALMONELLA%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Anti Dengue%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%HBsAg%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%ANTI HCV%')
-                        ->orWhere('j.nm_perawatan', 'like', '%ANTI HIV%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%Malaria ICT%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%TROPONIN 1 RAPID%')
-                        ->orWhere('t.Pemeriksaan', 'like', '%TROPONIN I ( RAPID )%');
-                })
+                ->join('detail_periksa_lab as d', 'p.no_rawat', '=', 'd.no_rawat')
+                ->join('template_laboratorium as t', 't.id_template', '=', 'd.id_template')
                 ->whereDate('p.tgl_periksa', $tanggal)
+                ->whereIn('t.kd_jenis_prw', [
+                    'LAB0007','LAB0008', 'LAB0026', 'LAB0027', 'LAB0006', 'LAB0058', 'LAB0005', 'LAB0024', 
+                    'LAB0004', 'LAB0023', 'LAB0009', 'LAB0028', 'LAB0054', 'LAB0055', 'LAB0056', 'LAB0057',
+                    'J000052', 'J000056'
+                ])
                 ->count();
 
             return [
@@ -132,7 +152,7 @@ class SendLabParameter extends Command
         ]);
 
         if ($response->successful()) {
-            Log::info("[$layanan] Data dikirim berhasil.", [
+            Log::info("LAB PARAMETER - [$layanan] Data dikirim berhasil.", [
                 'tanggal_transaksi' => $tanggal,
                 'nama_layanan' => $layanan,
                 'jumlah' => $jumlah,
