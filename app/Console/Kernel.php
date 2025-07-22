@@ -35,6 +35,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('ralan:send')->dailyAt('23:59');
         $schedule->command('ranap:send')->dailyAt('23:59');
 
+        $schedule->command('bor:send')->monthlyOn(1, '00:03'); 
+        $schedule->command('toi:send')->monthlyOn(1, '00:03'); 
+        $schedule->command('alos:send')->monthlyOn(1, '00:03'); 
+        $schedule->command('bto:send')->monthlyOn(1, '00:03'); 
+        
+
     }
 
     protected function commands()
