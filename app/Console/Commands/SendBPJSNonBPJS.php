@@ -61,11 +61,11 @@ class SendBPJSNonBPJS extends Command
 
     private function ambilDataBPJSNonBPJS($tanggal)
     {
-        $bpjs_values = ['BPJ'];
+        $bpjs_values = ['BPJ', 'A65'];
         $non_bpjs_values = [
             '10', '11', '13', '14', '16', '21', '22', '3', 'A09', 'A22',
             'A23', 'A25', 'A26', 'A27', 'A28', 'A29', 'A30', 'A31', 'A32', 'A42', 'A63',
-            'A70', 'A77', 'A78', 'B00', 'B1', 'INH', 'SPM', 'BTK', 'A65'
+            'A70', 'A77', 'A78', 'B00', 'B1', 'INH', 'SPM', 'BTK'
         ];
 
         try {
