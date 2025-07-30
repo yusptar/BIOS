@@ -18,9 +18,9 @@ class SendRanap extends Command
         try {
             $authResponse = Http::withHeaders([
                 'Content-Type' => 'application/json'
-            ])->post(env('PROD_TOKEN'), [
+            ])->post(env('AUTH_TOKEN'), [
                 'satker' => env('KD_SATKER'),
-                'key' => env('KEY_PROD'),
+                'key' => env('KEY_DEV'),
             ]);
 
             if (!$authResponse->successful()) {
@@ -32,34 +32,53 @@ class SendRanap extends Command
             $tanggal = now()->subDay()->format('Y-m-d');
             $jumlah = $this->getRanap($tanggal);
 
-            foreach ($jumlah as $kode_kelas => $total_pasien) {
-                $this->sendRanapData($kode_kelas, $tanggal, $total_pasien, $accessToken);
+            foreach ($jumlah as $kelas => $total_pasien) {
+                $this->sendRanapData($kelas, $tanggal, $total_pasien, $accessToken);
             }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
     }
 
+    // private function getRanap($tanggal)
+    // {
+    //     try {
+    //         $kode_kelas = ['VVIP','VIP','UTAMA','KELAS I','KELAS II','KELAS III','ICU','ICCU','NICU','PICU','IGD','UGD','RUANG BERSALIN','HCU','RUANG ISOLASI','NIMCU','SUPER VVIP','NIMCU','CVCU'];
+    //         $jumlah = [];
+
+    //         foreach ($kode_kelas as $kode) {
+    //             $jumlah[$kode] =  DB::table('reg_periksa')
+    //                 ->join('kamar_inap', 'reg_periksa.no_rawat', '=', 'kamar_inap.no_rawat')
+    //                 ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
+    //                 ->where('reg_periksa.status_lanjut', 'Ranap')
+    //                 ->whereDate('kamar_inap.tgl_masuk', $tanggal)
+    //                 ->where('kamar.kelas', $kode) 
+    //                 ->count();
+    //         }
+
+    //         return $jumlah;
+
+    //     } catch (\Exception $e) {
+    //         \Log::error('Gagal menghitung jumlah pasien rawat inap: ' . $e->getMessage());
+    //     }
+    // }
+
     private function getRanap($tanggal)
     {
         try {
-            $kode_kelas = ['VVIP','VIP','UTAMA','KELAS I','KELAS II','KELAS III','ICU','ICCU','NICU','PICU','IGD','UGD','RUANG BERSALIN','HCU','RUANG ISOLASI','NIMCU','SUPER VVIP','NIMCU','CVCU'];
-            $jumlah = [];
+            $data = DB::table('reg_periksa as rp')
+                ->join('kamar_inap', 'rp.no_rawat', '=', 'kamar_inap.no_rawat')
+                ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
+                ->select('kamar.kelas', DB::raw('COUNT(rp.no_rawat) as jml'))
+                ->where('rp.status_lanjut', 'Ranap')
+                ->whereDate('kamar_inap.tgl_masuk', $tanggal)
+                ->groupBy('kamar.kelas')
+                ->pluck('jml', 'kamar.kelas');
 
-            foreach ($kode_kelas as $kode) {
-                $jumlah[$kode] =  DB::table('reg_periksa')
-                    ->join('kamar_inap', 'reg_periksa.no_rawat', '=', 'kamar_inap.no_rawat')
-                    ->join('kamar', 'kamar_inap.kd_kamar', '=', 'kamar.kd_kamar')
-                    ->where('reg_periksa.status_lanjut', 'Ranap')
-                    ->whereDate('kamar_inap.tgl_masuk', $tanggal)
-                    ->where('kamar.kelas', $kode) 
-                    ->count();
-            }
-
-            return $jumlah;
+            return $data;
 
         } catch (\Exception $e) {
-            \Log::error('Gagal menghitung jumlah pasien rawat inap: ' . $e->getMessage());
+            \Log::error('Gagal mengambil jumlah pasien rawat inap: ' . $e->getMessage());
         }
     }
 
