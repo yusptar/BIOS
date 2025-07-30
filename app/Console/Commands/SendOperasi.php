@@ -18,9 +18,9 @@ class SendOperasi extends Command
         try {
             $authResponse = Http::withHeaders([
                 'Content-Type' => 'application/json'
-            ])->post(env('PROD_TOKEN'), [
+            ])->post(env('AUTH_TOKEN'), [
                 'satker' => env('KD_SATKER'),
-                'key' => env('KEY_PROD'),
+                'key' => env('KEY_DEV'),
             ]);
 
             if (!$authResponse->successful()) {
@@ -33,12 +33,9 @@ class SendOperasi extends Command
             $tanggal = now()->subDay()->format('Y-m-d');
             $jumlah = $this->getOperasi($tanggal);
 
-            $this->sendOperasiData('Khusus', $tanggal, $jumlah['Khusus'], $accessToken);
-            $this->sendOperasiData('Besar', $tanggal, $jumlah['Besar'], $accessToken);
-            $this->sendOperasiData('Sedang', $tanggal, $jumlah['Sedang'], $accessToken);
-            $this->sendOperasiData('Kecil', $tanggal, $jumlah['Kecil'], $accessToken);
-            $this->sendOperasiData('Elektive', $tanggal, $jumlah['Elektive'], $accessToken);
-            $this->sendOperasiData('Emergency', $tanggal, $jumlah['Emergency'], $accessToken);
+            foreach ($jumlah as $kategori => $total_pasien) {
+                $this->sendOperasiData($kategori, $tanggal, $total_pasien, $accessToken);
+            }
         } catch (\Exception $e) {
             Log::error($e->getMessage());
         }
@@ -47,26 +44,16 @@ class SendOperasi extends Command
     private function getOperasi($tanggal)
     {
         try {
-            $kategori_operasi = ['Khusus', 'Besar', 'Sedang', 'Kecil', 'Elektive','Emergency'];
-            $jumlah = [];
+            $data = DB::table('operasi')
+                ->select('kategori', DB::raw('COUNT(no_rawat) as jml'))
+                ->whereDate('tgl_operasi', $tanggal)
+                ->groupBy('kategori')
+                ->pluck('jml', 'kategori');
 
-            foreach ($kategori_operasi as $kategori) {
-                $jumlah[$kategori] = DB::table('operasi')
-                    ->whereDate('tgl_operasi', $tanggal)
-                    ->where('kategori', $kategori)
-                    ->count();
-            }
-
-            return $jumlah;
+            return $data;
 
         } catch (\Exception $e) {
             \Log::error('Gagal menghitung jumlah operasi: ' . $e->getMessage());
-            return [
-                'Khusus' => 0,
-                'Besar' => 0,
-                'Sedang' => 0,
-                'Kecil' => 0,
-            ];
         }
     }
 
