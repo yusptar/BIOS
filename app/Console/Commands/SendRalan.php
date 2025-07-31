@@ -40,64 +40,6 @@ class SendRalan extends Command
         }
     }
 
-    // private function getRalan($tanggal)
-    // {
-    //     try {
-    //        $poli = [
-    //             'BEDAH ONKOLOGI',
-    //             'ONKOLOGI GINEKOLOGI',
-    //             'NEUROMUSKULAR, SARAF PERIFER',
-    //             'RADIOTERAPI',
-    //             'Akupuntur',
-    //             'Poli Anak',
-    //             'GIGI BEDAH MULUT',
-    //             'BEDAH PLASTIK',
-    //             'Poli Bedah',
-    //             'BEDAH SARAF',
-    //             'BTKV (BEDAH THORAX KARDIOVASKU',
-    //             'ENDOSKOPI',
-    //             'GIGI PERIODONTI',
-    //             'Hemodialisa',
-    //             'Unit IGD',
-    //             'Poli Penyakit Dalam',
-    //             'Instalasi Rehab Medik',
-    //             'Poli Jantung',
-    //             'Poli Penyakit Jiwa',
-    //             'Kemoterapi',
-    //             'KULIT KELAMIN',
-    //             'GIGI PEDODONTIS',
-    //             'LABORATORIUM PATOLOGI KLINIS',
-    //             'Poli Penyakit Mata',
-    //             'Medical Check Up',
-    //             'Poli Obstetri/Gyn',
-    //             'ORTHOPEDI',
-    //             'Poli Paru-Paru',
-    //             'GIGI PROSTHODONTI',
-    //             'RADIOLOGI',
-    //             'SARANA RADIOTERAPI',
-    //             'Poli Penyakit Syaraf',
-    //             'Poli Telinga/Hidung/Tenggorok',
-    //             'Unit Gawat Darurat',
-    //             'UROLOGI',
-    //             'VCT'
-    //         ];
-    //         $jumlah = [];
-
-    //         foreach ($poli as $nama_poli) {
-    //             $jumlah[$nama_poli] = DB::table('reg_periksa')
-    //                 ->join('poliklinik', 'reg_periksa.kd_poli', '=', 'poliklinik.kd_poli')
-    //                 ->where('reg_periksa.status_lanjut', 'Ralan')
-    //                 ->whereDate('reg_periksa.tgl_registrasi', $tanggal)
-    //                 ->where('poliklinik.nm_poli', $nama_poli) 
-    //                 ->count();
-    //         }
-    //         return $jumlah;
-
-    //     } catch (\Exception $e) {
-    //         \Log::error('Gagal menghitung jumlah pasien rawat jalan: ' . $e->getMessage());
-    //     }
-    // }
-
     private function getRalan($tanggal)
     {
         try {

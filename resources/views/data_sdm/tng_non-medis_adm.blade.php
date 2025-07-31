@@ -34,12 +34,12 @@
                             <input type="number" class="form-control" name="pppk" placeholder="Masukkan jumlah PPPK">
                         </div>
                         <div class="form-group">
-                            <label>Anggota</label>
+                            <label>Anggota (Khusus Anggota TNI/Polri)</label>
                             <input type="number" class="form-control" name="anggota"
                                 placeholder="Masukkan jumlah Anggota">
                         </div>
                         <div class="form-group">
-                            <label>Non PNS Tetap (Khusus Anggota TNI/Polri)</label>
+                            <label>Non PNS Tetap</label>
                             <input type="number" class="form-control" name="non_pns_tetap"
                                 placeholder="Masukkan jumlah Non PNS Tetap">
                         </div>
