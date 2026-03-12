@@ -48,6 +48,11 @@
                             <input type="number" class="form-control" name="kontrak"
                                 placeholder="Masukkan Jumlah Kontrak">
                         </div>
+                         <div class="form-group">
+                            <label>Keterangan</label>
+                            <input type="text" class="form-control" name="keterangan"
+                                placeholder="Masukkan Keterangan">
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
@@ -101,6 +106,7 @@ $('#btn-submit').click(function() {
         formData.append('anggota', $('input[name=anggota]').val());
         formData.append('non_pns_tetap', $('input[name=non_pns_tetap]').val());
         formData.append('kontrak', $('input[name=kontrak]').val());
+        formData.append('keterangan', $('input[name=keterangan]').val());
         formData.append('_token', $('input[name=_token]').val());
         $.ajax({
             url: '{{ env('SDM_TNG_NON_MEDIS_ADM') }}',

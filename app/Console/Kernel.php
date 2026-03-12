@@ -43,6 +43,9 @@ class Kernel extends ConsoleKernel
         
         // Schedule IKT
         
+        // Schedule SIMANIS
+        $schedule->command('ralansimanis:send')->dailyAt('00:03');
+        $schedule->command('ranapsimanis:send')->dailyAt('00:04');
 
     }
 
