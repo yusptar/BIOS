@@ -58,7 +58,7 @@ class SendRanapSIMANIS extends Command
                     'r.kd_pj as jenis_pasien',
                     'bs.diagawal as ICD10',
                     'ki.tgl_keluar as tanggal_pulang',
-                    'ki.lama as lama_rawat'
+                    'ki.lama as lama_rawat',
                     'ki.stts_pulang as cara_pulang',
                     'ki.stts_pulang as kondisi_pulang',
                     DB::raw("IFNULL(se.id_encounter,'') as id_encounter")
