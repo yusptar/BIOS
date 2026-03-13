@@ -60,6 +60,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'simanis' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/simanis.log'),
+            'level' => 'info',
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),

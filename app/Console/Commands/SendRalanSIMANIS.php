@@ -16,75 +16,126 @@ class SendRalanSIMANIS extends Command
     public function handle()
     {
         try {
-            $authResponse = Http::withHeaders([
-                'Content-Type' => 'application/json'
-            ])->post(env('URL_AUTH_SIMANIS'), [
+
+            $authResponse = Http::post(env('URL_AUTH_SIMANIS'), [
                 'USER' => env('KEY_SIMANIS'),
                 'PASS' => env('SECRET_KEY_SIMANIS'),
             ]);
 
             if (!$authResponse->successful()) {
-                Log::error('Gagal login saat ambil token.', ['status' => $authResponse->status()]);
+                Log::channel('simanis')->error('Gagal ambil token SIMANIS');
                 return;
             }
 
-            $accessToken = $authResponse->json('access_token'); 
+            $accessToken = $authResponse->json('access_token');
 
-            $tanggal = now()->subDay()->format('Y-m-d');
-            // $jumlah = $this->getOperasi($tanggal);
+            // $tanggal = now()->subDay()->format('Y-m-d');
+            $tanggal = '2026-03-09';
 
-            // foreach ($jumlah as $kategori => $total_pasien) {
-            //     $this->sendOperasiData($kategori, $tanggal, $total_pasien, $accessToken);
-            // }
+            $data = $this->getDataRalan($tanggal);
+
+            foreach ($data as $row) {
+                $this->sendRalanData($row, $accessToken);
+            }
+
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
+            Log::channel('simanis')->error($e->getMessage());
         }
     }
 
-    private function getOperasi($tanggal)
+    private function getDataRalan($tanggal)
     {
         try {
-            $data = DB::table('operasi')
-                ->select('kategori', DB::raw('COUNT(no_rawat) as jml'))
-                ->whereDate('tgl_operasi', $tanggal)
-                ->groupBy('kategori')
-                ->pluck('jml', 'kategori');
+            $data = DB::table('reg_periksa as r')
+                ->join('bridging_sep as bs', 'bs.no_rawat', '=', 'r.no_rawat')
+                ->leftJoin('simanis_encounter as se', 'se.no_rawat', '=', 'r.no_rawat')
+                ->select(
+                    'r.no_reg as id_kunjungan',
+                    'r.tgl_registrasi',
+                    'r.no_rawat',
+                    'r.no_rkm_medis',
+                    'r.kd_pj as jenis_pasien',
+                    'bs.diagawal as ICD10',
+                    'r.status_lanjut',
+                    DB::raw("IFNULL(se.id_encounter,'') as id_encounter")
+                )
+                ->whereDate('r.tgl_registrasi', $tanggal)
+                ->whereNull('se.id_encounter')
+                ->distinct()
+                ->get();
 
             return $data;
 
         } catch (\Exception $e) {
-            \Log::error('Gagal menghitung jumlah operasi: ' . $e->getMessage());
+            Log::channel('simanis')->error('Gagal mengambil data SIMANIS: '.$e->getMessage());
         }
     }
 
 
-    private function sendOperasiData($operasi, $tanggal, $jumlah, $accessToken)
+    private function sendRalanData($row, $accessToken)
     {
-        $response = Http::withToken($accessToken)->post(env('LYN_OPERASI'), [
-            'tgl_transaksi' => $tanggal,
-            'klasifikasi_operasi' => $operasi,
-            'jumlah' => $jumlah,
-        ]);
+        try {
+            switch ($row->status_lanjut) {
+                case 'Rujukan': $kodeTindakLanjut = '1'; break;
+                case 'Ranap':   $kodeTindakLanjut = '2'; break;
+                case 'Ralan':   $kodeTindakLanjut = '3'; break;
+                default:        $kodeTindakLanjut = '0'; break;
+            }
 
-        if ($response->successful()) {
-            Log::info("OPERASI - [$operasi] Data dikirim berhasil.", [
-                'tanggal_transaksi' => $tanggal,
-                'klasifikasi_operasi' => $operasi,
-                'jumlah' => $jumlah,
-                'response' => $response->json()
+            switch ($row->jenis_pasien) {
+                case '16':  $kodeJenisPasien = '7'; break;
+                case 'BPJ': $kodeJenisPasien = '8'; break;
+                case 'A09':
+                case '13':
+                case '21':
+                case '22':
+                case '11':
+                case '14':
+                    $kodeJenisPasien = '9'; break;
+                default: $kodeJenisPasien = '0';
+            }
+
+            $payload = [
+                "ID_KUNJUNGAN_RS" => $row->id_kunjungan,
+                "TANGGAL_KUNJUNGAN" => $row->tgl_registrasi,
+                "NO_RM" => $row->no_rkm_medis,
+                "JENIS_PASIEN" => $kodeJenisPasien,
+                "ICD_10" => $row->ICD10,
+                "TINDAK_LANJUT_PELAYANAN" => $kodeTindakLanjut
+            ];
+            
+
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer '.$accessToken,
+                'Content-Type' => 'application/json'
+            ])->post(env('POST_RALAN_SIMANIS'), $payload);
+
+            $body = $response->body();
+            $cleanBody = explode('<script', $body)[0];
+            $result = json_decode($cleanBody, true);
+            
+            Log::channel('simanis')->info("DATA SIMANIS", [
+                'no_rm' => $row->no_rkm_medis,
+                'status' => $result['STATUS'] ?? 'UNKNOWN',
+                'id' => $result['ID'] ?? null
             ]);
-            $this->info("[$operasi] (Pengiriman Data).");
-            $this->line(json_encode($response->json(), JSON_PRETTY_PRINT));
-            $this->line('Tanggal Transaksi : ' . $tanggal);
-            $this->line('Jumlah : ' . $jumlah);
-        } else {
-            Log::error("[$operasi] Gagal mengirim data.", [
-                'tanggal_transaksi' => $tanggal,
-                'klasifikasi_operasi' => $operasi,
-                'jumlah' => $jumlah,
-                'response' => $response->json()
-            ]);
-            $this->error("❌ [$operasi] Gagal mengirim data.");
+            $this->info(
+                "SIMANIS | RM: ".$row->no_rkm_medis.
+                " | STATUS: ".($result['STATUS'] ?? 'UNKNOWN').
+                " | ID: ".($result['ID'] ?? '-')
+            );
+
+            $idEncounter = $result['ID'] ?? null;
+
+            if ($idEncounter) {
+                DB::table('simanis_encounter')->insert([
+                    'no_rawat' => $row->no_rawat,
+                    'id_encounter' => $idEncounter
+                ]);
+            }
+            $this->info("Encounter berhasil: ".$idEncounter);
+        } catch (\Exception $e) {
+            Log::channel('simanis')->error('Error kirim SIMANIS: '.$e->getMessage());
         }
     }
 }
