@@ -29,10 +29,7 @@ class SendRanapSIMANIS extends Command
 
             $accessToken = $authResponse->json('access_token');
 
-            // $tanggal = now()->subDay()->format('Y-m-d');
-            $tanggal = '2026-03-12';
-
-            $data = $this->getDataRanap($tanggal);
+            $data = $this->getDataRanap();
 
             foreach ($data as $row) {
                 $this->sendRanapData($row, $accessToken);
@@ -43,7 +40,7 @@ class SendRanapSIMANIS extends Command
         }
     }
 
-    private function getDataRanap($tanggal)
+    private function getDataRanap()
     {
         try {
             $data = DB::table('reg_periksa as r')
@@ -59,12 +56,40 @@ class SendRanapSIMANIS extends Command
                     'bs.diagawal as ICD10',
                     'ki.tgl_keluar as tanggal_pulang',
                     'ki.lama as lama_rawat',
-                    'ki.stts_pulang as cara_pulang',
-                    'ki.stts_pulang as kondisi_pulang',
+
+                    DB::raw("
+                        CASE 
+                            WHEN ki.stts_pulang = 'Sehat' THEN 'Pulang'
+                            WHEN ki.stts_pulang = 'Rujuk' THEN 'Pindah ke Rumkit Lain'
+                            WHEN ki.stts_pulang = 'APS' THEN 'Pulang'
+                            WHEN ki.stts_pulang = 'Meninggal' THEN 'Pulang'
+                            WHEN ki.stts_pulang = 'Sembuh' THEN 'Pulang'
+                            WHEN ki.stts_pulang = 'Membaik' THEN 'Pulang'
+                            WHEN ki.stts_pulang = 'Pulang Paksa' THEN 'Pulang Paksa'
+                            WHEN ki.stts_pulang = '-' THEN NULL
+                            ELSE 'Pulang'
+                        END as cara_pulang
+                    "),
+
+                    DB::raw("
+                        CASE 
+                            WHEN ki.stts_pulang IN ('Sehat','Sembuh','Membaik') THEN 'Hidup Sembuh'
+                            WHEN ki.stts_pulang = 'Meninggal' THEN 'Meninggal < 48 Jam'
+                            WHEN ki.stts_pulang = '-' THEN NULL
+                            ELSE 'Belum Sembuh'
+                        END as kondisi_pulang
+                    "),
+
                     DB::raw("IFNULL(se.id_encounter,'') as id_encounter")
                 )
-                ->whereDate('r.tgl_registrasi', $tanggal)
+                ->whereBetween('r.tgl_registrasi', [
+                    now()->startOfMonth(),
+                    now()->endOfDay()
+                ])
                 ->whereNull('se.id_encounter')
+                ->whereNotNull('ki.tgl_keluar')
+                ->where('ki.tgl_keluar', '!=', '0000-00-00')
+                ->where('ki.stts_pulang', '!=', '-')
                 ->distinct()
                 ->get();
 
@@ -79,13 +104,8 @@ class SendRanapSIMANIS extends Command
     private function sendRanapData($row, $accessToken)
     {
         try {
-            switch ($row->status_lanjut) {
-                case 'Rujukan': $kodeTindakLanjut = '1'; break;
-                case 'Ranap':   $kodeTindakLanjut = '2'; break;
-                case 'Ralan':   $kodeTindakLanjut = '3'; break;
-                default:        $kodeTindakLanjut = '0'; break;
-            }
 
+            // mapping jenis pasien
             switch ($row->jenis_pasien) {
                 case '16':  $kodeJenisPasien = '7'; break;
                 case 'BPJ': $kodeJenisPasien = '8'; break;
@@ -99,15 +119,24 @@ class SendRanapSIMANIS extends Command
                 default: $kodeJenisPasien = '0';
             }
 
+            if (!$row->tanggal_pulang || !$row->cara_pulang || !$row->kondisi_pulang) {
+                Log::channel('simanis')->warning("Data tidak valid", [
+                    'no_rawat' => $row->no_rawat
+                ]);
+                return;
+            }
+
             $payload = [
                 "ID_KUNJUNGAN_RS" => $row->id_kunjungan,
                 "TANGGAL_KUNJUNGAN" => $row->tgl_registrasi,
                 "NO_RM" => $row->no_rkm_medis,
                 "JENIS_PASIEN" => $kodeJenisPasien,
                 "ICD_10" => $row->ICD10,
-                "TINDAK_LANJUT_PELAYANAN" => $kodeTindakLanjut
+                "TANGGAL_PULANG" => $row->tanggal_pulang,
+                "HARI_DIRAWAT" => $row->lama_rawat,
+                "CARA_PULANG" => $row->cara_pulang,
+                "KEADAAN_PULANG" => $row->kondisi_pulang
             ];
-            
 
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer '.$accessToken,
@@ -117,14 +146,15 @@ class SendRanapSIMANIS extends Command
             $body = $response->body();
             $cleanBody = explode('<script', $body)[0];
             $result = json_decode($cleanBody, true);
-            
-            Log::channel('simanis')->info("DATA SIMANIS", [
+
+            Log::channel('simanis')->info("SIMANIS RANAP", [
                 'no_rm' => $row->no_rkm_medis,
                 'status' => $result['STATUS'] ?? 'UNKNOWN',
                 'id' => $result['ID'] ?? null
             ]);
+
             $this->info(
-                "SIMANIS | RM: ".$row->no_rkm_medis.
+                "SIMANIS RANAP | RM: ".$row->no_rkm_medis.
                 " | STATUS: ".($result['STATUS'] ?? 'UNKNOWN').
                 " | ID: ".($result['ID'] ?? '-')
             );
@@ -136,8 +166,10 @@ class SendRanapSIMANIS extends Command
                     'no_rawat' => $row->no_rawat,
                     'id_encounter' => $idEncounter
                 ]);
+
+                $this->info("Encounter berhasil: ".$idEncounter);
             }
-            $this->info("Encounter berhasil: ".$idEncounter);
+
         } catch (\Exception $e) {
             Log::channel('simanis')->error('Error kirim SIMANIS: '.$e->getMessage());
         }

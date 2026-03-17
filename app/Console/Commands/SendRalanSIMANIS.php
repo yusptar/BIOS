@@ -29,8 +29,8 @@ class SendRalanSIMANIS extends Command
 
             $accessToken = $authResponse->json('access_token');
 
-            $tanggal = now()->subDay()->format('Y-m-d');
-            // $tanggal = '2026-03-09';
+            $tanggal = now()->format('Y-m-d');
+            // $tanggal = '2026-03-15';
 
             $data = $this->getDataRalan($tanggal);
 
