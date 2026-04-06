@@ -18,7 +18,6 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\SendOperasi::class,
         \App\Console\Commands\SendRalan::class,
         \App\Console\Commands\SendRanap::class,
-       
     ];
   
     protected function schedule(Schedule $schedule)
@@ -42,6 +41,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('bto:send')->monthlyOn(1, '00:02');
         
         // Schedule IKT
+        $schedule->command('dpjp_non_visite:send')->dailyAt('00:20');
+        $schedule->command('visite10:send')->dailyAt('00:21');
+        $schedule->command('visite12:send')->dailyAt('00:22');
+        $schedule->command('visite1012:send')->dailyAt('00:23');
+        $schedule->command('visite_pertama:send')->dailyAt('00:24');
         
         // Schedule SIMANIS 
         $schedule->command('ralansimanis:send')->dailyAt('23:30');
