@@ -30,7 +30,7 @@ class Pegawai extends Model implements Authenticatable
 
     public function getAuthPassword()
     {
-        return $this->password; // Replace with the actual password column name
+        return $this->pass_pegawai;
     }
 
     public function getRememberToken()
@@ -43,6 +43,11 @@ class Pegawai extends Model implements Authenticatable
         $this->remember_token = $value;
     }
 
+    public function getAuthPasswordName()
+    {
+        return 'password';
+    }
+
     public function getRememberTokenName()
     {
         return 'remember_token'; // Replace with the actual remember token column name
@@ -52,4 +57,6 @@ class Pegawai extends Model implements Authenticatable
     {
         return $this->hasMany(User::class);
     }
+
+    
 }
