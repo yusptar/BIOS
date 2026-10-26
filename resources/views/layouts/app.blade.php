@@ -1,30 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
 
 <head>
-    <title>BIOS WebService | Rumah Sakit Tk.II dr. Soepraoen</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('auth/images/logo-rs.png') }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="{{ asset('auth/css/style.css') }}">
-
+    <meta name="theme-color" content="#14284b">
+    <title>Masuk · BIOS RS Tk. II dr. Soepraoen</title>
+    <link rel="icon" type="image/png" href="{{ asset('auth/images/logo-rs.png') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bios/bios.css') }}?v=1">
 </head>
 
-<body class="img js-fullheight" style="background-image: url(img/tes.jpg);">
+<body class="bios bios-auth">
     @yield('content')
-    <script src="{{ asset('auth/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('auth/js/popper.js') }}"></script>
-    <script src="{{ asset('auth/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('auth/js/main.js') }}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="{{ asset('modules/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('admin/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
     @include('sweetalert::alert')
+    @stack('scripts')
 </body>
 
 </html>

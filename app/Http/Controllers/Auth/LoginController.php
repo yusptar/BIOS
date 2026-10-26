@@ -61,11 +61,15 @@ class LoginController extends Controller
 
                 try {
                     $client = new Client();
-                    $response = $client->post(getenv('AUTH_TOKEN'), [
+                    // Kode satker & key BIOS dibaca di server (dulu dikirim lewat
+                    // input tersembunyi di halaman login sehingga terlihat publik).
+                    $response = $client->post(config('bios.auth_url'), [
                         'json' => [
-                            'satker' => $request->satker,
-                            'key' => $request->key,
+                            'satker' => config('bios.satker'),
+                            'key' => config('bios.key'),
                         ],
+                        'timeout' => 20,
+                        'connect_timeout' => 10,
                         'headers' => [
                             'Content-Type' => 'application/json',
                         ],
@@ -74,7 +78,13 @@ class LoginController extends Controller
                     $accessToken = $apiResponse['token'];
                     $user->update(['token' => $accessToken]);
                 } catch (Exception $errmsg) {
-                    return redirect()->back()->with('error', 'Kesalahan pada saat mendapatkan token: ' . $errmsg->getMessage());
+                    report($errmsg);
+                    auth()->logout();
+                    $request->session()->invalidate();
+                    $request->session()->regenerateToken();
+
+                    return redirect()->route('login')->withInput($request->only('username'))
+                        ->with('token_error', 'Login berhasil, tetapi token BIOS tidak bisa diambil. Coba lagi beberapa saat; jika berulang, hubungi tim IT (detail di storage/logs).');
                 }
 
                 Alert::success('Login Berhasil!', 'Selamat Datang! Admin.');
@@ -86,7 +96,7 @@ class LoginController extends Controller
         } else {
             RateLimiter::hit($key); // Hit the rate limit
             Alert::error('Login Gagal!', 'Terdapat kesalahan pada username atau password! ');
-            return redirect()->back();
+            return redirect()->back()->withInput($request->only('username'));
         }
     }
 

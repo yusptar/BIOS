@@ -1,24 +1,20 @@
 @extends('layouts.main')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Layanan Forensik</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<div class="content-wrapper" id="main">
+    @include('layouts.partials.page-header', ['title' => 'Jumlah Layanan Forensik'])
 
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title" style="font-weight:600">Input Form</h3>
+            <div class="row bios-form-layout">
+                <div class="col-lg-8 col-xl-7">
+            <div class="card bios-card bios-form-card">
+                <div class="bios-card-head">
+                    <div>
+                        <h2>Data yang dikirim</h2>
+                        <p>Periksa angka, lalu tekan <strong>Kirim ke BIOS</strong>.</p>
+                    </div>
+                    <span class="bios-pill"><i class="far fa-calendar-alt" aria-hidden="true"></i> <span data-bios-txdate>—</span></span>
                 </div>
                 <form id="form-dokter-spesialis">
                     @csrf
@@ -31,10 +27,13 @@
                                 placeholder="Masukkan jumlah pasien">
                         </div>
                     </div>
-                    <div class=" card-footer">
-                        <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
+                    <div class="card-footer bios-form-foot">
+                        <span class="bios-foot-note"><i class="fas fa-lock" aria-hidden="true"></i> Dikirim langsung ke layanan BIOS dengan token akun Anda.</span>
+                        <button type="button" id="btn-submit" class="btn btn-primary bios-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Kirim ke BIOS</button>
                     </div>
                 </form>
+            </div>
+                </div>
             </div>
         </div>
     </section>
@@ -47,7 +46,7 @@
 // Get the current date in the format YYYY-MM-DD
 const today = new Date();
 today.setDate(today.getDate() - 1);
-const formattedDate = today.toISOString().slice(0, 10);
+const formattedDate = BIOS.localDate(today);
 document.getElementById('tgl_transaksi').value = formattedDate;
 
 $('#btn-submit').click(function() {

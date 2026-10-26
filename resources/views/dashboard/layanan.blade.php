@@ -1,339 +1,145 @@
 @extends('layouts.main')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">Dashboard Layanan</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+@php
+    $bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    $toSeries = function ($rows) {
+        $s = array_fill(1, 12, 0);
+        foreach ($rows as $r) {
+            $s[(int) $r->month] = (int) $r->total;
+        }
+        return array_values($s);
+    };
+    $series = [
+        'ralan' => ['label' => 'Rawat jalan', 'unit' => 'kunjungan', 'color' => '#14284b', 'data' => $toSeries($ralan)],
+        'ranap' => ['label' => 'Rawat inap', 'unit' => 'pasien', 'color' => '#1f7a5c', 'data' => $toSeries($ranap)],
+        'radiologi' => ['label' => 'Radiologi', 'unit' => 'pemeriksaan', 'color' => '#0b7f93', 'data' => $toSeries($radiologi)],
+    ];
+    $bulanIni = (int) now()->month;
+    $tahun = now()->year;
+    // Hasil survei IKM per triwulan (nilai sama dengan tampilan sebelumnya)
+    $ikm = [
+        ['Triwulan I', 85.03, 3.40],
+        ['Triwulan II', 85.37, 3.41],
+        ['Triwulan III', 85.49, 3.42],
+        ['Triwulan IV', 86.74, 3.47],
+    ];
+@endphp
+<div class="content-wrapper" id="main">
+    @include('layouts.partials.page-header', ['title' => 'Dashboard Layanan', 'lead' => 'Jumlah pengguna layanan per bulan, tahun '.$tahun.'. Bulan berjalan ('.$bulan[$bulanIni - 1].') belum lengkap.'])
 
-    <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-6">
-
-            <!-- AREA CHART -->
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title"><strong>Kinerja Layanan</strong></h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
+        <div class="container-fluid">
+            <div class="bios-grid bios-grid-3">
+                @foreach ($series as $key => $s)
+                    @php
+                        $ytd = array_sum($s['data']);
+                        $last = $s['data'][$bulanIni - 1];
+                        $prevFull = $bulanIni >= 2 ? $s['data'][$bulanIni - 2] : null;
+                        $prevPrev = $bulanIni >= 3 ? $s['data'][$bulanIni - 3] : null;
+                        $delta = ($prevFull !== null && $prevPrev) ? ($prevFull - $prevPrev) / $prevPrev * 100 : null;
+                    @endphp
+                    <div class="bios-kpi">
+                        <p class="bios-kpi-label"><span class="dot" style="background: {{ $s['color'] }}"></span>{{ $s['label'] }} · {{ $tahun }}</p>
+                        <p class="bios-kpi-value">{{ number_format($ytd, 0, ',', '.') }}<small>{{ $s['unit'] }}</small></p>
+                        <p class="bios-kpi-sub">
+                            @if ($prevFull !== null)
+                                {{ $bulan[$bulanIni - 2] }}: <strong class="bios-num">{{ number_format($prevFull, 0, ',', '.') }}</strong>
+                                @if ($delta !== null)
+                                    <span class="bios-delta {{ $delta >= 0 ? 'up' : 'down' }}">{{ $delta >= 0 ? '▲' : '▼' }} {{ number_format(abs($delta), 1, ',', '.') }}%</span> dari {{ $bulan[$bulanIni - 3] }}
+                                @endif
+                            @else
+                                Bulan berjalan: <strong class="bios-num">{{ number_format($last, 0, ',', '.') }}</strong>
+                            @endif
+                        </p>
+                        <div class="bios-spark"><canvas id="spark-{{ $key }}" aria-label="Tren bulanan {{ $s['label'] }}" role="img"></canvas></div>
+                    </div>
+                @endforeach
             </div>
 
-            <!-- DONUT CHART -->
-            <div class="card card-danger card-outline">
-              <div class="card-header">
-                <h3 class="card-title"><strong>Jumlah Pengguna Layanan</strong></h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Pengguna layanan per bulan</h3>
+                        <p class="text-muted mb-0" style="font-size:13px">Setiap layanan memakai skala sendiri agar tren rawat inap dan radiologi tetap terbaca di samping rawat jalan.</p>
+                    </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <canvas id="bar2Chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-            </div>
-          </div>
-
-          <!-- /.col (LEFT) -->
-          <div class="col-md-6">
-            <!-- LINE CHART -->
-            <div class="card card-info card-outline">
-              <div class="card-header">
-                <h3 class="card-title"><strong>Trend Pemberian Layanan</strong></h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button> -->
+                <div class="card-body">
+                    <div class="bios-grid bios-grid-3 mb-0">
+                        @foreach ($series as $key => $s)
+                            <div>
+                                <p class="bios-kpi-label mb-2"><span class="dot" style="background: {{ $s['color'] }}"></span>{{ $s['label'] }}</p>
+                                <div class="bios-chart sm"><canvas id="chart-{{ $key }}" aria-label="{{ $s['label'] }} per bulan" role="img"></canvas></div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
             </div>
 
-            <!-- BAR CHART -->
-            <div class="card card-success card-outline">
-              <div class="card-header">
-                <h3 class="card-title"><strong>Hasil Survey Penggunaan Layanan</strong></h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h3 class="card-title">Hasil survei kepuasan pengguna layanan (IKM)</h3>
+                        <p class="text-muted mb-0" style="font-size:13px">Nilai konversi (skala 25–100) dan nilai indeks (skala 1–4) per triwulan.</p>
+                    </div>
                 </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="bar1Chart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <div class="card-body">
+                    <div class="bios-quarters">
+                        @foreach ($ikm as [$tw, $konversi, $indeks])
+                            <div class="bios-quarter">
+                                <p>{{ $tw }}</p>
+                                <strong>{{ number_format($konversi, 2, ',', '.') }}</strong>
+                                <span>Indeks {{ number_format($indeks, 2, ',', '.') }}</span>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <!-- /.col (RIGHT) -->
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
 </div>
+@endsection
+
+@push('scripts')
+<script src="{{ asset('bios/vendor/chart.umd.min.js') }}"></script>
+@endpush
 
 @section('script')
 <script>
-  $(function () {
-    //-------------
-    //- HASIL SURVEY PENGGUNAAN LAYANAN -
-    //-------------
-    var bar1Canvas = $('#bar1Chart').get(0).getContext('2d')
-    var bar1Data = {
-      labels  : <?php echo json_encode($months_survey); ?>,
-      datasets: [
-        {
-          label               : 'Nilai Konversi',
-          backgroundColor     : 'rgba(60,141,188,0.9)',
-          borderColor         : 'rgba(60,141,188,0.8)',
-          pointRadius          : false,
-          pointColor          : '#3b8bba',
-          pointStrokeColor    : 'rgba(60,141,188,1)',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [85.03, 85.37, 85.49, 86.74]
-        },
-        {
-          label               : 'Nilai Indeks',
-          backgroundColor     : 'rgba(210, 214, 222, 1)',
-          borderColor         : 'rgba(210, 214, 222, 1)',
-          pointRadius         : false,
-          pointColor          : 'rgba(210, 214, 222, 1)',
-          pointStrokeColor    : '#c1c7d1',
-          pointHighlightFill  : '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [3.40, 3.41, 3.42, 3.47]
-        },
-      ]
-    }
+(function () {
+    BIOS.chartDefaults();
+    var labels = @json($bulan);
+    var series = @json($series);
+    var current = {{ $bulanIni }};
 
-    var bar1Options = {
-      maintainAspectRatio : false,
-      responsive : true,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [{
-          gridLines : {
-            display : false,
-          }
-        }],
-        yAxes: [{
-          gridLines : {
-            display : false,
-          }
-        }]
-      }
-    }
+    Object.keys(series).forEach(function (key) {
+        var s = series[key];
+        // Bulan setelah bulan berjalan tidak ditampilkan (bukan nol)
+        var data = s.data.map(function (v, i) { return i < current ? v : null; });
+        var colors = data.map(function (v, i) { return i === current - 1 ? s.color + '66' : s.color; });
 
-    var bar1Data = $.extend(true, {}, bar1Data)
-    var temp0 = bar1Data.datasets[0]
-    var temp1 = bar1Data.datasets[1]
-    bar1Data.datasets[0] = temp1
-    bar1Data.datasets[1] = temp0
+        new Chart(document.getElementById('spark-' + key), {
+            type: 'bar',
+            data: { labels: labels.slice(0, current), datasets: [{ data: data.slice(0, current), backgroundColor: colors.slice(0, current), borderRadius: 2, barPercentage: .8, categoryPercentage: .9 }] },
+            options: {
+                plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return BIOS.num(c.parsed.y) + ' ' + s.unit; } } } },
+                scales: { x: { display: false }, y: { display: false, beginAtZero: true } }
+            }
+        });
 
-    var bar1Options = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      datasetFill             : false
-    }
-
-    new Chart(bar1Canvas, {
-      type: 'bar',
-      data: bar1Data,
-      options: bar1Options
-    })
-
-    //-------------
-    //- JUMLAH PENGGUNAAN LAYANAN -
-    //-------------
-    var bar2Canvas = $('#bar2Chart').get(0).getContext('2d')
-    // Data dari backend
-    var ralanData = <?php echo json_encode($ralan); ?>;
-    var ranapData = <?php echo json_encode($ranap); ?>;
-    var radiologiData = <?php echo json_encode($radiologi); ?>;
-
-    // Struktur data yang diharapkan oleh chart.js
-    var chartData = {
-      labels: <?php echo json_encode($months); ?>,
-      datasets: [
-        {
-          label: 'Ralan',
-          backgroundColor: 'rgba(60,141,188,0.9)',
-          borderColor: 'rgba(60,141,188,0.8)',
-          pointRadius: false,
-          pointColor: '#3b8bba',
-          pointStrokeColor: 'rgba(60,141,188,1)',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data: ralanData.map(item => item.total)
-        },
-        {
-          label: 'Ranap',
-          backgroundColor: 'rgba(210, 214, 222, 1)',
-          borderColor: 'rgba(210, 214, 222, 1)',
-          pointRadius: false,
-          pointColor: 'rgba(210, 214, 222, 1)',
-          pointStrokeColor: '#c1c7d1',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data: ranapData.map(item => item.total)
-        },
-        {
-          label: 'Radiologi',
-          backgroundColor: 'black',
-          borderColor: 'black',
-          pointRadius: false,
-          pointColor: 'black',
-          pointStrokeColor: '#c1c7d1',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data: radiologiData.map(item => item.total)
-        }
-      ]
-    };
-
-    var bar2Options = {
-      maintainAspectRatio: false,
-      responsive: true,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [{
-          gridLines: {
-            display: false,
-          }
-        }],
-        yAxes: [{
-          gridLines: {
-            display: false,
-          }
-        }]
-      }
-    };
-
-    var bar2Options = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      datasetFill             : false
-    }
-
-    new Chart(bar2Canvas, {
-      type: 'bar',
-      data: chartData,
-      options: bar2Options
+        new Chart(document.getElementById('chart-' + key), {
+            type: 'bar',
+            data: { labels: labels, datasets: [{ label: s.label, data: data, backgroundColor: colors, borderRadius: 3, maxBarThickness: 22 }] },
+            options: {
+                plugins: { legend: { display: false }, tooltip: { callbacks: {
+                    label: function (c) { return BIOS.num(c.parsed.y) + ' ' + s.unit + (c.dataIndex === current - 1 ? ' (bulan berjalan)' : ''); }
+                } } },
+                scales: {
+                    x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkip: true } },
+                    y: { beginAtZero: true, ticks: { callback: function (v) { return BIOS.num(v); }, maxTicksLimit: 5 } }
+                }
+            }
+        });
     });
-
-    //-------------
-    //- TREND PEMBERIAN LAYANAN -
-    //--------------
-    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-
-    var ralanData = <?php echo json_encode($ralan); ?>;
-    var ranapData = <?php echo json_encode($ranap); ?>;
-    var radiologiData = <?php echo json_encode($radiologi); ?>;
-    var lineChartData = {
-      labels  :  <?php echo json_encode($months); ?>,
-      datasets: [
-        {
-          label: 'Ralan',
-          backgroundColor: 'rgba(60,141,188,0.9)',
-          borderColor: 'rgba(60,141,188,0.8)',
-          pointRadius: false,
-          pointColor: '#3b8bba',
-          pointStrokeColor: 'rgba(60,141,188,1)',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data: ralanData.map(item => item.total)
-        },
-        {
-          label: 'Ranap',
-          backgroundColor: 'rgba(210, 214, 222, 1)',
-          borderColor: 'rgba(210, 214, 222, 1)',
-          pointRadius: false,
-          pointColor: 'rgba(210, 214, 222, 1)',
-          pointStrokeColor: '#c1c7d1',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data: ranapData.map(item => item.total)
-        },
-        {
-          label: 'Radiologi',
-          backgroundColor: 'black',
-          borderColor: 'black',
-          pointRadius: false,
-          pointColor: 'black',
-          pointStrokeColor: '#c1c7d1',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(220,220,220,1)',
-          data: radiologiData.map(item => item.total)
-        }
-        // Add more datasets as needed
-      ]
-    }
-
-    var lineChartOptions = {
-      maintainAspectRatio : false,
-      responsive : true,
-      legend: {
-        display: false
-      },
-      scales: {
-        xAxes: [{
-          gridLines : {
-            display : true,
-          }
-        }],
-        yAxes: [{
-          gridLines : {
-            display : true,
-          }
-        }]
-      }
-    }
-
-    var lineChartOptions = $.extend(true, {}, lineChartOptions)
-    var lineChartData = $.extend(true, {}, lineChartData)
-    lineChartData.datasets.forEach(dataset => {
-      dataset.fill = false;
-    })
-
-    var lineChart = new Chart(lineChartCanvas, {
-      type: 'line',
-      data: lineChartData,
-      options: lineChartOptions
-    })
-  })
+})();
 </script>
-@endsection
 @endsection

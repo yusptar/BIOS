@@ -33,5 +33,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role == "direktorat";
         });
 
+        // Boleh membuka dashboard (akun tanpa role tidak bisa membuka apa pun)
+        Gate::define('dashboard', function($user){
+            return in_array($user->role, ['admin', 'direktorat'], true);
+        });
+
     }
 }

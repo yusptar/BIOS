@@ -1,24 +1,20 @@
 @extends('layouts.main')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Layanan Farmasi</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<div class="content-wrapper" id="main">
+    @include('layouts.partials.page-header', ['title' => 'Jumlah Layanan Farmasi', 'freq' => 'Harian'])
 
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="card card-default">
-                <div class="card-header">
-                <button class="btn btn-info" data-toggle="modal" data-target="#modal"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;Keterangan</button>
+            <div class="row bios-form-layout">
+                <div class="col-lg-7 col-xl-8">
+            <div class="card bios-card bios-form-card">
+                <div class="bios-card-head">
+                    <div>
+                        <h2>Data yang dikirim</h2>
+                        <p>Periksa angka, lalu tekan <strong>Kirim ke BIOS</strong>.</p>
+                    </div>
+                    <span class="bios-pill"><i class="far fa-calendar-alt" aria-hidden="true"></i> <span data-bios-txdate>—</span></span>
                 </div>
                 <form id="form-dokter-spesialis">
                     @csrf
@@ -26,41 +22,26 @@
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
                         <div class="form-group">
-                            <label>Jumlah Resep</label>
+                            <label>Jumlah Resep <span class="bios-tag-auto" title="Diisi otomatis dari SIMRS">SIMRS</span></label>
                             <input type="number" class="form-control" name="jumlah" placeholder="Masukkan jumlah resep" disabled>
                         </div>
                     </div>
-                    <div class=" card-footer">
-                        <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
+                    <div class="card-footer bios-form-foot">
+                        <span class="bios-foot-note"><i class="fas fa-lock" aria-hidden="true"></i> Dikirim langsung ke layanan BIOS dengan token akun Anda.</span>
+                        <button type="button" id="btn-submit" class="btn btn-primary bios-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Kirim ke BIOS</button>
                     </div>
                 </form>
+            </div>
+                </div>
+                <div class="col-lg-5 col-xl-4">
+                    @include('layouts.partials.form-info', ['notes' => ['Data yang dikirimkan merupakan posisi data pada saat tanggal transaksi, tidak bersifat akumulatif', 'Data dikirimkan per periode harian', 'Data yang dikirimkan merupakan resep yang dilayani oleh bagian farmasi atau resep yang masuk ke bagian farmasi baik dari luar maupun dari dalam Rumah Sakit.'], 'auto' => true])
+                </div>
             </div>
         </div>
     </section>
     <!-- End Main content -->
 </div>
 
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Keterangan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- <p>1. Data transaksi pengeluaran yang dikirimkan di-grouping per tanggal transaksi per akun</p> -->
-        <p>● Data yang dikirimkan merupakan posisi data pada saat tanggal transaksi, tidak bersifat akumulatif</p>
-        <p>● Data dikirimkan per periode harian</p>
-        <p>● Data yang dikirimkan merupakan resep yang dilayani oleh bagian farmasi atau resep yang masuk ke bagian farmasi baik dari luar maupun dari dalam Rumah Sakit.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 @endsection
 
 @section('script')
@@ -68,7 +49,7 @@
 // Get the current date in the format YYYY-MM-DD
 const today = new Date();
 today.setDate(today.getDate() - 1);
-const formattedDate = today.toISOString().slice(0, 10);
+const formattedDate = BIOS.localDate(today);
 document.getElementById('tgl_transaksi').value = formattedDate;
 
 // Fungsi untuk mengisi formulir dengan data dari database

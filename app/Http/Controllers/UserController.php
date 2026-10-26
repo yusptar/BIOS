@@ -31,7 +31,8 @@ class UserController extends Controller
     public function user_detail(Request $request)
     {
         $id = $request->id;
-        $user_details = User::find($id);
+        // Hash password tidak dikirim ke browser
+        $user_details = User::select('id', 'username', 'role')->find($id);
         return response()->json(['details' => $user_details]);
     }
 

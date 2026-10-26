@@ -1,31 +1,27 @@
 @extends('layouts.main')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">Jumlah Pranata Laboratorium</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<div class="content-wrapper" id="main">
+    @include('layouts.partials.page-header', ['title' => 'Jumlah Pranata Laboratorium', 'freq' => 'Awal tahun + semesteran/tahunan'])
 
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="card card-default">
-                <div class="card-header">
-                <button class="btn btn-info" data-toggle="modal" data-target="#modal"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;Keterangan</button>
+            <div class="row bios-form-layout">
+                <div class="col-lg-7 col-xl-8">
+            <div class="card bios-card bios-form-card">
+                <div class="bios-card-head">
+                    <div>
+                        <h2>Data yang dikirim</h2>
+                        <p>Periksa angka, lalu tekan <strong>Kirim ke BIOS</strong>.</p>
+                    </div>
+                    <span class="bios-pill"><i class="far fa-calendar-alt" aria-hidden="true"></i> <span data-bios-txdate>—</span></span>
                 </div>
                 <form id="form-dokter-spesialis">
                     @csrf
                     <div class="card-body">
                         <input type="text" class="form-control" name="tgl_transaksi" id="tgl_transaksi" hidden>
                         <input type="text" name="_token" id="token" value="{{ Auth::user()->token }}" hidden>
-                        <div class=" form-group">
+                        <div class="form-group">
                             <label>PNS</label>
                             <input type="number" class="form-control" name="pns" placeholder="Masukkan jumlah PNS">
                         </div>
@@ -49,36 +45,22 @@
                                 placeholder="Masukkan Jumlah Kontrak">
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
+                    <div class="card-footer bios-form-foot">
+                        <span class="bios-foot-note"><i class="fas fa-lock" aria-hidden="true"></i> Dikirim langsung ke layanan BIOS dengan token akun Anda.</span>
+                        <button type="button" id="btn-submit" class="btn btn-primary bios-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Kirim ke BIOS</button>
                     </div>
                 </form>
+            </div>
+                </div>
+                <div class="col-lg-5 col-xl-4">
+                    @include('layouts.partials.form-info', ['notes' => ['Data yang dikirimkan merupakan posisi data pada saat tanggal berkenaan, bersifat akumulatif. Data yang dikirimkan merupakan jumlah pegawai sesuai kriteria.', 'Data awal dikirimkan pada awal tahun berkenaan, updating data dikirimkan per periode semesteran/tahunan.']])
+                </div>
             </div>
         </div>
     </section>
     <!-- End Main content -->
 </div>
 
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Keterangan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- <p>1. Data transaksi pengeluaran yang dikirimkan di-grouping per tanggal transaksi per akun</p> -->
-        <p>● Data yang dikirimkan merupakan posisi data pada saat tanggal berkenaan, bersifat akumulatif. Data yang dikirimkan merupakan jumlah pegawai sesuai kriteria.</p>
-        <p>● Data awal dikirimkan pada awal tahun berkenaan, updating data dikirimkan per periode semesteran/tahunan.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 @endsection
 
 @section('script')
@@ -86,7 +68,7 @@
 // Get the current date in the format YYYY-MM-DD
 const today = new Date();
 today.setDate(today.getDate() - 1);
-const formattedDate = today.toISOString().slice(0, 10);
+const formattedDate = BIOS.localDate(today);
 document.getElementById('tgl_transaksi').value = formattedDate;
 
 $('#btn-submit').click(function() {

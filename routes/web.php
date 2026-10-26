@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes([
     // 'register' => false, // Registration Routes...
+    'register' => false, // Pendaftaran publik ditutup; akun dibuat admin lewat menu Pengguna
     'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
 ]);
@@ -26,7 +27,8 @@ Auth::routes([
 
 
 // add login middleware
-Route::group(['middleware' => ['auth']], function () {
+// Dashboard: admin dan Direktorat PPKBLU
+Route::group(['middleware' => ['auth', 'can:dashboard']], function () {
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index']);
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     
@@ -35,6 +37,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard-sdm', [App\Http\Controllers\DashboardController::class, 'sdm'])->name('dashboard-sdm');
     Route::get('dashboard-keuangan', [App\Http\Controllers\DashboardController::class, 'keuangan'])->name('dashboard-keuangan');
     Route::get('dashboard-pendukung', [App\Http\Controllers\DashboardController::class, 'pendukung'])->name('dashboard-pendukung');
+});
+
+// Pengiriman data BIOS dan manajemen pengguna: hanya admin
+Route::group(['middleware' => ['auth', 'can:admin']], function () {
 
     // Route Data Keuangan
     Route::get('/penerimaan', [App\Http\Controllers\DataKeuanganController::class, 'penerimaan'])->name('penerimaan');

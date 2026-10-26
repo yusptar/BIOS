@@ -1,8 +1,4 @@
-<!-- /.content-wrapper -->
-<footer class="main-footer">
-    <strong>Copyright &copy; 2023 <a href="https://rssoepraoen.co.id" target=_blank>IT RST</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0
-    </div>
+<footer class="main-footer bios-footer">
+    <span>&copy; {{ date('Y') }} <a href="https://rssoepraoen.co.id" target="_blank" rel="noopener">IT RS Tk. II dr. Soepraoen</a></span>
+    <span class="bios-footer-meta">Pengiriman data BIOS ke Direktorat PPK BLU · v2.0</span>
 </footer>

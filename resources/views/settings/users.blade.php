@@ -1,82 +1,71 @@
 @extends('layouts.main')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0" style="font-weight:bold">Users</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<div class="content-wrapper" id="main">
+    @include('layouts.partials.page-header', ['title' => 'Pengguna', 'lead' => 'Akun yang bisa masuk ke BIOS Web Service. NIP/NRP harus sama dengan NIK pegawai di SIMRS.'])
 
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3">
-                    <div class="card card-default">
-                        <div class="card-header">
-                            <h3 class="card-title" style="font-weight:600">Tambah User</h3>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="bios-card-head">
+                            <div>
+                                <h2>Tambah pengguna</h2>
+                                <p>Semua kolom wajib diisi.</p>
+                            </div>
                         </div>
-                        <form id="form-users">
+                        <form id="form-users" autocomplete="off">
                             @csrf
                             <div class="card-body">
-                                <input type="text" name="_token" value="{{ Auth::user()->token }}" hidden/>
                                 <div class="form-group">
-                                    <label>Pilih Role <span style="color:red;">*</span></label>
-                                    <select name="role" id="role" class="form-control">
-                                        <option disabled selected>-- Pilih Role --</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="direktorat">Direktorat PPKBLU</option>
+                                    <label for="role">Role</label>
+                                    <select name="role" id="role" class="form-control custom-select" required>
+                                        <option value="" disabled selected>Pilih role</option>
+                                        <option value="admin">Admin (kirim data BIOS)</option>
+                                        <option value="direktorat">Direktorat PPKBLU (lihat dashboard)</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>NIP/NRP <span style="color:red;">*</span></label>
-                                    <input id="username" type="text" class="form-control" name="username" required placeholder="Masukkan NIP/NRP">
+                                    <label for="username">NIP/NRP</label>
+                                    <input id="username" type="text" class="form-control" name="username" required placeholder="Masukkan NIP/NRP" inputmode="numeric">
                                 </div>
                                 <div class="form-group">
-                                    <label>Password <span style="color:red;">*</span></label>
-                                    <input id="password-confirm" type="password" class="form-control" name="password" required placeholder="Masukkan Password">
+                                    <label for="new-password">Password</label>
+                                    <input id="new-password" type="password" class="form-control" name="password" required minlength="8" autocomplete="new-password" placeholder="Minimal 8 karakter">
                                 </div>
                                 <div class="form-group">
-                                    <label>Konfirmasi Password <span style="color:red;">*</span></label>
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password" placeholder="Masukkan Konfirmasi Password">
+                                    <label for="new-password-confirm">Konfirmasi password</label>
+                                    <input id="new-password-confirm" type="password" class="form-control" name="password_confirmation" required minlength="8" autocomplete="new-password" placeholder="Ulangi password">
                                 </div>
                             </div>
-                            <div class=" card-footer">
-                                <button type="button" id="btn-submit" class="btn btn-primary">Submit</button>
+                            <div class="card-footer">
+                                <button type="button" id="btn-submit" class="btn btn-primary btn-block"><i class="fas fa-user-plus mr-2" aria-hidden="true"></i>Tambah pengguna</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-lg-8">
                     <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title" style="font-weight:600">Tabel Users</h3>
+                        <div class="bios-card-head">
+                            <div>
+                                <h2>Daftar pengguna</h2>
+                                <p>Ubah password atau hapus akun dari kolom aksi.</p>
+                            </div>
                         </div>
                         <div class="card-body">
-                            <table id="users_table" class="table table-striped jambo_table">
+                            <table id="users_table" class="table table-hover dt-responsive" style="width:100%">
                                 <thead>
-                                    <tr class="headings">
-                                        <th class="column-title">NIP/NRP</th>
-                                        <th class="column-title">Role</th>
-                                        <th class="column-title">Nama</th>
-                                        <th class="column-title">NIK</th>
-                                        <th class="column-title">Action</th>
+                                    <tr>
+                                        <th>NIP/NRP</th>
+                                        <th>Role</th>
+                                        <th>Nama</th>
+                                        <th>NIK</th>
+                                        <th class="text-right">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="card-footer text-right">
-                            <nav class="d-inline-block">
-                            </nav>
                         </div>
                     </div>
                 </div>
@@ -85,41 +74,35 @@
     </section>
 </div>
 
-<!-- The modal -->
 <div class="modal fade user_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modalLabel">Ubah Password</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="update_user" action="{{ route('user-update') }}" method="POST"
-                    class="form-label-left input_mask">
+            <form id="update_user" action="{{ route('user-update') }}" method="POST" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">Ubah password <span class="text-muted" data-user-label></span></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
                     @csrf
                     <input type="hidden" name="id">
-                    <!-- <div class="col-md-12  form-group has-feedback">
-                        <label for="username">NIP/NRP</label>
-                        <input type="text" name="username" class="form-control has-feedback-left" placeholder="NIP/NRP"
-                            disabled>
-                    </div> -->
-                    <div class="col-md-12  form-group has-feedback">
-                        <label for="name">Password Baru</label>
-                        <input id="password-confirm" type="password" class="form-control has-feedback-left"
-                            name="password">
+                    <div class="form-group">
+                        <label for="upd-password">Password baru</label>
+                        <input id="upd-password" type="password" class="form-control" name="password" required minlength="8" autocomplete="new-password">
+                        <span class="text-danger small password_error"></span>
                     </div>
-                    <div class="col-md-12  form-group has-feedback">
-                        <label>Konfirmasi Password Baru</label>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+                    <div class="form-group">
+                        <label for="upd-password-confirm">Konfirmasi password baru</label>
+                        <input id="upd-password-confirm" type="password" class="form-control" name="password_confirmation" required minlength="8" autocomplete="new-password">
+                        <span class="text-danger small password_confirmation_error"></span>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" type="reset">Reset</button>
-                        <button type="submit" class="btn btn-success">Update</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-light" type="button" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan password</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -142,22 +125,22 @@ $('#btn-submit').click(function() {
             contentType: false,
             processData: false,
             success: function(data) {
+                $('#form-users')[0].reset();
+                $('#users_table').DataTable().ajax.reload(null, false);
                 Swal.fire({
                     title: "Berhasil!",
-                    text: "Data Berhasil ditambahkan",
+                    text: "Pengguna berhasil ditambahkan",
                     icon: "success",
-                    buttons: false,
-                    timer: 3000,
+                    timer: 2500,
                 })
             },
-            error: function(data) {
-                console.log(data);
+            error: function(xhr) {
+                var errs = (xhr.responseJSON && xhr.responseJSON.error) || {};
+                var msg = Object.keys(errs).map(function (k) { return [].concat(errs[k])[0]; }).join('\n');
                 Swal.fire({
                     title: "Gagal!",
-                    text: "Data gagal ditambahkan",
+                    text: msg || "Pengguna gagal ditambahkan",
                     icon: "error",
-                    buttons: false,
-                    timer: 3000,
                 })
             }
         });
@@ -169,6 +152,13 @@ $('#btn-submit').click(function() {
 $('#users_table').DataTable({
     processing: true,
     info: true,
+    responsive: true,
+    language: {
+        search: "", searchPlaceholder: "Cari pengguna…", lengthMenu: "_MENU_ per halaman",
+        info: "_START_–_END_ dari _TOTAL_ pengguna", infoEmpty: "Belum ada pengguna", infoFiltered: "(disaring dari _MAX_)",
+        zeroRecords: "Tidak ada pengguna yang cocok", processing: "Memuat…", emptyTable: "Belum ada pengguna",
+        paginate: { previous: "‹", next: "›" }
+    },
     ajax: "{{ route('user-list') }}",
     columns: [{
             data: "username",
@@ -176,7 +166,12 @@ $('#users_table').DataTable({
         },
         {
             data: "role",
-            name: "role"
+            name: "role",
+            render: function (v) {
+                return v === 'admin' ? '<span class="bios-freq">Admin</span>'
+                     : v === 'direktorat' ? '<span class="bios-tag-auto">Direktorat PPKBLU</span>'
+                     : $('<span>').text(v || '-').html();
+            }
         },
         {
             data: "nama",
@@ -188,7 +183,10 @@ $('#users_table').DataTable({
         },
         {
             data: "actions",
-            name: "actions"
+            name: "actions",
+            orderable: false,
+            searchable: false,
+            className: "text-right"
         },
     ]
 });
@@ -212,8 +210,10 @@ $(document).on('click', '#edit_user_btn', function() {
         success: function(data) {
             $('.user_modal').find('input[name="id"]').val(data.details.id);
             // $('.user_modal').find('input[name="username"]').val(data.details.username);
-            $('.user_modal').find('input[name="password"]').val(data.details.password);
-            $('.user_modal').find('input[name="password_confirmation"]').val(data.details.password);
+            // Password tidak diisi otomatis: dulu kolom ini berisi hash password
+            // sehingga menekan "Update" tanpa mengetik membuat akun terkunci.
+            $('.user_modal').find('[data-user-label]').text('· ' + (data.details.username || ''));
+            $('.user_modal').find('span.text-danger').text('');
             $('.user_modal').modal('show');
         },
         error: function(xhr, status, error) {
@@ -233,7 +233,14 @@ $('#update_user').on('submit', function(e) {
         dataType: 'json',
         contentType: false,
         beforeSend: function() {
-            $(this).find('span.error-text').text('');
+            $(form).find('span.text-danger').text('');
+        },
+        error: function(xhr) {
+            var errs = (xhr.responseJSON && xhr.responseJSON.errors) || {};
+            $.each(errs, function(prefix, val) {
+                $(form).find('span.' + prefix + '_error').text(val[0]);
+            });
+            if ($.isEmptyObject(errs)) { Swal.fire('Gagal', 'Password gagal diperbarui.', 'error'); }
         },
         success: function(data) {
             if (data.code == 0) {
